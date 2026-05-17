@@ -1,0 +1,122 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/practice_screen.gd" id="1_practice"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_practice_panel"]
+bg_color = Color(0.121569, 0.168627, 0.235294, 0.94)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.556863, 0.741176, 0.447059, 0.7)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.18)
+
+[node name="PracticeScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_practice")
+
+[node name="MainMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainVBox" type="VBoxContainer" parent="MainMargin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TopRow" type="HBoxContainer" parent="MainMargin/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BackButton" type="Button" parent="MainMargin/MainVBox/TopRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "返回首页"
+
+[node name="LevelLabel" type="Label" parent="MainMargin/MainVBox/TopRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "关卡"
+
+[node name="ProgressLabel" type="Label" parent="MainMargin/MainVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.984314, 0.913725, 0.478431, 1)
+text = "第 1 / 10 题"
+
+[node name="ModeLabel" type="Label" parent="MainMargin/MainVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.694118, 0.866667, 0.992157, 1)
+text = "关卡闯关"
+
+[node name="QuestionCard" type="PanelContainer" parent="MainMargin/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_practice_panel")
+
+[node name="QuestionMargin" type="MarginContainer" parent="MainMargin/MainVBox/QuestionCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="QuestionVBox" type="VBoxContainer" parent="MainMargin/MainVBox/QuestionCard/QuestionMargin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="QuestionLabel" type="RichTextLabel" parent="MainMargin/MainVBox/QuestionCard/QuestionMargin/QuestionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="OptionContainer" type="VBoxContainer" parent="MainMargin/MainVBox/QuestionCard/QuestionMargin/QuestionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="AnswerInput" type="LineEdit" parent="MainMargin/MainVBox/QuestionCard/QuestionMargin/QuestionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "请输入答案"
+
+[node name="FeedbackLabel" type="RichTextLabel" parent="MainMargin/MainVBox/QuestionCard/QuestionMargin/QuestionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="ActionRow" type="HBoxContainer" parent="MainMargin/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SubmitButton" type="Button" parent="MainMargin/MainVBox/ActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "提交答案"
+
+[node name="NextButton" type="Button" parent="MainMargin/MainVBox/ActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "下一题"

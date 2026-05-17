@@ -1,0 +1,7 @@
+{
+	"rules":[
+		{"stars":1,"accuracy_gte":0.0,"description":"完成关卡"},
+		{"stars":2,"accuracy_gte":0.8,"description":"正确率达到 80%"},
+		{"stars":3,"accuracy_gte":0.95,"description":"高正确率通关"}
+	]
+}

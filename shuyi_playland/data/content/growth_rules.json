@@ -1,0 +1,12 @@
+{
+	"level_up_curve_base":100,
+	"sign_in_exp":10,
+	"sign_in_gold":15,
+	"practice_bonus_exp":8,
+	"mini_game_bonus_exp":18,
+	"achievement_rewards":[
+		{"id":"ach_complete_3_levels","exp":30,"gold":20},
+		{"id":"ach_sign_in_3_days","exp":20,"gold":18},
+		{"id":"ach_correct_50_questions","exp":40,"gold":25}
+	]
+}

@@ -1,0 +1,193 @@
+{
+  "exports": [
+    {
+      "exported_at": "2026-04-08T16:29:52.984Z",
+      "target": "E:\\Archive\\Godot\\shuyi\\shuyi_playland\\data\\content"
+    }
+  ],
+  "grade_count": 6,
+  "module_count": 18,
+  "knowledge_point_count": 12,
+  "level_count": 13,
+  "question_count": 56,
+  "wrong_question_hotspots": [
+    {
+      "knowledge_point_id": "kp_g1_add20",
+      "knowledge_point_name": "20 以内加减法",
+      "question_count": 20
+    },
+    {
+      "knowledge_point_id": "kp_g1_compare",
+      "knowledge_point_name": "数的大小比较",
+      "question_count": 11
+    },
+    {
+      "knowledge_point_id": "kp_g1_mental",
+      "knowledge_point_name": "基础口算",
+      "question_count": 10
+    },
+    {
+      "knowledge_point_id": "kp_g2_length",
+      "knowledge_point_name": "长度单位换算",
+      "question_count": 3
+    },
+    {
+      "knowledge_point_id": "kp_g6_exam_mix",
+      "knowledge_point_name": "综合模拟测试",
+      "question_count": 3
+    },
+    {
+      "knowledge_point_id": "kp_g2_clock",
+      "knowledge_point_name": "整时与半时",
+      "question_count": 2
+    },
+    {
+      "knowledge_point_id": "kp_g3_fraction_intro",
+      "knowledge_point_name": "认识分数",
+      "question_count": 2
+    },
+    {
+      "knowledge_point_id": "kp_g1_shapes",
+      "knowledge_point_name": "认识平面图形",
+      "question_count": 1
+    },
+    {
+      "knowledge_point_id": "kp_g3_vertical_add",
+      "knowledge_point_name": "三位数加减法竖式",
+      "question_count": 1
+    },
+    {
+      "knowledge_point_id": "kp_g4_decimal_calc",
+      "knowledge_point_name": "一位小数加减法",
+      "question_count": 1
+    }
+  ],
+  "module_breakdown": [
+    {
+      "module_id": "module_g1_numbers",
+      "module_name": "数与运算",
+      "knowledge_point_count": 2,
+      "level_count": 3,
+      "question_count": 31
+    },
+    {
+      "module_id": "module_g1_mental_math",
+      "module_name": "口算",
+      "knowledge_point_count": 1,
+      "level_count": 1,
+      "question_count": 10
+    },
+    {
+      "module_id": "module_g1_shapes",
+      "module_name": "图形与几何",
+      "knowledge_point_count": 1,
+      "level_count": 1,
+      "question_count": 1
+    },
+    {
+      "module_id": "module_g2_numbers",
+      "module_name": "数与运算",
+      "knowledge_point_count": 0,
+      "level_count": 0,
+      "question_count": 0
+    },
+    {
+      "module_id": "module_g2_units",
+      "module_name": "单位换算",
+      "knowledge_point_count": 1,
+      "level_count": 1,
+      "question_count": 3
+    },
+    {
+      "module_id": "module_g2_time",
+      "module_name": "时间与钟表",
+      "knowledge_point_count": 1,
+      "level_count": 1,
+      "question_count": 2
+    },
+    {
+      "module_id": "module_g3_vertical",
+      "module_name": "竖式计算",
+      "knowledge_point_count": 1,
+      "level_count": 1,
+      "question_count": 1
+    },
+    {
+      "module_id": "module_g3_fraction",
+      "module_name": "分数与小数启蒙",
+      "knowledge_point_count": 1,
+      "level_count": 1,
+      "question_count": 2
+    },
+    {
+      "module_id": "module_g3_logic",
+      "module_name": "规律与逻辑思维",
+      "knowledge_point_count": 0,
+      "level_count": 0,
+      "question_count": 0
+    },
+    {
+      "module_id": "module_g4_decimal",
+      "module_name": "小数运算",
+      "knowledge_point_count": 1,
+      "level_count": 1,
+      "question_count": 1
+    },
+    {
+      "module_id": "module_g4_geometry",
+      "module_name": "图形与几何",
+      "knowledge_point_count": 0,
+      "level_count": 0,
+      "question_count": 0
+    },
+    {
+      "module_id": "module_g4_application",
+      "module_name": "应用题",
+      "knowledge_point_count": 1,
+      "level_count": 1,
+      "question_count": 1
+    },
+    {
+      "module_id": "module_g5_fraction",
+      "module_name": "分数应用",
+      "knowledge_point_count": 0,
+      "level_count": 0,
+      "question_count": 0
+    },
+    {
+      "module_id": "module_g5_statistics",
+      "module_name": "统计与概率基础",
+      "knowledge_point_count": 1,
+      "level_count": 1,
+      "question_count": 1
+    },
+    {
+      "module_id": "module_g5_patterns",
+      "module_name": "规律与拓展",
+      "knowledge_point_count": 0,
+      "level_count": 0,
+      "question_count": 0
+    },
+    {
+      "module_id": "module_g6_exam",
+      "module_name": "考试模拟",
+      "knowledge_point_count": 1,
+      "level_count": 1,
+      "question_count": 3
+    },
+    {
+      "module_id": "module_g6_olympiad",
+      "module_name": "奥数启蒙",
+      "knowledge_point_count": 0,
+      "level_count": 0,
+      "question_count": 0
+    },
+    {
+      "module_id": "module_g6_review",
+      "module_name": "综合复习",
+      "knowledge_point_count": 0,
+      "level_count": 0,
+      "question_count": 0
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/app.gd" id="1_app"]
+[ext_resource type="Texture2D" path="res://assets/mini_games/dungeon/tiles/0x72_DungeonTilesetII_v1.7.png" id="2_dungeon_bg"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/system/32x32/book_01a.png" id="3_nav_home"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/system/32x32/book_02a.png" id="4_nav_practice"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/system/32x32/crystal_01a.png" id="5_nav_growth"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/system/32x32/coin_01a.png" id="6_nav_game"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/system/32x32/gem_01a.png" id="7_nav_settings"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_app_header"]
+bg_color = Color(0.980392, 0.988235, 1, 0.98)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.819608, 0.85098, 0.972549, 0.8)
+shadow_size = 12
+shadow_color = Color(0.309804, 0.376471, 0.694118, 0.12)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_app_button_normal"]
+bg_color = Color(1, 1, 1, 0.96)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.811765, 0.839216, 0.968627, 0.9)
+shadow_size = 6
+shadow_color = Color(0.329412, 0.392157, 0.709804, 0.08)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_app_button_hover"]
+bg_color = Color(0.960784, 0.968627, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.498039, 0.54902, 0.952941, 0.9)
+shadow_size = 8
+shadow_color = Color(0.329412, 0.392157, 0.709804, 0.1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_app_button_pressed"]
+bg_color = Color(0.309804, 0.27451, 0.898039, 0.96)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.75)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottom_nav"]
+bg_color = Color(1, 1, 1, 0.98)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.831373, 0.862745, 0.980392, 0.95)
+shadow_size = 14
+shadow_color = Color(0.329412, 0.392157, 0.709804, 0.12)
+
+[node name="App" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_app")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.933333, 0.94902, 1, 1)
+
+[node name="DungeonBackdrop" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dungeon_bg")
+expand_mode = 1
+stretch_mode = 6
+self_modulate = Color(0.709804, 0.768627, 1, 0.025)
+
+[node name="GlowTop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 180.0
+grow_horizontal = 2
+color = Color(0.505882, 0.54902, 0.972549, 0.1)
+
+[node name="GlowBottom" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.976471, 0.588235, 0.34902, 0.08)
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 18
+
+[node name="RootVBox" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="HeaderCard" type="PanelContainer" parent="SafeArea/RootVBox"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_app_header")
+
+[node name="HeaderPadding" type="MarginContainer" parent="SafeArea/RootVBox/HeaderCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="HeaderVBox" type="VBoxContainer" parent="SafeArea/RootVBox/HeaderCard/HeaderPadding"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TitleLabel" type="Label" parent="SafeArea/RootVBox/HeaderCard/HeaderPadding/HeaderVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
+theme_override_font_sizes/font_size = 30
+text = "数一游园"
+
+[node name="SubtitleLabel" type="Label" parent="SafeArea/RootVBox/HeaderCard/HeaderPadding/HeaderVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.384314, 0.427451, 0.643137, 1)
+theme_override_font_sizes/font_size = 16
+text = "干净清爽的数学冒险入口"
+
+[node name="ScreenHolder" type="MarginContainer" parent="SafeArea/RootVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomNavCard" type="PanelContainer" parent="SafeArea/RootVBox"]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bottom_nav")
+
+[node name="BottomNavPadding" type="MarginContainer" parent="SafeArea/RootVBox/BottomNavCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="NavRow" type="GridContainer" parent="SafeArea/RootVBox/BottomNavCard/BottomNavPadding"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 5
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="HomeButton" type="Button" parent="SafeArea/RootVBox/BottomNavCard/BottomNavPadding/NavRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_app_button_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_app_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_app_button_pressed")
+icon = ExtResource("3_nav_home")
+expand_icon = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+text = "首页"
+
+[node name="PracticeButton" type="Button" parent="SafeArea/RootVBox/BottomNavCard/BottomNavPadding/NavRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_app_button_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_app_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_app_button_pressed")
+icon = ExtResource("4_nav_practice")
+expand_icon = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+text = "练习"
+
+[node name="GrowthButton" type="Button" parent="SafeArea/RootVBox/BottomNavCard/BottomNavPadding/NavRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_app_button_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_app_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_app_button_pressed")
+icon = ExtResource("5_nav_growth")
+expand_icon = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+text = "成长"
+
+[node name="MiniGameButton" type="Button" parent="SafeArea/RootVBox/BottomNavCard/BottomNavPadding/NavRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_app_button_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_app_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_app_button_pressed")
+icon = ExtResource("6_nav_game")
+expand_icon = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+text = "游戏"
+
+[node name="SettingsButton" type="Button" parent="SafeArea/RootVBox/BottomNavCard/BottomNavPadding/NavRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_app_button_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_app_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_app_button_pressed")
+icon = ExtResource("7_nav_settings")
+expand_icon = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+text = "设置"

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数一游园 本地后台</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #0d1724; color: #e8f0ff; }
+    header { padding: 20px 24px; background: #15253a; position: sticky; top: 0; }
+    main { display: grid; grid-template-columns: 300px 1fr; gap: 16px; padding: 16px; }
+    .card { background: #132031; border: 1px solid #38597d; border-radius: 16px; padding: 16px; }
+    button { background: #2d7dd2; color: white; border: none; border-radius: 10px; padding: 10px 14px; cursor: pointer; }
+    button:hover { opacity: 0.92; }
+    textarea { width: 100%; min-height: 520px; background: #0b1420; color: #dbe8ff; border: 1px solid #395577; border-radius: 12px; padding: 12px; font-family: Consolas, monospace; }
+    input, select { width: 100%; background: #0b1420; color: #dbe8ff; border: 1px solid #395577; border-radius: 10px; padding: 10px; margin: 6px 0 12px; }
+    ul { padding-left: 18px; }
+    .actions { display: flex; gap: 12px; margin: 12px 0; flex-wrap: wrap; }
+    .small { color: #9fc3f5; font-size: 14px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>数一游园 本地 Web 后台</h1>
+    <div class="small">支持题库、结构、规则管理，导出 JSON 到 Godot 客户端。</div>
+  </header>
+  <main>
+    <section class="card">
+      <h2>数据总览</h2>
+      <div id="dashboard">加载中...</div>
+      <div class="actions">
+        <button onclick="loadDashboard()">刷新统计</button>
+        <button onclick="exportContent()">导出到客户端</button>
+      </div>
+      <h3>内容文件</h3>
+      <ul>
+        <li><button onclick="loadFile('grades.json')">年级</button></li>
+        <li><button onclick="loadFile('modules.json')">模块</button></li>
+        <li><button onclick="loadFile('knowledge_points.json')">知识点</button></li>
+        <li><button onclick="loadFile('levels.json')">关卡</button></li>
+        <li><button onclick="loadFile('questions.json')">题目</button></li>
+        <li><button onclick="loadFile('growth_rules.json')">成长规则</button></li>
+        <li><button onclick="loadFile('task_rules.json')">任务规则</button></li>
+        <li><button onclick="loadFile('reward_rules.json')">奖励规则</button></li>
+        <li><button onclick="loadFile('star_rules.json')">星级规则</button></li>
+        <li><button onclick="loadFile('resource_map.json')">资源映射</button></li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2 id="editor-title">内容编辑器</h2>
+      <div class="small">直接编辑 JSON，保存后可导出到客户端。</div>
+      <div class="actions">
+        <button onclick="saveCurrent()">保存当前文件</button>
+      </div>
+      <textarea id="editor"></textarea>
+      <div id="message" class="small"></div>
+
+      <h3>表单式录题 / 编辑</h3>
+      <div class="grid2">
+        <div>
+          <label>题目 ID</label>
+          <input id="q-id" />
+        </div>
+        <div>
+          <label>题型</label>
+          <select id="q-type">
+            <option value="choice">选择题</option>
+            <option value="true_false">判断题</option>
+            <option value="fill_blank">填空题</option>
+            <option value="mental_math">口算题</option>
+            <option value="matching">连线题</option>
+            <option value="drag_drop">拖拽题</option>
+            <option value="sorting">排序题</option>
+            <option value="shape_puzzle">图形拼接题</option>
+            <option value="application">应用题</option>
+            <option value="multi_step">多步计算题</option>
+          </select>
+        </div>
+      </div>
+      <label>所属关卡 ID</label>
+      <input id="q-level" />
+      <label>题干</label>
+      <input id="q-stem" />
+      <label>选项（用 | 分隔）</label>
+      <input id="q-options" />
+      <label>答案</label>
+      <input id="q-answer" />
+      <label>解析步骤（用 | 分隔）</label>
+      <input id="q-steps" />
+      <div class="actions">
+        <button onclick="appendQuestionByForm()">追加到 questions.json</button>
+      </div>
+    </section>
+  </main>
+  <script>
+    let currentFile = 'grades.json';
+
+    async function loadDashboard() {
+      const data = await fetch('/api/dashboard').then(r => r.json());
+      document.getElementById('dashboard').innerHTML = `
+        <p>年级：${data.grade_count || 0}</p>
+        <p>模块：${data.module_count || 0}</p>
+        <p>知识点：${data.knowledge_point_count || 0}</p>
+        <p>关卡：${data.level_count || 0}</p>
+        <p>题目：${data.question_count || 0}</p>
+        <h4>高频知识点覆盖</h4>
+        <ul>${(data.wrong_question_hotspots || []).map(i => `<li>${i.knowledge_point_name}：${i.question_count}</li>`).join('')}</ul>
+      `;
+    }
+
+    async function loadFile(file) {
+      currentFile = file;
+      document.getElementById('editor-title').textContent = `内容编辑器 - ${file}`;
+      const data = await fetch('/api/content/' + file).then(r => r.json());
+      document.getElementById('editor').value = JSON.stringify(data, null, 2);
+      document.getElementById('message').textContent = '已加载 ' + file;
+    }
+
+    async function saveCurrent() {
+      try {
+        const parsed = JSON.parse(document.getElementById('editor').value);
+        await fetch('/api/content/' + currentFile, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(parsed)
+        });
+        document.getElementById('message').textContent = '保存成功：' + currentFile;
+        loadDashboard();
+      } catch (err) {
+        document.getElementById('message').textContent = 'JSON 解析失败：' + err.message;
+      }
+    }
+
+    async function exportContent() {
+      const res = await fetch('/api/export/client-content', { method: 'POST' }).then(r => r.json());
+      document.getElementById('message').textContent = res.message || '已导出';
+      loadDashboard();
+    }
+
+    async function appendQuestionByForm() {
+      const editor = document.getElementById('editor');
+      let parsed = [];
+      try {
+        parsed = JSON.parse(editor.value);
+        if (!Array.isArray(parsed)) throw new Error('当前文件不是数组');
+      } catch (err) {
+        document.getElementById('message').textContent = '请先加载 questions.json，再使用表单追加：' + err.message;
+        return;
+      }
+      const item = {
+        id: document.getElementById('q-id').value.trim(),
+        level_id: document.getElementById('q-level').value.trim(),
+        type: document.getElementById('q-type').value,
+        stem: document.getElementById('q-stem').value.trim(),
+        options: document.getElementById('q-options').value.trim() ? document.getElementById('q-options').value.trim().split('|') : [],
+        answer: document.getElementById('q-answer').value.trim(),
+        explanation_steps: document.getElementById('q-steps').value.trim() ? document.getElementById('q-steps').value.trim().split('|') : []
+      };
+      parsed.push(item);
+      editor.value = JSON.stringify(parsed, null, 2);
+      document.getElementById('message').textContent = '题目已追加到编辑器，点击“保存当前文件”完成保存。';
+    }
+
+    loadDashboard();
+    loadFile(currentFile);
+  </script>
+</body>
+</html>

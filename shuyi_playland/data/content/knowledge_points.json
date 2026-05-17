@@ -1,0 +1,14 @@
+[
+	{"id":"kp_g1_add20","grade_id":"grade_1","module_id":"module_g1_numbers","name":"20 以内加减法","difficulty":1,"recommended_order":1,"include_in_mock_test":true},
+	{"id":"kp_g1_compare","grade_id":"grade_1","module_id":"module_g1_numbers","name":"数的大小比较","difficulty":1,"recommended_order":2,"include_in_mock_test":true},
+	{"id":"kp_g1_mental","grade_id":"grade_1","module_id":"module_g1_mental_math","name":"基础口算","difficulty":1,"recommended_order":1,"include_in_mock_test":true},
+	{"id":"kp_g1_shapes","grade_id":"grade_1","module_id":"module_g1_shapes","name":"认识平面图形","difficulty":1,"recommended_order":1,"include_in_mock_test":false},
+	{"id":"kp_g2_length","grade_id":"grade_2","module_id":"module_g2_units","name":"长度单位换算","difficulty":2,"recommended_order":1,"include_in_mock_test":true},
+	{"id":"kp_g2_clock","grade_id":"grade_2","module_id":"module_g2_time","name":"整时与半时","difficulty":2,"recommended_order":1,"include_in_mock_test":true},
+	{"id":"kp_g3_vertical_add","grade_id":"grade_3","module_id":"module_g3_vertical","name":"三位数加减法竖式","difficulty":3,"recommended_order":1,"include_in_mock_test":true},
+	{"id":"kp_g3_fraction_intro","grade_id":"grade_3","module_id":"module_g3_fraction","name":"认识分数","difficulty":3,"recommended_order":1,"include_in_mock_test":true},
+	{"id":"kp_g4_decimal_calc","grade_id":"grade_4","module_id":"module_g4_decimal","name":"一位小数加减法","difficulty":3,"recommended_order":1,"include_in_mock_test":true},
+	{"id":"kp_g4_application","grade_id":"grade_4","module_id":"module_g4_application","name":"简单应用题","difficulty":4,"recommended_order":1,"include_in_mock_test":true},
+	{"id":"kp_g5_statistics","grade_id":"grade_5","module_id":"module_g5_statistics","name":"读取统计图","difficulty":4,"recommended_order":1,"include_in_mock_test":true},
+	{"id":"kp_g6_exam_mix","grade_id":"grade_6","module_id":"module_g6_exam","name":"综合模拟测试","difficulty":5,"recommended_order":1,"include_in_mock_test":true}
+]

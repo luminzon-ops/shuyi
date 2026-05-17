@@ -1,0 +1,15 @@
+[
+	{"id":"level_grade1_addition_1","knowledge_point_id":"kp_g1_add20","name":"森林营地·第一关","question_count":10,"mode_tags":["level","practice","random"],"reward":{"exp":30,"gold":20},"unlock_next":["level_grade1_addition_2"]},
+	{"id":"level_grade1_addition_2","knowledge_point_id":"kp_g1_add20","name":"森林营地·第二关","question_count":10,"mode_tags":["level","practice","wrong_retry"],"reward":{"exp":36,"gold":24},"unlock_next":["level_grade1_compare_1"]},
+	{"id":"level_grade1_compare_1","knowledge_point_id":"kp_g1_compare","name":"石桥试炼·大小比较","question_count":10,"mode_tags":["level","practice"],"reward":{"exp":42,"gold":26},"unlock_next":["level_grade1_mental_1"]},
+	{"id":"level_grade1_mental_1","knowledge_point_id":"kp_g1_mental","name":"疾风口算·第一关","question_count":10,"mode_tags":["level","practice","mini_game_ready"],"reward":{"exp":48,"gold":30},"unlock_next":[]},
+	{"id":"level_grade2_units_1","knowledge_point_id":"kp_g2_length","name":"卷尺课堂·单位换算","question_count":10,"mode_tags":["practice","mock_pool"],"reward":{"exp":55,"gold":32},"unlock_next":[]},
+	{"id":"level_grade2_clock_1","knowledge_point_id":"kp_g2_clock","name":"时间小屋·钟表入门","question_count":10,"mode_tags":["practice","mock_pool"],"reward":{"exp":55,"gold":32},"unlock_next":[]},
+	{"id":"level_grade3_vertical_1","knowledge_point_id":"kp_g3_vertical_add","name":"列式工坊·竖式运算","question_count":10,"mode_tags":["practice","mock_pool"],"reward":{"exp":65,"gold":38},"unlock_next":[]},
+	{"id":"level_grade3_fraction_1","knowledge_point_id":"kp_g3_fraction_intro","name":"分数花园·认识分数","question_count":10,"mode_tags":["practice","mock_pool"],"reward":{"exp":68,"gold":40},"unlock_next":[]},
+	{"id":"level_grade4_decimal_1","knowledge_point_id":"kp_g4_decimal_calc","name":"港湾实验室·小数运算","question_count":10,"mode_tags":["practice","mock_pool"],"reward":{"exp":76,"gold":45},"unlock_next":[]},
+	{"id":"level_grade1_shapes","knowledge_point_id":"kp_g1_shapes","name":"图形拼接工坊","question_count":10,"mode_tags":["practice","p1_types"],"reward":{"exp":50,"gold":28},"unlock_next":[]},
+	{"id":"level_grade4_application_1","knowledge_point_id":"kp_g4_application","name":"故事小镇·应用题","question_count":10,"mode_tags":["practice","p1_types"],"reward":{"exp":78,"gold":46},"unlock_next":[]},
+	{"id":"level_grade5_stats_1","knowledge_point_id":"kp_g5_statistics","name":"统计瞭望台·读图分析","question_count":10,"mode_tags":["practice","mock_pool"],"reward":{"exp":82,"gold":48},"unlock_next":[]},
+	{"id":"level_grade6_exam_1","knowledge_point_id":"kp_g6_exam_mix","name":"星空模拟卷·综合挑战","question_count":10,"mode_tags":["mock_test","exam"],"reward":{"exp":96,"gold":60},"unlock_next":[]}
+]

@@ -1,0 +1,48 @@
+# Dependencies
+shuyi_admin/node_modules/
+node_modules/
+
+# Build outputs
+shuyi_playland/builds/
+shuyi_playland/android/
+
+# Godot editor
+.godot/
+
+# Logs
+*.log
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# AI assistant config
+.claude/
+.claude-flow/
+.mcp.json
+
+# Root AI tooling (not project dependencies)
+package.json
+package-lock.json
+
+# Project documents (internal dev docs, not for public repo)
+数一游园_Godot开发方案.md
+项目工作交接报告.md
+根目录assets到项目可用资源映射方案.md
+
+# Generated images (not core project code)
+api_image_generated/
+
+# Automation
+.sisyphus/
+
+# Screenshots
+PixPin_*.jpg
+
+# Root raw third-party asset packs (reference material only)
+/assets/

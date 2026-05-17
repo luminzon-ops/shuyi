@@ -1,0 +1,13 @@
+{
+	"daily":[
+		{"id":"complete_level","label":"完成 1 个关卡","target":1,"reward":{"exp":10,"gold":8}},
+		{"id":"correct_questions","label":"答对 10 道题","target":10,"reward":{"exp":12,"gold":10}},
+		{"id":"special_practice","label":"完成 1 次专项练习","target":1,"reward":{"exp":10,"gold":6}},
+		{"id":"mini_game_clear","label":"完成 1 次小游戏","target":1,"reward":{"exp":12,"gold":12}}
+	],
+	"weekly":[
+		{"id":"complete_levels","label":"完成 5 个关卡","target":5,"reward":{"exp":40,"gold":30}},
+		{"id":"earn_exp","label":"获得 120 EXP","target":120,"reward":{"exp":35,"gold":20}},
+		{"id":"wrong_retry_clear","label":"完成 2 次错题重练","target":2,"reward":{"exp":25,"gold":18}}
+	]
+}

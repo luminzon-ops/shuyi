@@ -1,0 +1,200 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/mini_game_screen.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/mini_games/dungeon/tiles/atlas_floor-16x16.png" id="2_mini_floor"]
+[ext_resource type="Texture2D" path="res://assets/characters/mascots/Character/NinjaGreen/SpriteSheet.png" id="3_mini_ninja"]
+[ext_resource type="Texture2D" path="res://assets/mini_games/pickups/food/Treasure/GoldCoin.png" id="4_mini_coin"]
+[ext_resource type="Texture2D" path="res://assets/mini_games/dungeon/props/doors_leaf_closed.png" id="5_mini_door"]
+[ext_resource type="Texture2D" path="res://assets/mini_games/dungeon/props/chest_full_open_anim_f0.png" id="6_mini_chest"]
+[ext_resource type="Texture2D" path="res://assets/effects/ui_feedback/Particle/Spark.png" id="7_mini_fx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mini_button_normal"]
+bg_color = Color(0.301961, 0.278431, 0.709804, 0.98)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.941176, 0.796078, 0.88)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mini_button_pressed"]
+bg_color = Color(0.223529, 0.196078, 0.541176, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.992157, 0.713726, 0.392157, 0.84)
+
+[node name="MiniGameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Backdrop" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_mini_floor")
+expand_mode = 1
+stretch_mode = 6
+self_modulate = Color(0.815686, 0.882353, 1, 0.05)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ContentMargin" type="MarginContainer" parent="Margin/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="Margin/ScrollContainer/ContentMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="VisualRow" type="HBoxContainer" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CoinVisual" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/VisualRow"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_mini_coin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DoorVisual" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/VisualRow"]
+custom_minimum_size = Vector2(40, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_mini_door")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ChestVisual" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/VisualRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_mini_chest")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HeroVisual" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/VisualRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_mini_ninja")
+expand_mode = 1
+stretch_mode = 5
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="TitleLabel" type="Label" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "小游戏"
+
+[node name="ScoreLabel" type="Label" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "当前得分：0"
+
+[node name="ModeButton" type="Button" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.980392, 0.941176, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_mini_button_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mini_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mini_button_pressed")
+text = "切换模式：金币收集答题"
+
+[node name="PromptLabel" type="Label" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+text = "题目"
+
+[node name="PromptFx" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+texture = ExtResource("7_mini_fx")
+expand_mode = 1
+stretch_mode = 5
+self_modulate = Color(1, 0.886275, 0.54902, 0.14)
+
+[node name="AnswerA" type="Button" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.980392, 0.941176, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_mini_button_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mini_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mini_button_pressed")
+text = "A"
+
+[node name="AnswerB" type="Button" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.980392, 0.941176, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_mini_button_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mini_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mini_button_pressed")
+text = "B"
+
+[node name="AnswerC" type="Button" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.980392, 0.941176, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_mini_button_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mini_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mini_button_pressed")
+text = "C"
+
+[node name="FeedbackLabel" type="Label" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.980392, 0.941176, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_mini_button_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mini_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mini_button_pressed")
+text = "返回"
