@@ -141,11 +141,12 @@ theme_override_colors/font_color = Color(0.384314, 0.427451, 0.643137, 1)
 theme_override_font_sizes/font_size = 16
 text = "干净清爽的数学冒险入口"
 
-[node name="ScreenHolder" type="MarginContainer" parent="SafeArea/RootVBox"]
+[node name="ScreenHolder" type="Control" parent="SafeArea/RootVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="BottomNavCard" type="PanelContainer" parent="SafeArea/RootVBox"]
 custom_minimum_size = Vector2(0, 78)

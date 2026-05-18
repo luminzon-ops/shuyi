@@ -12,7 +12,7 @@ const MINI_GAME_SCENE := preload("res://scenes/mini_games/MiniGameScreen.tscn")
 
 @onready var title_label: Label = %TitleLabel
 @onready var subtitle_label: Label = %SubtitleLabel
-@onready var screen_holder: MarginContainer = %ScreenHolder
+@onready var screen_holder: Control = %ScreenHolder
 @onready var home_button: Button = %HomeButton
 @onready var practice_button: Button = %PracticeButton
 @onready var growth_button: Button = %GrowthButton
@@ -49,6 +49,7 @@ func _ready() -> void:
 	result_screen = RESULT_SCENE.instantiate()
 	mini_game_screen = MINI_GAME_SCENE.instantiate()
 	for screen in [home_screen, practice_screen, settings_screen, growth_screen, wrong_book_screen, sign_in_screen, achievement_screen, result_screen, mini_game_screen]:
+		screen.visible = false
 		screen_holder.add_child(screen)
 	home_button.pressed.connect(func() -> void: _navigate(home_screen, "数一游园", "任务、成长与学习入口"))
 	practice_button.pressed.connect(_open_recent_level)
