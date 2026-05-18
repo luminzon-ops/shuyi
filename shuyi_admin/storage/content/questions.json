@@ -2066,5 +2066,1142 @@
     "tags": [
       "多步计算"
     ]
+  },
+  {
+    "id": "q601",
+    "level_id": "level_grade2_add_1",
+    "grade_id": "grade_2",
+    "module_id": "module_g2_numbers",
+    "knowledge_point_id": "kp_g2_add100",
+    "type": "fill_blank",
+    "difficulty": 1,
+    "stem": "72 - 19 = ____",
+    "options": [],
+    "answer": "53",
+    "explanation_steps": [
+      "72-10=62，62-9=53。"
+    ],
+    "tags": [
+      "减法"
+    ]
+  },
+  {
+    "id": "q602",
+    "level_id": "level_grade2_add_1",
+    "grade_id": "grade_2",
+    "module_id": "module_g2_numbers",
+    "knowledge_point_id": "kp_g2_add100",
+    "type": "mental_math",
+    "difficulty": 1,
+    "stem": "口算：100 - 43 = ____",
+    "options": [],
+    "answer": "57",
+    "explanation_steps": [
+      "100-40=60，60-3=57。"
+    ],
+    "tags": [
+      "口算"
+    ]
+  },
+  {
+    "id": "q603",
+    "level_id": "level_grade2_multiply_1",
+    "grade_id": "grade_2",
+    "module_id": "module_g2_multiply",
+    "knowledge_point_id": "kp_g2_multiply_table",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "5 × 9 = ?",
+    "options": [
+      "35",
+      "40",
+      "45",
+      "54"
+    ],
+    "answer": "45",
+    "explanation_steps": [
+      "乘法口诀：五九四十五。"
+    ],
+    "tags": [
+      "乘法"
+    ]
+  },
+  {
+    "id": "q604",
+    "level_id": "level_grade2_multiply_1",
+    "grade_id": "grade_2",
+    "module_id": "module_g2_multiply",
+    "knowledge_point_id": "kp_g2_multiply_table",
+    "type": "fill_blank",
+    "difficulty": 2,
+    "stem": "3 × 7 = ____",
+    "options": [],
+    "answer": "21",
+    "explanation_steps": [
+      "乘法口诀：三七二十一。"
+    ],
+    "tags": [
+      "乘法"
+    ]
+  },
+  {
+    "id": "q605",
+    "level_id": "level_grade2_multiply_1",
+    "grade_id": "grade_2",
+    "module_id": "module_g2_multiply",
+    "knowledge_point_id": "kp_g2_multiply_table",
+    "type": "true_false",
+    "difficulty": 2,
+    "stem": "判断：4 × 8 = 36。",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "错",
+    "explanation_steps": [
+      "乘法口诀：四八三十二，不是三十六。"
+    ],
+    "tags": [
+      "乘法"
+    ]
+  },
+  {
+    "id": "q606",
+    "level_id": "level_grade2_units_1",
+    "grade_id": "grade_2",
+    "module_id": "module_g2_units",
+    "knowledge_point_id": "kp_g2_length",
+    "type": "fill_blank",
+    "difficulty": 2,
+    "stem": "1 米 = ____ 厘米",
+    "options": [],
+    "answer": "100",
+    "explanation_steps": [
+      "1 米 = 100 厘米。"
+    ],
+    "tags": [
+      "长度单位"
+    ]
+  },
+  {
+    "id": "q607",
+    "level_id": "level_grade2_units_1",
+    "grade_id": "grade_2",
+    "module_id": "module_g2_units",
+    "knowledge_point_id": "kp_g2_length",
+    "type": "mental_math",
+    "difficulty": 2,
+    "stem": "口算：300 厘米 = ____ 米",
+    "options": [],
+    "answer": "3",
+    "explanation_steps": [
+      "100 厘米 = 1 米，300 ÷ 100 = 3。"
+    ],
+    "tags": [
+      "单位换算"
+    ]
+  },
+  {
+    "id": "q608",
+    "level_id": "level_grade2_clock_1",
+    "grade_id": "grade_2",
+    "module_id": "module_g2_time",
+    "knowledge_point_id": "kp_g2_clock",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "1 小时 = 多少分钟？",
+    "options": [
+      "30",
+      "45",
+      "60",
+      "100"
+    ],
+    "answer": "60",
+    "explanation_steps": [
+      "1 小时 = 60 分钟。"
+    ],
+    "tags": [
+      "时间"
+    ]
+  },
+  {
+    "id": "q609",
+    "level_id": "level_grade2_clock_1",
+    "grade_id": "grade_2",
+    "module_id": "module_g2_time",
+    "knowledge_point_id": "kp_g2_clock",
+    "type": "fill_blank",
+    "difficulty": 2,
+    "stem": "半小时 = ____ 分钟",
+    "options": [],
+    "answer": "30",
+    "explanation_steps": [
+      "半小时 = 30 分钟。"
+    ],
+    "tags": [
+      "时间"
+    ]
+  },
+  {
+    "id": "q610",
+    "level_id": "level_grade2_add_1",
+    "grade_id": "grade_2",
+    "module_id": "module_g2_numbers",
+    "knowledge_point_id": "kp_g2_add100",
+    "type": "true_false",
+    "difficulty": 2,
+    "stem": "判断：99 - 28 = 71。",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "explanation_steps": [
+      "99-20=79，79-8=71。"
+    ],
+    "tags": [
+      "减法"
+    ]
+  },
+  {
+    "id": "q701",
+    "level_id": "level_grade3_multiply_1",
+    "grade_id": "grade_3",
+    "module_id": "module_g3_multiply_div",
+    "knowledge_point_id": "kp_g3_mul_div_1000",
+    "type": "choice",
+    "difficulty": 2,
+    "stem": "36 × 7 = ?",
+    "options": [
+      "242",
+      "252",
+      "262",
+      "272"
+    ],
+    "answer": "252",
+    "explanation_steps": [
+      "30×7=210，6×7=42，210+42=252。"
+    ],
+    "tags": [
+      "乘法"
+    ]
+  },
+  {
+    "id": "q702",
+    "level_id": "level_grade3_multiply_1",
+    "grade_id": "grade_3",
+    "module_id": "module_g3_multiply_div",
+    "knowledge_point_id": "kp_g3_mul_div_1000",
+    "type": "fill_blank",
+    "difficulty": 2,
+    "stem": "144 ÷ 12 = ____",
+    "options": [],
+    "answer": "12",
+    "explanation_steps": [
+      "12×12=144，所以 144÷12=12。"
+    ],
+    "tags": [
+      "除法"
+    ]
+  },
+  {
+    "id": "q703",
+    "level_id": "level_grade3_multiply_1",
+    "grade_id": "grade_3",
+    "module_id": "module_g3_multiply_div",
+    "knowledge_point_id": "kp_g3_mul_div_1000",
+    "type": "true_false",
+    "difficulty": 2,
+    "stem": "判断：99 ÷ 9 = 11。",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "explanation_steps": [
+      "9×11=99，所以 99÷9=11。"
+    ],
+    "tags": [
+      "除法"
+    ]
+  },
+  {
+    "id": "q704",
+    "level_id": "level_grade3_vertical_1",
+    "grade_id": "grade_3",
+    "module_id": "module_g3_vertical",
+    "knowledge_point_id": "kp_g3_vertical_add",
+    "type": "fill_blank",
+    "difficulty": 3,
+    "stem": "256 + 189 = ____",
+    "options": [],
+    "answer": "445",
+    "explanation_steps": [
+      "个位：6+9=15，写5进1。",
+      "十位：5+8+1=14，写4进1。",
+      "百位：2+1+1=4。"
+    ],
+    "tags": [
+      "加法"
+    ]
+  },
+  {
+    "id": "q705",
+    "level_id": "level_grade3_vertical_1",
+    "grade_id": "grade_3",
+    "module_id": "module_g3_vertical",
+    "knowledge_point_id": "kp_g3_vertical_add",
+    "type": "fill_blank",
+    "difficulty": 3,
+    "stem": "500 - 234 = ____",
+    "options": [],
+    "answer": "266",
+    "explanation_steps": [
+      "500-200=300，300-34=266。"
+    ],
+    "tags": [
+      "减法"
+    ]
+  },
+  {
+    "id": "q706",
+    "level_id": "level_grade3_fraction_1",
+    "grade_id": "grade_3",
+    "module_id": "module_g3_fraction",
+    "knowledge_point_id": "kp_g3_fraction_intro",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "1/4 + 2/4 = ?",
+    "options": [
+      "1/4",
+      "2/4",
+      "3/4",
+      "1"
+    ],
+    "answer": "3/4",
+    "explanation_steps": [
+      "分母相同：1/4+2/4=3/4。"
+    ],
+    "tags": [
+      "分数加法"
+    ]
+  },
+  {
+    "id": "q707",
+    "level_id": "level_grade3_fraction_1",
+    "grade_id": "grade_3",
+    "module_id": "module_g3_fraction",
+    "knowledge_point_id": "kp_g3_fraction_intro",
+    "type": "matching",
+    "difficulty": 3,
+    "stem": "连线题：将分数与正确的图形含义配对。答案格式：1/2>一半,3/4>四分之三",
+    "options": [
+      "1/2",
+      "一半",
+      "3/4",
+      "四分之三"
+    ],
+    "answer": "1/2>一半,3/4>四分之三",
+    "explanation_steps": [
+      "1/2 表示一半。",
+      "3/4 表示把整体分成4份取3份。"
+    ],
+    "tags": [
+      "连线题"
+    ]
+  },
+  {
+    "id": "q708",
+    "level_id": "level_grade3_perimeter_1",
+    "grade_id": "grade_3",
+    "module_id": "module_g3_geometry",
+    "knowledge_point_id": "kp_g3_perimeter",
+    "type": "mental_math",
+    "difficulty": 3,
+    "stem": "口算：长方形长 8cm，宽 2cm，周长是____cm",
+    "options": [],
+    "answer": "20",
+    "explanation_steps": [
+      "(8+2)×2=20。"
+    ],
+    "tags": [
+      "周长"
+    ]
+  },
+  {
+    "id": "q709",
+    "level_id": "level_grade3_perimeter_1",
+    "grade_id": "grade_3",
+    "module_id": "module_g3_geometry",
+    "knowledge_point_id": "kp_g3_perimeter",
+    "type": "true_false",
+    "difficulty": 3,
+    "stem": "判断：边长 5cm 的正方形周长是 20cm。",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "explanation_steps": [
+      "5×4=20。"
+    ],
+    "tags": [
+      "周长"
+    ]
+  },
+  {
+    "id": "q710",
+    "level_id": "level_grade3_multiply_1",
+    "grade_id": "grade_3",
+    "module_id": "module_g3_multiply_div",
+    "knowledge_point_id": "kp_g3_mul_div_1000",
+    "type": "mental_math",
+    "difficulty": 2,
+    "stem": "口算：56 ÷ 7 = ____",
+    "options": [],
+    "answer": "8",
+    "explanation_steps": [
+      "乘法口诀：七八五十六。"
+    ],
+    "tags": [
+      "口算"
+    ]
+  },
+  {
+    "id": "q801",
+    "level_id": "level_grade4_ops_1",
+    "grade_id": "grade_4",
+    "module_id": "module_g4_operations",
+    "knowledge_point_id": "kp_g4_multistep",
+    "type": "fill_blank",
+    "difficulty": 3,
+    "stem": "250 × 4 = ____",
+    "options": [],
+    "answer": "1000",
+    "explanation_steps": [
+      "25×4=100，所以 250×4=1000。"
+    ],
+    "tags": [
+      "乘法"
+    ]
+  },
+  {
+    "id": "q802",
+    "level_id": "level_grade4_ops_1",
+    "grade_id": "grade_4",
+    "module_id": "module_g4_operations",
+    "knowledge_point_id": "kp_g4_multistep",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "48 + 36 ÷ 6 = ?",
+    "options": [
+      "14",
+      "42",
+      "54",
+      "84"
+    ],
+    "answer": "54",
+    "explanation_steps": [
+      "先算除法：36÷6=6。",
+      "再算加法：48+6=54。"
+    ],
+    "tags": [
+      "混合运算"
+    ]
+  },
+  {
+    "id": "q803",
+    "level_id": "level_grade4_decimal_1",
+    "grade_id": "grade_4",
+    "module_id": "module_g4_decimal",
+    "knowledge_point_id": "kp_g4_decimal_calc",
+    "type": "fill_blank",
+    "difficulty": 3,
+    "stem": "0.5 + 0.25 = ____",
+    "options": [],
+    "answer": "0.75",
+    "explanation_steps": [
+      "0.5 = 0.50，0.50+0.25=0.75。"
+    ],
+    "tags": [
+      "小数"
+    ]
+  },
+  {
+    "id": "q804",
+    "level_id": "level_grade4_decimal_1",
+    "grade_id": "grade_4",
+    "module_id": "module_g4_decimal",
+    "knowledge_point_id": "kp_g4_decimal_calc",
+    "type": "mental_math",
+    "difficulty": 3,
+    "stem": "口算：2.6 × 10 = ____",
+    "options": [],
+    "answer": "26",
+    "explanation_steps": [
+      "乘以10小数点右移一位。"
+    ],
+    "tags": [
+      "口算"
+    ]
+  },
+  {
+    "id": "q805",
+    "level_id": "level_grade4_decimal_1",
+    "grade_id": "grade_4",
+    "module_id": "module_g4_decimal",
+    "knowledge_point_id": "kp_g4_decimal_calc",
+    "type": "true_false",
+    "difficulty": 3,
+    "stem": "判断：0.8 大于 0.75。",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "explanation_steps": [
+      "0.8=0.80，0.80>0.75。"
+    ],
+    "tags": [
+      "小数比较"
+    ]
+  },
+  {
+    "id": "q806",
+    "level_id": "level_grade4_application_1",
+    "grade_id": "grade_4",
+    "module_id": "module_g4_application",
+    "knowledge_point_id": "kp_g4_application",
+    "type": "application",
+    "difficulty": 4,
+    "stem": "应用题：学校买了 15 套桌椅，每套 280 元，一共花了多少元？",
+    "options": [],
+    "answer": "4200",
+    "explanation_steps": [
+      "280×15 = 280×10 + 280×5 = 2800 + 1400 = 4200。"
+    ],
+    "tags": [
+      "应用题"
+    ]
+  },
+  {
+    "id": "q807",
+    "level_id": "level_grade4_application_1",
+    "grade_id": "grade_4",
+    "module_id": "module_g4_application",
+    "knowledge_point_id": "kp_g4_application",
+    "type": "application",
+    "difficulty": 4,
+    "stem": "应用题：一个长方形的长是 12m，宽是 8m，它的面积是多少平方米？",
+    "options": [],
+    "answer": "96",
+    "explanation_steps": [
+      "面积 = 长 × 宽 = 12 × 8 = 96。"
+    ],
+    "tags": [
+      "应用题"
+    ]
+  },
+  {
+    "id": "q808",
+    "level_id": "level_grade4_ops_1",
+    "grade_id": "grade_4",
+    "module_id": "module_g4_operations",
+    "knowledge_point_id": "kp_g4_multistep",
+    "type": "sorting",
+    "difficulty": 3,
+    "stem": "排序题：把 0.5、0.25、0.75 从小到大排序。答案格式：0.25>0.5>0.75",
+    "options": [
+      "0.25",
+      "0.5",
+      "0.75"
+    ],
+    "answer": "0.25>0.5>0.75",
+    "explanation_steps": [
+      "0.25 最小，0.5 次之，0.75 最大。"
+    ],
+    "tags": [
+      "排序题"
+    ]
+  },
+  {
+    "id": "q809",
+    "level_id": "level_grade4_ops_1",
+    "grade_id": "grade_4",
+    "module_id": "module_g4_operations",
+    "knowledge_point_id": "kp_g4_multistep",
+    "type": "true_false",
+    "difficulty": 3,
+    "stem": "判断：420 ÷ 30 = 14。",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "explanation_steps": [
+      "30×14=420，所以 420÷30=14。"
+    ],
+    "tags": [
+      "除法"
+    ]
+  },
+  {
+    "id": "q810",
+    "level_id": "level_grade4_decimal_1",
+    "grade_id": "grade_4",
+    "module_id": "module_g4_decimal",
+    "knowledge_point_id": "kp_g4_decimal_calc",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "1.25 × 8 = ?",
+    "options": [
+      "8",
+      "9.5",
+      "10",
+      "12.5"
+    ],
+    "answer": "10",
+    "explanation_steps": [
+      "125×8=1000，两位小数，结果 10.00=10。"
+    ],
+    "tags": [
+      "小数乘法"
+    ]
+  },
+  {
+    "id": "q901",
+    "level_id": "level_grade5_decimal_1",
+    "grade_id": "grade_5",
+    "module_id": "module_g5_decimals",
+    "knowledge_point_id": "kp_g5_decimal_ops",
+    "type": "fill_blank",
+    "difficulty": 3,
+    "stem": "4.8 × 2.5 = ____",
+    "options": [],
+    "answer": "12",
+    "explanation_steps": [
+      "48×25=1200，两位小数，结果 12.00=12。"
+    ],
+    "tags": [
+      "小数乘法"
+    ]
+  },
+  {
+    "id": "q902",
+    "level_id": "level_grade5_decimal_1",
+    "grade_id": "grade_5",
+    "module_id": "module_g5_decimals",
+    "knowledge_point_id": "kp_g5_decimal_ops",
+    "type": "choice",
+    "difficulty": 3,
+    "stem": "7.2 ÷ 0.9 = ?",
+    "options": [
+      "0.8",
+      "6.4",
+      "8",
+      "80"
+    ],
+    "answer": "8",
+    "explanation_steps": [
+      "72÷9=8，所以 7.2÷0.9=8。"
+    ],
+    "tags": [
+      "小数除法"
+    ]
+  },
+  {
+    "id": "q903",
+    "level_id": "level_grade5_decimal_1",
+    "grade_id": "grade_5",
+    "module_id": "module_g5_decimals",
+    "knowledge_point_id": "kp_g5_decimal_ops",
+    "type": "true_false",
+    "difficulty": 3,
+    "stem": "判断：3.14 × 100 = 314。",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "explanation_steps": [
+      "乘以 100 小数点右移两位。"
+    ],
+    "tags": [
+      "小数"
+    ]
+  },
+  {
+    "id": "q904",
+    "level_id": "level_grade5_factors_1",
+    "grade_id": "grade_5",
+    "module_id": "module_g5_factors",
+    "knowledge_point_id": "kp_g5_factors_multiples",
+    "type": "fill_blank",
+    "difficulty": 4,
+    "stem": "8 和 20 的最大公因数是____",
+    "options": [],
+    "answer": "4",
+    "explanation_steps": [
+      "8的因数：1,2,4,8。",
+      "20的因数：1,2,4,5,10,20。",
+      "最大公因数：4。"
+    ],
+    "tags": [
+      "因数"
+    ]
+  },
+  {
+    "id": "q905",
+    "level_id": "level_grade5_factors_1",
+    "grade_id": "grade_5",
+    "module_id": "module_g5_factors",
+    "knowledge_point_id": "kp_g5_factors_multiples",
+    "type": "choice",
+    "difficulty": 4,
+    "stem": "6 和 8 的最小公倍数是多少？",
+    "options": [
+      "12",
+      "16",
+      "24",
+      "48"
+    ],
+    "answer": "24",
+    "explanation_steps": [
+      "6的倍数：6,12,18,24,...",
+      "8的倍数：8,16,24,...",
+      "最小公倍数：24。"
+    ],
+    "tags": [
+      "倍数"
+    ]
+  },
+  {
+    "id": "q906",
+    "level_id": "level_grade5_factors_1",
+    "grade_id": "grade_5",
+    "module_id": "module_g5_factors",
+    "knowledge_point_id": "kp_g5_factors_multiples",
+    "type": "true_false",
+    "difficulty": 4,
+    "stem": "判断：质数只有两个因数。",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "explanation_steps": [
+      "质数只有 1 和它本身两个因数。"
+    ],
+    "tags": [
+      "质数"
+    ]
+  },
+  {
+    "id": "q907",
+    "level_id": "level_grade5_volume_1",
+    "grade_id": "grade_5",
+    "module_id": "module_g5_geometry",
+    "knowledge_point_id": "kp_g5_volume",
+    "type": "fill_blank",
+    "difficulty": 4,
+    "stem": "长方体长 5cm、宽 4cm、高 3cm，体积是____cm³",
+    "options": [],
+    "answer": "60",
+    "explanation_steps": [
+      "体积 = 5×4×3 = 60。"
+    ],
+    "tags": [
+      "体积"
+    ]
+  },
+  {
+    "id": "q908",
+    "level_id": "level_grade5_volume_1",
+    "grade_id": "grade_5",
+    "module_id": "module_g5_geometry",
+    "knowledge_point_id": "kp_g5_volume",
+    "type": "mental_math",
+    "difficulty": 4,
+    "stem": "口算：正方体棱长 4cm，体积是____cm³",
+    "options": [],
+    "answer": "64",
+    "explanation_steps": [
+      "4×4×4=64。"
+    ],
+    "tags": [
+      "口算"
+    ]
+  },
+  {
+    "id": "q909",
+    "level_id": "level_grade5_decimal_1",
+    "grade_id": "grade_5",
+    "module_id": "module_g5_decimals",
+    "knowledge_point_id": "kp_g5_decimal_ops",
+    "type": "drag_drop",
+    "difficulty": 4,
+    "stem": "拖拽题：把小数从大到小排列。答案格式：0.9>0.45>0.08",
+    "options": [
+      "0.08",
+      "0.9",
+      "0.45"
+    ],
+    "answer": "0.9>0.45>0.08",
+    "explanation_steps": [
+      "0.9 = 0.90 最大，0.45 次之，0.08 最小。"
+    ],
+    "tags": [
+      "拖拽题"
+    ]
+  },
+  {
+    "id": "q910",
+    "level_id": "level_grade5_decimal_1",
+    "grade_id": "grade_5",
+    "module_id": "module_g5_decimals",
+    "knowledge_point_id": "kp_g5_decimal_ops",
+    "type": "application",
+    "difficulty": 4,
+    "stem": "应用题：一箱牛奶 48 元，打八五折后是多少元？",
+    "options": [],
+    "answer": "40.8",
+    "explanation_steps": [
+      "八五折 = 0.85。",
+      "48 × 0.85 = 40.8。"
+    ],
+    "tags": [
+      "应用题"
+    ]
+  },
+  {
+    "id": "q1001",
+    "level_id": "level_grade6_fraction_ops_1",
+    "grade_id": "grade_6",
+    "module_id": "module_g6_fraction_ops",
+    "knowledge_point_id": "kp_g6_fraction_ops",
+    "type": "fill_blank",
+    "difficulty": 4,
+    "stem": "5/6 - 1/3 = ____（用最简分数表示）",
+    "options": [],
+    "answer": "1/2",
+    "explanation_steps": [
+      "1/3 = 2/6，5/6-2/6=3/6=1/2。"
+    ],
+    "tags": [
+      "分数减法"
+    ]
+  },
+  {
+    "id": "q1002",
+    "level_id": "level_grade6_fraction_ops_1",
+    "grade_id": "grade_6",
+    "module_id": "module_g6_fraction_ops",
+    "knowledge_point_id": "kp_g6_fraction_ops",
+    "type": "choice",
+    "difficulty": 4,
+    "stem": "3/5 × 1/2 = ?（用最简分数表示）",
+    "options": [
+      "2/7",
+      "3/10",
+      "1/5",
+      "4/10"
+    ],
+    "answer": "3/10",
+    "explanation_steps": [
+      "分子相乘：3×1=3。",
+      "分母相乘：5×2=10。"
+    ],
+    "tags": [
+      "分数乘法"
+    ]
+  },
+  {
+    "id": "q1003",
+    "level_id": "level_grade6_fraction_ops_1",
+    "grade_id": "grade_6",
+    "module_id": "module_g6_fraction_ops",
+    "knowledge_point_id": "kp_g6_fraction_ops",
+    "type": "mental_math",
+    "difficulty": 4,
+    "stem": "口算：1/3 ÷ 1/2 = ____（用最简分数表示）",
+    "options": [],
+    "answer": "2/3",
+    "explanation_steps": [
+      "除以 1/2 等于乘以 2，1/3×2=2/3。"
+    ],
+    "tags": [
+      "分数除法"
+    ]
+  },
+  {
+    "id": "q1004",
+    "level_id": "level_grade6_ratio_1",
+    "grade_id": "grade_6",
+    "module_id": "module_g6_ratio",
+    "knowledge_point_id": "kp_g6_ratio_percent",
+    "type": "fill_blank",
+    "difficulty": 4,
+    "stem": "把 3:5 写成分数形式是____",
+    "options": [],
+    "answer": "3/5",
+    "explanation_steps": [
+      "比的前项 = 分子，后项 = 分母。"
+    ],
+    "tags": [
+      "比"
+    ]
+  },
+  {
+    "id": "q1005",
+    "level_id": "level_grade6_ratio_1",
+    "grade_id": "grade_6",
+    "module_id": "module_g6_ratio",
+    "knowledge_point_id": "kp_g6_ratio_percent",
+    "type": "choice",
+    "difficulty": 4,
+    "stem": "30 的 40% 是多少？",
+    "options": [
+      "10",
+      "12",
+      "15",
+      "18"
+    ],
+    "answer": "12",
+    "explanation_steps": [
+      "40% = 0.4，30 × 0.4 = 12。"
+    ],
+    "tags": [
+      "百分数"
+    ]
+  },
+  {
+    "id": "q1006",
+    "level_id": "level_grade6_ratio_1",
+    "grade_id": "grade_6",
+    "module_id": "module_g6_ratio",
+    "knowledge_point_id": "kp_g6_ratio_percent",
+    "type": "true_false",
+    "difficulty": 4,
+    "stem": "判断：3:4 化简后还是 3:4。",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "explanation_steps": [
+      "3 和 4 互质，已经是最简比。"
+    ],
+    "tags": [
+      "比"
+    ]
+  },
+  {
+    "id": "q1007",
+    "level_id": "level_grade6_equation_1",
+    "grade_id": "grade_6",
+    "module_id": "module_g6_equation",
+    "knowledge_point_id": "kp_g6_equation",
+    "type": "fill_blank",
+    "difficulty": 5,
+    "stem": "解方程：3x - 7 = 20，x = ____",
+    "options": [],
+    "answer": "9",
+    "explanation_steps": [
+      "3x = 27，x = 9。"
+    ],
+    "tags": [
+      "方程"
+    ]
+  },
+  {
+    "id": "q1008",
+    "level_id": "level_grade6_equation_1",
+    "grade_id": "grade_6",
+    "module_id": "module_g6_equation",
+    "knowledge_point_id": "kp_g6_equation",
+    "type": "choice",
+    "difficulty": 5,
+    "stem": "方程 2x + 3 = x + 8 的解是 x = ?",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "answer": "5",
+    "explanation_steps": [
+      "移项：2x - x = 8 - 3。",
+      "x = 5。"
+    ],
+    "tags": [
+      "方程"
+    ]
+  },
+  {
+    "id": "q1009",
+    "level_id": "level_grade6_fraction_ops_1",
+    "grade_id": "grade_6",
+    "module_id": "module_g6_fraction_ops",
+    "knowledge_point_id": "kp_g6_fraction_ops",
+    "type": "multi_step",
+    "difficulty": 5,
+    "stem": "多步计算：(2/3 - 1/6) × 3/4 = ?（用最简分数表示）",
+    "options": [],
+    "answer": "3/8",
+    "explanation_steps": [
+      "2/3-1/6=4/6-1/6=3/6=1/2。",
+      "1/2×3/4=3/8。"
+    ],
+    "tags": [
+      "多步计算"
+    ]
+  },
+  {
+    "id": "q1010",
+    "level_id": "level_grade6_equation_1",
+    "grade_id": "grade_6",
+    "module_id": "module_g6_equation",
+    "knowledge_point_id": "kp_g6_equation",
+    "type": "application",
+    "difficulty": 5,
+    "stem": "应用题：甲、乙两人共有 120 元，甲的钱是乙的 3 倍，甲有多少元？",
+    "options": [],
+    "answer": "90",
+    "explanation_steps": [
+      "设乙有 x 元，则甲有 3x 元。",
+      "x+3x=120，4x=120，x=30。",
+      "甲=30×3=90。"
+    ],
+    "tags": [
+      "应用题"
+    ]
+  },
+  {
+    "id": "q1101",
+    "level_id": "level_grade1_addition_2",
+    "grade_id": "grade_1",
+    "module_id": "module_g1_numbers",
+    "knowledge_point_id": "kp_g1_add20",
+    "type": "shape_puzzle",
+    "difficulty": 2,
+    "stem": "图形拼接题：用 3 个正方形可以拼成什么图形？答案格式直接填：长方形",
+    "options": [
+      "长方形",
+      "三角形",
+      "圆形"
+    ],
+    "answer": "长方形",
+    "explanation_steps": [
+      "3 个同样的正方形排成一排可以拼成长方形。"
+    ],
+    "tags": [
+      "图形拼接题"
+    ]
+  },
+  {
+    "id": "q1102",
+    "level_id": "level_grade1_compare_1",
+    "grade_id": "grade_1",
+    "module_id": "module_g1_numbers",
+    "knowledge_point_id": "kp_g1_compare",
+    "type": "drag_drop",
+    "difficulty": 2,
+    "stem": "拖拽题：把数字 18、25、7、33 从小到大排列。答案格式：7>18>25>33",
+    "options": [
+      "7",
+      "18",
+      "25",
+      "33"
+    ],
+    "answer": "7>18>25>33",
+    "explanation_steps": [
+      "比较个位和十位的大小即可排序。"
+    ],
+    "tags": [
+      "拖拽题"
+    ]
+  },
+  {
+    "id": "q1103",
+    "level_id": "level_grade1_mental_1",
+    "grade_id": "grade_1",
+    "module_id": "module_g1_mental_math",
+    "knowledge_point_id": "kp_g1_mental",
+    "type": "sorting",
+    "difficulty": 2,
+    "stem": "排序题：把 20、9、15、3 从小到大排列。答案格式：3>9>15>20",
+    "options": [
+      "3",
+      "9",
+      "15",
+      "20"
+    ],
+    "answer": "3>9>15>20",
+    "explanation_steps": [
+      "一位数 < 两位数，再比较十位。"
+    ],
+    "tags": [
+      "排序题"
+    ]
+  },
+  {
+    "id": "q1104",
+    "level_id": "level_grade1_shapes",
+    "grade_id": "grade_1",
+    "module_id": "module_g1_shapes",
+    "knowledge_point_id": "kp_g1_shapes",
+    "type": "matching",
+    "difficulty": 2,
+    "stem": "连线题：将图形与名称配对。答案格式：□>正方形,○>圆形",
+    "options": [
+      "□",
+      "正方形",
+      "○",
+      "圆形"
+    ],
+    "answer": "□>正方形,○>圆形",
+    "explanation_steps": [
+      "方框是正方形，圆圈是圆形。"
+    ],
+    "tags": [
+      "连线题"
+    ]
+  },
+  {
+    "id": "q1105",
+    "level_id": "level_grade1_addition_1",
+    "grade_id": "grade_1",
+    "module_id": "module_g1_numbers",
+    "knowledge_point_id": "kp_g1_add20",
+    "type": "multi_step",
+    "difficulty": 1,
+    "stem": "多步计算：小明有 5 颗糖，吃了 2 颗，妈妈又给了 3 颗。现在有几颗？",
+    "options": [],
+    "answer": "6",
+    "explanation_steps": [
+      "5-2=3，还剩3颗。",
+      "3+3=6，现在有6颗。"
+    ],
+    "tags": [
+      "多步计算"
+    ]
+  },
+  {
+    "id": "q1106",
+    "level_id": "level_grade1_compare_1",
+    "grade_id": "grade_1",
+    "module_id": "module_g1_numbers",
+    "knowledge_point_id": "kp_g1_compare",
+    "type": "application",
+    "difficulty": 2,
+    "stem": "应用题：树上有 13 只鸟，飞走了 6 只，又飞来 4 只，现在树上有多少只鸟？",
+    "options": [],
+    "answer": "11",
+    "explanation_steps": [
+      "13-6=7，7+4=11。"
+    ],
+    "tags": [
+      "应用题"
+    ]
   }
 ]
