@@ -46,3 +46,22 @@ PixPin_*.jpg
 
 # Root raw third-party asset packs (reference material only)
 /assets/
+
+# Third-party game assets (not original — download separately)
+shuyi_playland/assets/Audio/
+shuyi_playland/assets/Backgrounds/
+shuyi_playland/assets/characters/
+shuyi_playland/assets/Dialog/
+shuyi_playland/assets/dungeon_pack/
+shuyi_playland/assets/effects/
+shuyi_playland/assets/Emote/
+shuyi_playland/assets/Font/
+shuyi_playland/assets/Input/
+shuyi_playland/assets/mini_games/
+shuyi_playland/assets/Receptacle/
+shuyi_playland/assets/Skill Icon/
+shuyi_playland/assets/Theme/
+shuyi_playland/assets/ui/
+shuyi_playland/assets/Arrow.png
+shuyi_playland/assets/Arrow.png.import
+shuyi_playland/assets/*.import

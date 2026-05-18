@@ -42,7 +42,25 @@ shuyi/
 
 ## 快速开始
 
-### 客户端
+### 1. 获取游戏资源
+
+为尊重原作者版权，本仓库**不含第三方素材**。首次运行前需要将素材放入 `shuyi_playland/assets/`。
+
+需要的素材包（请自行下载并遵守各素材包的许可协议）：
+
+| 素材包 | 安装到 |
+|--------|--------|
+| [Pixel UI pack 3](https://ninjikin.itch.io/pixel-ui-pack-3) | `assets/ui/` |
+| [Kyrise's 16x16 RPG Icon Pack](https://kyrise.itch.io/kyrises-free-16x16-rpg-icon-pack) | `assets/ui/icons/` |
+| [Ninja Adventure - Asset Pack](https://pixel-boy.itch.io/ninja-adventure-asset-pack) | `assets/characters/`, `assets/effects/`, `assets/Audio/` |
+| [Free Pixel Effects Pack](https://codemanu.itch.io/pixel-effects-pack) | `assets/effects/reward/` |
+| [FreePixelFood](https://henrysoftware.itch.io/pixel-food) | `assets/mini_games/pickups/food/` |
+| [0x72 DungeonTilesetII](https://0x72.itch.io/dungeontileset-ii) | `assets/mini_games/dungeon/`, `assets/Backgrounds/` |
+| [FREE MUSIC PACK](https://pixel-boy.itch.io/ninja-adventure-asset-pack) | `assets/Audio/Musics/` |
+
+> 详细映射参见 `shuyi_playland/assets/source_packs_manifest/asset_intake_manifest.md`
+
+### 2. 客户端
 
 1. 使用 [Godot 4.6](https://godotengine.org/) 打开 `shuyi_playland/project.godot`
 2. 在编辑器中运行 (F5) 即可启动桌面预览
