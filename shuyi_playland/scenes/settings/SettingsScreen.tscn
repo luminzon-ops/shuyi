@@ -37,16 +37,19 @@ text = "设置中心"
 [node name="SoundToggle" type="CheckBox" parent="Margin/ScrollContainer/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.11, 0.29, 1)
 text = "开启音效"
 
 [node name="AnimationToggle" type="CheckBox" parent="Margin/ScrollContainer/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.11, 0.29, 1)
 text = "开启动画效果"
 
 [node name="EyeCareToggle" type="CheckBox" parent="Margin/ScrollContainer/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.11, 0.29, 1)
 text = "开启护眼提醒"
 
 [node name="EyeCareSlider" type="HSlider" parent="Margin/ScrollContainer/VBox"]
@@ -103,5 +106,5 @@ scroll_active = false
 [node name="RoadmapLabel" type="Label" parent="Margin/ScrollContainer/VBox"]
 layout_mode = 2
 autowrap_mode = 3
-theme_override_colors/font_color = Color(0.745098, 0.827451, 0.913725, 1)
+theme_override_colors/font_color = Color(0.31, 0.36, 0.62, 1)
 text = "P0 已实现：首页、学习路径、关卡练习、结果结算、成长 / 任务 / 签到 / 错题本、设置、MVP 备份。\nP1 预留：SQLite、ZIP、独立小游戏、更多题型。"

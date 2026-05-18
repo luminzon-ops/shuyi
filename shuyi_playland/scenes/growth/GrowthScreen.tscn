@@ -1,11 +1,6 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/growth_screen.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/generated/modules/module_icon_arithmetic.jpg" id="2_growth_book"]
-[ext_resource type="Texture2D" path="res://assets/generated/modules/module_icon_mocktest.jpg" id="3_growth_coin"]
-[ext_resource type="Texture2D" path="res://assets/generated/effects/reward_burst_soft.jpg" id="4_growth_chest"]
-[ext_resource type="Texture2D" path="res://assets/generated/scenes/growth_center_scene.jpg" id="5_growth_scene"]
-[ext_resource type="Texture2D" path="res://assets/generated/mascot/mascot_hint_halfbody.jpg" id="6_growth_mascot"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_growth_button_normal"]
 bg_color = Color(1, 1, 1, 0.98)
@@ -69,50 +64,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 16
-
-[node name="SceneArt" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox"]
-custom_minimum_size = Vector2(0, 168)
-layout_mode = 2
-texture = ExtResource("5_growth_scene")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="HeaderVisuals" type="HBoxContainer" parent="Margin/ScrollContainer/ContentMargin/VBox"]
-layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 12
-
-[node name="MascotIcon" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/HeaderVisuals"]
-custom_minimum_size = Vector2(72, 72)
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("6_growth_mascot")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="BookIcon" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/HeaderVisuals"]
-custom_minimum_size = Vector2(28, 28)
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("2_growth_book")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="CoinIcon" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/HeaderVisuals"]
-custom_minimum_size = Vector2(28, 28)
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("3_growth_coin")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ChestIcon" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/HeaderVisuals"]
-custom_minimum_size = Vector2(36, 36)
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("4_growth_chest")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="SummaryLabel" type="Label" parent="Margin/ScrollContainer/ContentMargin/VBox"]
 unique_name_in_owner = true

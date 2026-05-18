@@ -1,10 +1,8 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/result_screen.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/generated/mascot/mascot_celebration_halfbody.jpg" id="2_result_chest"]
-[ext_resource type="Texture2D" path="res://assets/generated/modules/module_icon_mocktest.jpg" id="3_result_coin"]
 [ext_resource type="Texture2D" path="res://assets/generated/effects/reward_burst_soft.jpg" id="4_result_fx"]
-[ext_resource type="Texture2D" path="res://assets/generated/effects/reward_bubbles_soft.jpg" id="5_result_ui"]
 [ext_resource type="Texture2D" path="res://assets/generated/scenes/result_celebration_scene.jpg" id="6_result_scene"]
 [ext_resource type="Texture2D" path="res://assets/generated/mascot/mascot_celebration_halfbody.jpg" id="7_result_mascot"]
 
@@ -162,24 +160,6 @@ unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 3
 theme_override_colors/font_color = Color(0.431373, 0.47451, 0.690196, 1)
-
-[node name="RewardBadge" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/Card/CardMargin/CardVBox"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("5_result_ui")
-expand_mode = 1
-stretch_mode = 5
-self_modulate = Color(1, 1, 1, 0.02)
-
-[node name="CoinTexture" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/Card/CardMargin/CardVBox"]
-custom_minimum_size = Vector2(28, 28)
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("3_result_coin")
-expand_mode = 1
-stretch_mode = 5
-self_modulate = Color(1, 1, 1, 0.78)
 
 [node name="RetryButton" type="Button" parent="Margin/ScrollContainer/ContentMargin/VBox"]
 unique_name_in_owner = true

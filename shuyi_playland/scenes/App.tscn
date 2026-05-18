@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/core/app.gd" id="1_app"]
-[ext_resource type="Texture2D" path="res://assets/generated/scenes/result_celebration_scene.jpg" id="2_dungeon_bg"]
 [ext_resource type="Texture2D" path="res://assets/generated/nav_home_icon_v2.png" id="3_nav_home"]
 [ext_resource type="Texture2D" path="res://assets/generated/nav_practice_icon_v2.png" id="4_nav_practice"]
 [ext_resource type="Texture2D" path="res://assets/generated/nav_growth_icon_v2.png" id="5_nav_growth"]
@@ -92,38 +91,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.933333, 0.94902, 1, 1)
-
-[node name="DungeonBackdrop" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_dungeon_bg")
-expand_mode = 1
-stretch_mode = 6
-self_modulate = Color(0.709804, 0.768627, 1, 0.025)
-
-[node name="GlowTop" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 180.0
-grow_horizontal = 2
-color = Color(0.505882, 0.54902, 0.972549, 0.1)
-
-[node name="GlowBottom" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -180.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0.976471, 0.588235, 0.34902, 0.08)
+color = Color(0.94, 0.95, 1, 1)
 
 [node name="SafeArea" type="MarginContainer" parent="."]
 layout_mode = 1

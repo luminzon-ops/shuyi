@@ -13,7 +13,7 @@ signal open_achievements_requested
 @onready var achievements_button: Button = %AchievementsButton
 @onready var back_button: Button = %BackButton
 @onready var feedback_label: Label = %FeedbackLabel
-@onready var header_visuals: HBoxContainer = $Margin/ScrollContainer/ContentMargin/VBox/HeaderVisuals
+@onready var summary_label: Label = %SummaryLabel
 
 
 func _ready() -> void:
@@ -64,6 +64,6 @@ func _claim_first_available(group_name: String) -> String:
 func _play_intro_motion() -> void:
 	if not AppState.get_settings().get("animation_enabled", true):
 		return
-	header_visuals.modulate.a = 0.0
+	summary_label.modulate.a = 0.0
 	var tween: Tween = create_tween()
-	tween.tween_property(header_visuals, "modulate:a", 1.0, 0.35)
+	tween.tween_property(summary_label, "modulate:a", 1.0, 0.35)

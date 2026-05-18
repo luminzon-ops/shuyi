@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/sign_in_screen.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/generated/mascot/mascot_celebration_halfbody.jpg" id="2_signin_mascot"]
 [ext_resource type="Texture2D" path="res://assets/generated/mascot/mascot_celebration_halfbody.jpg" id="3_signin_chest"]
-[ext_resource type="Texture2D" path="res://assets/generated/effects/reward_bubbles_soft.jpg" id="4_signin_fx"]
-[ext_resource type="Texture2D" path="res://assets/generated/scenes/signin_reward_scene.jpg" id="5_signin_scene"]
-[ext_resource type="Texture2D" path="res://assets/generated/modules/module_icon_signin.jpg" id="6_signin_icon"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_signin_button_normal"]
 bg_color = Color(1, 1, 1, 0.98)
@@ -70,28 +67,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 18
 
-[node name="SceneArt" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox"]
-custom_minimum_size = Vector2(0, 168)
-layout_mode = 2
-texture = ExtResource("5_signin_scene")
-expand_mode = 1
-stretch_mode = 6
-
 [node name="Visuals" type="HBoxContainer" parent="Margin/ScrollContainer/ContentMargin/VBox"]
 layout_mode = 2
 alignment = 1
 theme_override_constants/separation = 12
-
-[node name="Fx" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/Visuals"]
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("4_signin_fx")
-expand_mode = 1
-stretch_mode = 5
-region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
-self_modulate = Color(1, 0.886275, 0.576471, 0.5)
 
 [node name="Chest" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/Visuals"]
 custom_minimum_size = Vector2(72, 72)
@@ -116,15 +95,6 @@ autowrap_mode = 3
 theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
 theme_override_font_sizes/font_size = 28
 text = "签到"
-
-[node name="SignInBadge" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("6_signin_icon")
-expand_mode = 1
-stretch_mode = 5
-self_modulate = Color(1, 1, 1, 0.94)
 
 [node name="RewardLabel" type="Label" parent="Margin/ScrollContainer/ContentMargin/VBox"]
 unique_name_in_owner = true

@@ -7,7 +7,6 @@ signal back_requested
 @onready var sign_in_button: Button = %SignInButton
 @onready var back_button: Button = %BackButton
 @onready var visuals: HBoxContainer = $Margin/ScrollContainer/ContentMargin/VBox/Visuals
-@onready var sign_in_badge: TextureRect = $Margin/ScrollContainer/ContentMargin/VBox/SignInBadge
 
 
 func _ready() -> void:
@@ -34,12 +33,12 @@ func _on_sign_in_pressed() -> void:
 func _play_intro_motion() -> void:
 	if not AppState.get_settings().get("animation_enabled", true):
 		return
+	streak_label.modulate.a = 0.0
 	visuals.modulate.a = 0.0
-	sign_in_badge.modulate.a = 0.0
 	var tween: Tween = create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(visuals, "modulate:a", 1.0, 0.35)
-	tween.tween_property(sign_in_badge, "modulate:a", 1.0, 0.28)
+	tween.tween_property(streak_label, "modulate:a", 1.0, 0.28)
 
 
 func _pulse_signin_feedback() -> void:
