@@ -1,15 +1,393 @@
 [
-	{"id":"level_grade1_addition_1","knowledge_point_id":"kp_g1_add20","name":"森林营地·第一关","question_count":10,"mode_tags":["level","practice","random"],"reward":{"exp":30,"gold":20},"unlock_next":["level_grade1_addition_2"]},
-	{"id":"level_grade1_addition_2","knowledge_point_id":"kp_g1_add20","name":"森林营地·第二关","question_count":10,"mode_tags":["level","practice","wrong_retry"],"reward":{"exp":36,"gold":24},"unlock_next":["level_grade1_compare_1"]},
-	{"id":"level_grade1_compare_1","knowledge_point_id":"kp_g1_compare","name":"石桥试炼·大小比较","question_count":10,"mode_tags":["level","practice"],"reward":{"exp":42,"gold":26},"unlock_next":["level_grade1_mental_1"]},
-	{"id":"level_grade1_mental_1","knowledge_point_id":"kp_g1_mental","name":"疾风口算·第一关","question_count":10,"mode_tags":["level","practice","mini_game_ready"],"reward":{"exp":48,"gold":30},"unlock_next":[]},
-	{"id":"level_grade2_units_1","knowledge_point_id":"kp_g2_length","name":"卷尺课堂·单位换算","question_count":10,"mode_tags":["practice","mock_pool"],"reward":{"exp":55,"gold":32},"unlock_next":[]},
-	{"id":"level_grade2_clock_1","knowledge_point_id":"kp_g2_clock","name":"时间小屋·钟表入门","question_count":10,"mode_tags":["practice","mock_pool"],"reward":{"exp":55,"gold":32},"unlock_next":[]},
-	{"id":"level_grade3_vertical_1","knowledge_point_id":"kp_g3_vertical_add","name":"列式工坊·竖式运算","question_count":10,"mode_tags":["practice","mock_pool"],"reward":{"exp":65,"gold":38},"unlock_next":[]},
-	{"id":"level_grade3_fraction_1","knowledge_point_id":"kp_g3_fraction_intro","name":"分数花园·认识分数","question_count":10,"mode_tags":["practice","mock_pool"],"reward":{"exp":68,"gold":40},"unlock_next":[]},
-	{"id":"level_grade4_decimal_1","knowledge_point_id":"kp_g4_decimal_calc","name":"港湾实验室·小数运算","question_count":10,"mode_tags":["practice","mock_pool"],"reward":{"exp":76,"gold":45},"unlock_next":[]},
-	{"id":"level_grade1_shapes","knowledge_point_id":"kp_g1_shapes","name":"图形拼接工坊","question_count":10,"mode_tags":["practice","p1_types"],"reward":{"exp":50,"gold":28},"unlock_next":[]},
-	{"id":"level_grade4_application_1","knowledge_point_id":"kp_g4_application","name":"故事小镇·应用题","question_count":10,"mode_tags":["practice","p1_types"],"reward":{"exp":78,"gold":46},"unlock_next":[]},
-	{"id":"level_grade5_stats_1","knowledge_point_id":"kp_g5_statistics","name":"统计瞭望台·读图分析","question_count":10,"mode_tags":["practice","mock_pool"],"reward":{"exp":82,"gold":48},"unlock_next":[]},
-	{"id":"level_grade6_exam_1","knowledge_point_id":"kp_g6_exam_mix","name":"星空模拟卷·综合挑战","question_count":10,"mode_tags":["mock_test","exam"],"reward":{"exp":96,"gold":60},"unlock_next":[]}
+  {
+    "id": "level_grade1_addition_1",
+    "knowledge_point_id": "kp_g1_add20",
+    "name": "森林营地·第一关",
+    "question_count": 10,
+    "mode_tags": [
+      "level",
+      "practice",
+      "random"
+    ],
+    "reward": {
+      "exp": 30,
+      "gold": 20
+    },
+    "unlock_next": [
+      "level_grade1_addition_2"
+    ]
+  },
+  {
+    "id": "level_grade1_addition_2",
+    "knowledge_point_id": "kp_g1_add20",
+    "name": "森林营地·第二关",
+    "question_count": 10,
+    "mode_tags": [
+      "level",
+      "practice",
+      "wrong_retry"
+    ],
+    "reward": {
+      "exp": 36,
+      "gold": 24
+    },
+    "unlock_next": [
+      "level_grade1_compare_1"
+    ]
+  },
+  {
+    "id": "level_grade1_compare_1",
+    "knowledge_point_id": "kp_g1_compare",
+    "name": "石桥试炼·大小比较",
+    "question_count": 10,
+    "mode_tags": [
+      "level",
+      "practice"
+    ],
+    "reward": {
+      "exp": 42,
+      "gold": 26
+    },
+    "unlock_next": [
+      "level_grade1_mental_1"
+    ]
+  },
+  {
+    "id": "level_grade1_mental_1",
+    "knowledge_point_id": "kp_g1_mental",
+    "name": "疾风口算·第一关",
+    "question_count": 10,
+    "mode_tags": [
+      "level",
+      "practice",
+      "mini_game_ready"
+    ],
+    "reward": {
+      "exp": 48,
+      "gold": 30
+    },
+    "unlock_next": []
+  },
+  {
+    "id": "level_grade2_units_1",
+    "knowledge_point_id": "kp_g2_length",
+    "name": "卷尺课堂·单位换算",
+    "question_count": 10,
+    "mode_tags": [
+      "practice",
+      "mock_pool"
+    ],
+    "reward": {
+      "exp": 55,
+      "gold": 32
+    },
+    "unlock_next": []
+  },
+  {
+    "id": "level_grade2_clock_1",
+    "knowledge_point_id": "kp_g2_clock",
+    "name": "时间小屋·钟表入门",
+    "question_count": 10,
+    "mode_tags": [
+      "practice",
+      "mock_pool"
+    ],
+    "reward": {
+      "exp": 55,
+      "gold": 32
+    },
+    "unlock_next": []
+  },
+  {
+    "id": "level_grade3_vertical_1",
+    "knowledge_point_id": "kp_g3_vertical_add",
+    "name": "列式工坊·竖式运算",
+    "question_count": 10,
+    "mode_tags": [
+      "practice",
+      "mock_pool"
+    ],
+    "reward": {
+      "exp": 65,
+      "gold": 38
+    },
+    "unlock_next": []
+  },
+  {
+    "id": "level_grade3_fraction_1",
+    "knowledge_point_id": "kp_g3_fraction_intro",
+    "name": "分数花园·认识分数",
+    "question_count": 10,
+    "mode_tags": [
+      "practice",
+      "mock_pool"
+    ],
+    "reward": {
+      "exp": 68,
+      "gold": 40
+    },
+    "unlock_next": []
+  },
+  {
+    "id": "level_grade4_decimal_1",
+    "knowledge_point_id": "kp_g4_decimal_calc",
+    "name": "港湾实验室·小数运算",
+    "question_count": 10,
+    "mode_tags": [
+      "practice",
+      "mock_pool"
+    ],
+    "reward": {
+      "exp": 76,
+      "gold": 45
+    },
+    "unlock_next": []
+  },
+  {
+    "id": "level_grade1_shapes",
+    "knowledge_point_id": "kp_g1_shapes",
+    "name": "图形拼接工坊",
+    "question_count": 10,
+    "mode_tags": [
+      "practice",
+      "p1_types"
+    ],
+    "reward": {
+      "exp": 50,
+      "gold": 28
+    },
+    "unlock_next": []
+  },
+  {
+    "id": "level_grade4_application_1",
+    "knowledge_point_id": "kp_g4_application",
+    "name": "故事小镇·应用题",
+    "question_count": 10,
+    "mode_tags": [
+      "practice",
+      "p1_types"
+    ],
+    "reward": {
+      "exp": 78,
+      "gold": 46
+    },
+    "unlock_next": []
+  },
+  {
+    "id": "level_grade5_stats_1",
+    "knowledge_point_id": "kp_g5_statistics",
+    "name": "统计瞭望台·读图分析",
+    "question_count": 10,
+    "mode_tags": [
+      "practice",
+      "mock_pool"
+    ],
+    "reward": {
+      "exp": 82,
+      "gold": 48
+    },
+    "unlock_next": []
+  },
+  {
+    "id": "level_grade6_exam_1",
+    "knowledge_point_id": "kp_g6_exam_mix",
+    "name": "星空模拟卷·综合挑战",
+    "question_count": 10,
+    "mode_tags": [
+      "mock_test",
+      "exam"
+    ],
+    "reward": {
+      "exp": 96,
+      "gold": 60
+    },
+    "unlock_next": []
+  },
+  {
+    "id": "level_grade2_add_1",
+    "knowledge_point_id": "kp_g2_add100",
+    "name": "森林营地·第四关",
+    "description": "两位数加法挑战",
+    "question_count": 10,
+    "difficulty": 1,
+    "unlock_previous": [
+      "level_grade2_units_1"
+    ],
+    "unlock_next": [],
+    "sort_order": 1,
+    "reward": {
+      "exp": 35,
+      "gold": 8
+    }
+  },
+  {
+    "id": "level_grade2_multiply_1",
+    "knowledge_point_id": "kp_g2_multiply_table",
+    "name": "森林营地·第五关",
+    "description": "乘法入门挑战",
+    "question_count": 10,
+    "difficulty": 2,
+    "unlock_previous": [
+      "level_grade2_add_1"
+    ],
+    "unlock_next": [],
+    "sort_order": 2,
+    "reward": {
+      "exp": 40,
+      "gold": 10
+    }
+  },
+  {
+    "id": "level_grade3_multiply_1",
+    "knowledge_point_id": "kp_g3_mul_div_1000",
+    "name": "石头城·第三关",
+    "description": "乘除法进阶",
+    "question_count": 10,
+    "difficulty": 2,
+    "unlock_previous": [
+      "level_grade3_fraction_1"
+    ],
+    "unlock_next": [],
+    "sort_order": 3,
+    "reward": {
+      "exp": 45,
+      "gold": 12
+    }
+  },
+  {
+    "id": "level_grade3_perimeter_1",
+    "knowledge_point_id": "kp_g3_perimeter",
+    "name": "石头城·第四关",
+    "description": "周长计算挑战",
+    "question_count": 10,
+    "difficulty": 3,
+    "unlock_previous": [
+      "level_grade3_multiply_1"
+    ],
+    "unlock_next": [],
+    "sort_order": 4,
+    "reward": {
+      "exp": 50,
+      "gold": 15
+    }
+  },
+  {
+    "id": "level_grade4_ops_1",
+    "knowledge_point_id": "kp_g4_multistep",
+    "name": "魔法塔·第一关",
+    "description": "四则混合运算",
+    "question_count": 10,
+    "difficulty": 3,
+    "unlock_previous": [
+      "level_grade4_application_1"
+    ],
+    "unlock_next": [],
+    "sort_order": 5,
+    "reward": {
+      "exp": 55,
+      "gold": 18
+    }
+  },
+  {
+    "id": "level_grade5_decimal_1",
+    "knowledge_point_id": "kp_g5_decimal_ops",
+    "name": "星空城·第一关",
+    "description": "小数四则运算",
+    "question_count": 10,
+    "difficulty": 3,
+    "unlock_previous": [
+      "level_grade5_stats_1"
+    ],
+    "unlock_next": [],
+    "sort_order": 6,
+    "reward": {
+      "exp": 60,
+      "gold": 20
+    }
+  },
+  {
+    "id": "level_grade5_factors_1",
+    "knowledge_point_id": "kp_g5_factors_multiples",
+    "name": "星空城·第二关",
+    "description": "因数与倍数",
+    "question_count": 10,
+    "difficulty": 4,
+    "unlock_previous": [
+      "level_grade5_decimal_1"
+    ],
+    "unlock_next": [],
+    "sort_order": 7,
+    "reward": {
+      "exp": 65,
+      "gold": 22
+    }
+  },
+  {
+    "id": "level_grade5_volume_1",
+    "knowledge_point_id": "kp_g5_volume",
+    "name": "星空城·第三关",
+    "description": "体积计算",
+    "question_count": 10,
+    "difficulty": 4,
+    "unlock_previous": [
+      "level_grade5_factors_1"
+    ],
+    "unlock_next": [],
+    "sort_order": 8,
+    "reward": {
+      "exp": 70,
+      "gold": 25
+    }
+  },
+  {
+    "id": "level_grade6_fraction_ops_1",
+    "knowledge_point_id": "kp_g6_fraction_ops",
+    "name": "最终试炼·第一关",
+    "description": "分数运算",
+    "question_count": 10,
+    "difficulty": 4,
+    "unlock_previous": [
+      "level_grade6_exam_1"
+    ],
+    "unlock_next": [],
+    "sort_order": 9,
+    "reward": {
+      "exp": 75,
+      "gold": 28
+    }
+  },
+  {
+    "id": "level_grade6_ratio_1",
+    "knowledge_point_id": "kp_g6_ratio_percent",
+    "name": "最终试炼·第二关",
+    "description": "比与百分数",
+    "question_count": 10,
+    "difficulty": 4,
+    "unlock_previous": [
+      "level_grade6_fraction_ops_1"
+    ],
+    "unlock_next": [],
+    "sort_order": 10,
+    "reward": {
+      "exp": 80,
+      "gold": 30
+    }
+  },
+  {
+    "id": "level_grade6_equation_1",
+    "knowledge_point_id": "kp_g6_equation",
+    "name": "最终试炼·第三关",
+    "description": "方程求解",
+    "question_count": 10,
+    "difficulty": 5,
+    "unlock_previous": [
+      "level_grade6_ratio_1"
+    ],
+    "unlock_next": [],
+    "sort_order": 11,
+    "reward": {
+      "exp": 100,
+      "gold": 40
+    }
+  }
 ]

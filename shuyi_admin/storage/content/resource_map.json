@@ -1,7 +1,7 @@
 [
-	{"id":"home_bg","source":"res://../assets/Ninja Adventure - Asset Pack/Backgrounds","usage":"首页背景参考"},
-	{"id":"ui_theme_hint","source":"res://../assets/Ninja Adventure - Asset Pack/Ui","usage":"像素风 UI 边框与图标参考"},
-	{"id":"reward_theme_hint","source":"res://../assets/Ninja Adventure - Asset Pack/Items/Treasure","usage":"奖励视觉参考"},
-	{"id":"mini_game_hint","source":"res://../assets/0x72_DungeonTilesetII_v1.7","usage":"小游戏地图与地牢风格参考"},
-	{"id":"character_hint","source":"res://../assets/Fantasy Knight - Free Pixelart Animated Character","usage":"角色形象参考"}
+	{"id":"home_bg","source":"","usage":"首页背景参考"},
+	{"id":"ui_theme_hint","source":"","usage":"像素风 UI 边框与图标参考"},
+	{"id":"reward_theme_hint","source":"","usage":"奖励视觉参考"},
+	{"id":"mini_game_hint","source":"","usage":"小游戏地图与地牢风格参考"},
+	{"id":"character_hint","source":"","usage":"角色形象参考"}
 ]

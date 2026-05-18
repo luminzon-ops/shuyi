@@ -1,14 +1,198 @@
 [
-	{"id":"kp_g1_add20","grade_id":"grade_1","module_id":"module_g1_numbers","name":"20 以内加减法","difficulty":1,"recommended_order":1,"include_in_mock_test":true},
-	{"id":"kp_g1_compare","grade_id":"grade_1","module_id":"module_g1_numbers","name":"数的大小比较","difficulty":1,"recommended_order":2,"include_in_mock_test":true},
-	{"id":"kp_g1_mental","grade_id":"grade_1","module_id":"module_g1_mental_math","name":"基础口算","difficulty":1,"recommended_order":1,"include_in_mock_test":true},
-	{"id":"kp_g1_shapes","grade_id":"grade_1","module_id":"module_g1_shapes","name":"认识平面图形","difficulty":1,"recommended_order":1,"include_in_mock_test":false},
-	{"id":"kp_g2_length","grade_id":"grade_2","module_id":"module_g2_units","name":"长度单位换算","difficulty":2,"recommended_order":1,"include_in_mock_test":true},
-	{"id":"kp_g2_clock","grade_id":"grade_2","module_id":"module_g2_time","name":"整时与半时","difficulty":2,"recommended_order":1,"include_in_mock_test":true},
-	{"id":"kp_g3_vertical_add","grade_id":"grade_3","module_id":"module_g3_vertical","name":"三位数加减法竖式","difficulty":3,"recommended_order":1,"include_in_mock_test":true},
-	{"id":"kp_g3_fraction_intro","grade_id":"grade_3","module_id":"module_g3_fraction","name":"认识分数","difficulty":3,"recommended_order":1,"include_in_mock_test":true},
-	{"id":"kp_g4_decimal_calc","grade_id":"grade_4","module_id":"module_g4_decimal","name":"一位小数加减法","difficulty":3,"recommended_order":1,"include_in_mock_test":true},
-	{"id":"kp_g4_application","grade_id":"grade_4","module_id":"module_g4_application","name":"简单应用题","difficulty":4,"recommended_order":1,"include_in_mock_test":true},
-	{"id":"kp_g5_statistics","grade_id":"grade_5","module_id":"module_g5_statistics","name":"读取统计图","difficulty":4,"recommended_order":1,"include_in_mock_test":true},
-	{"id":"kp_g6_exam_mix","grade_id":"grade_6","module_id":"module_g6_exam","name":"综合模拟测试","difficulty":5,"recommended_order":1,"include_in_mock_test":true}
+  {
+    "id": "kp_g1_add20",
+    "grade_id": "grade_1",
+    "module_id": "module_g1_numbers",
+    "name": "20 以内加减法",
+    "difficulty": 1,
+    "recommended_order": 1,
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g1_compare",
+    "grade_id": "grade_1",
+    "module_id": "module_g1_numbers",
+    "name": "数的大小比较",
+    "difficulty": 1,
+    "recommended_order": 2,
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g1_mental",
+    "grade_id": "grade_1",
+    "module_id": "module_g1_mental_math",
+    "name": "基础口算",
+    "difficulty": 1,
+    "recommended_order": 1,
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g1_shapes",
+    "grade_id": "grade_1",
+    "module_id": "module_g1_shapes",
+    "name": "认识平面图形",
+    "difficulty": 1,
+    "recommended_order": 1,
+    "include_in_mock_test": false
+  },
+  {
+    "id": "kp_g2_length",
+    "grade_id": "grade_2",
+    "module_id": "module_g2_units",
+    "name": "长度单位换算",
+    "difficulty": 2,
+    "recommended_order": 1,
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g2_clock",
+    "grade_id": "grade_2",
+    "module_id": "module_g2_time",
+    "name": "整时与半时",
+    "difficulty": 2,
+    "recommended_order": 1,
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g3_vertical_add",
+    "grade_id": "grade_3",
+    "module_id": "module_g3_vertical",
+    "name": "三位数加减法竖式",
+    "difficulty": 3,
+    "recommended_order": 1,
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g3_fraction_intro",
+    "grade_id": "grade_3",
+    "module_id": "module_g3_fraction",
+    "name": "认识分数",
+    "difficulty": 3,
+    "recommended_order": 1,
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g4_decimal_calc",
+    "grade_id": "grade_4",
+    "module_id": "module_g4_decimal",
+    "name": "一位小数加减法",
+    "difficulty": 3,
+    "recommended_order": 1,
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g4_application",
+    "grade_id": "grade_4",
+    "module_id": "module_g4_application",
+    "name": "简单应用题",
+    "difficulty": 4,
+    "recommended_order": 1,
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g5_statistics",
+    "grade_id": "grade_5",
+    "module_id": "module_g5_statistics",
+    "name": "读取统计图",
+    "difficulty": 4,
+    "recommended_order": 1,
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g6_exam_mix",
+    "grade_id": "grade_6",
+    "module_id": "module_g6_exam",
+    "name": "综合模拟测试",
+    "difficulty": 5,
+    "recommended_order": 1,
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g2_add100",
+    "module_id": "module_g2_numbers",
+    "name": "100以内加减法",
+    "difficulty": 1,
+    "description": "两位数加减法（含进退位）",
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g2_multiply_table",
+    "module_id": "module_g2_multiply",
+    "name": "乘法口诀表",
+    "difficulty": 2,
+    "description": "2-9的乘法口诀",
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g3_mul_div_1000",
+    "module_id": "module_g3_multiply_div",
+    "name": "千以内乘除法",
+    "difficulty": 2,
+    "description": "多位数乘一位数及相应除法",
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g3_perimeter",
+    "module_id": "module_g3_geometry",
+    "name": "周长计算",
+    "difficulty": 3,
+    "description": "长方形和正方形周长",
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g4_multistep",
+    "module_id": "module_g4_operations",
+    "name": "多步运算",
+    "difficulty": 3,
+    "description": "含括号的四则混合运算",
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g5_decimal_ops",
+    "module_id": "module_g5_decimals",
+    "name": "小数四则运算",
+    "difficulty": 3,
+    "description": "小数加减乘除法",
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g5_factors_multiples",
+    "module_id": "module_g5_factors",
+    "name": "因数与倍数",
+    "difficulty": 4,
+    "description": "最大公因数与最小公倍数",
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g5_volume",
+    "module_id": "module_g5_geometry",
+    "name": "体积计算",
+    "difficulty": 4,
+    "description": "正方体和长方体体积",
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g6_fraction_ops",
+    "module_id": "module_g6_fraction_ops",
+    "name": "分数四则运算",
+    "difficulty": 4,
+    "description": "分数加减乘除及混合运算",
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g6_ratio_percent",
+    "module_id": "module_g6_ratio",
+    "name": "比和百分数",
+    "difficulty": 4,
+    "description": "比、比例与百分数互化",
+    "include_in_mock_test": true
+  },
+  {
+    "id": "kp_g6_equation",
+    "module_id": "module_g6_equation",
+    "name": "简易方程",
+    "difficulty": 5,
+    "description": "一元一次方程求解",
+    "include_in_mock_test": true
+  }
 ]

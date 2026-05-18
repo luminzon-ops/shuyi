@@ -1,20 +1,190 @@
 [
-	{"id":"module_g1_numbers","grade_id":"grade_1","name":"数与运算","category":"practice"},
-	{"id":"module_g1_mental_math","grade_id":"grade_1","name":"口算","category":"practice"},
-	{"id":"module_g1_shapes","grade_id":"grade_1","name":"图形与几何","category":"practice"},
-	{"id":"module_g2_numbers","grade_id":"grade_2","name":"数与运算","category":"practice"},
-	{"id":"module_g2_units","grade_id":"grade_2","name":"单位换算","category":"practice"},
-	{"id":"module_g2_time","grade_id":"grade_2","name":"时间与钟表","category":"practice"},
-	{"id":"module_g3_vertical","grade_id":"grade_3","name":"竖式计算","category":"practice"},
-	{"id":"module_g3_fraction","grade_id":"grade_3","name":"分数与小数启蒙","category":"practice"},
-	{"id":"module_g3_logic","grade_id":"grade_3","name":"规律与逻辑思维","category":"practice"},
-	{"id":"module_g4_decimal","grade_id":"grade_4","name":"小数运算","category":"practice"},
-	{"id":"module_g4_geometry","grade_id":"grade_4","name":"图形与几何","category":"practice"},
-	{"id":"module_g4_application","grade_id":"grade_4","name":"应用题","category":"practice"},
-	{"id":"module_g5_fraction","grade_id":"grade_5","name":"分数应用","category":"practice"},
-	{"id":"module_g5_statistics","grade_id":"grade_5","name":"统计与概率基础","category":"practice"},
-	{"id":"module_g5_patterns","grade_id":"grade_5","name":"规律与拓展","category":"practice"},
-	{"id":"module_g6_exam","grade_id":"grade_6","name":"考试模拟","category":"test"},
-	{"id":"module_g6_olympiad","grade_id":"grade_6","name":"奥数启蒙","category":"challenge"},
-	{"id":"module_g6_review","grade_id":"grade_6","name":"综合复习","category":"review"}
+  {
+    "id": "module_g1_numbers",
+    "grade_id": "grade_1",
+    "name": "数与运算",
+    "category": "practice"
+  },
+  {
+    "id": "module_g1_mental_math",
+    "grade_id": "grade_1",
+    "name": "口算",
+    "category": "practice"
+  },
+  {
+    "id": "module_g1_shapes",
+    "grade_id": "grade_1",
+    "name": "图形与几何",
+    "category": "practice"
+  },
+  {
+    "id": "module_g2_numbers",
+    "grade_id": "grade_2",
+    "name": "数与运算",
+    "category": "practice"
+  },
+  {
+    "id": "module_g2_units",
+    "grade_id": "grade_2",
+    "name": "单位换算",
+    "category": "practice"
+  },
+  {
+    "id": "module_g2_time",
+    "grade_id": "grade_2",
+    "name": "时间与钟表",
+    "category": "practice"
+  },
+  {
+    "id": "module_g3_vertical",
+    "grade_id": "grade_3",
+    "name": "竖式计算",
+    "category": "practice"
+  },
+  {
+    "id": "module_g3_fraction",
+    "grade_id": "grade_3",
+    "name": "分数与小数启蒙",
+    "category": "practice"
+  },
+  {
+    "id": "module_g3_logic",
+    "grade_id": "grade_3",
+    "name": "规律与逻辑思维",
+    "category": "practice"
+  },
+  {
+    "id": "module_g4_decimal",
+    "grade_id": "grade_4",
+    "name": "小数运算",
+    "category": "practice"
+  },
+  {
+    "id": "module_g4_geometry",
+    "grade_id": "grade_4",
+    "name": "图形与几何",
+    "category": "practice"
+  },
+  {
+    "id": "module_g4_application",
+    "grade_id": "grade_4",
+    "name": "应用题",
+    "category": "practice"
+  },
+  {
+    "id": "module_g5_fraction",
+    "grade_id": "grade_5",
+    "name": "分数应用",
+    "category": "practice"
+  },
+  {
+    "id": "module_g5_statistics",
+    "grade_id": "grade_5",
+    "name": "统计与概率基础",
+    "category": "practice"
+  },
+  {
+    "id": "module_g5_patterns",
+    "grade_id": "grade_5",
+    "name": "规律与拓展",
+    "category": "practice"
+  },
+  {
+    "id": "module_g6_exam",
+    "grade_id": "grade_6",
+    "name": "考试模拟",
+    "category": "test"
+  },
+  {
+    "id": "module_g6_olympiad",
+    "grade_id": "grade_6",
+    "name": "奥数启蒙",
+    "category": "challenge"
+  },
+  {
+    "id": "module_g6_review",
+    "grade_id": "grade_6",
+    "name": "综合复习",
+    "category": "review"
+  },
+  {
+    "id": "module_g2_multiply",
+    "grade_id": "grade_2",
+    "name": "乘法运算",
+    "category": "practice",
+    "description": "九九乘法表与简单乘法",
+    "sort_order": 3
+  },
+  {
+    "id": "module_g3_multiply_div",
+    "grade_id": "grade_3",
+    "name": "乘除法",
+    "category": "practice",
+    "description": "千以内的乘除法运算",
+    "sort_order": 2
+  },
+  {
+    "id": "module_g3_geometry",
+    "grade_id": "grade_3",
+    "name": "图形与周长",
+    "category": "practice",
+    "description": "长方形正方形周长计算",
+    "sort_order": 3
+  },
+  {
+    "id": "module_g4_operations",
+    "grade_id": "grade_4",
+    "name": "四则运算",
+    "category": "practice",
+    "description": "大数四则混合运算",
+    "sort_order": 1
+  },
+  {
+    "id": "module_g5_decimals",
+    "grade_id": "grade_5",
+    "name": "小数运算",
+    "category": "practice",
+    "description": "小数加减乘除",
+    "sort_order": 1
+  },
+  {
+    "id": "module_g5_factors",
+    "grade_id": "grade_5",
+    "name": "因数与倍数",
+    "category": "practice",
+    "description": "公因数、公倍数、质数",
+    "sort_order": 2
+  },
+  {
+    "id": "module_g5_geometry",
+    "grade_id": "grade_5",
+    "name": "几何体积",
+    "category": "practice",
+    "description": "正方体长方体体积",
+    "sort_order": 3
+  },
+  {
+    "id": "module_g6_fraction_ops",
+    "grade_id": "grade_6",
+    "name": "分数运算",
+    "category": "practice",
+    "description": "分数加减乘除",
+    "sort_order": 1
+  },
+  {
+    "id": "module_g6_ratio",
+    "grade_id": "grade_6",
+    "name": "比与百分数",
+    "category": "practice",
+    "description": "比、比例、百分数",
+    "sort_order": 2
+  },
+  {
+    "id": "module_g6_equation",
+    "grade_id": "grade_6",
+    "name": "简易方程",
+    "category": "practice",
+    "description": "一元一次方程",
+    "sort_order": 3
+  }
 ]
