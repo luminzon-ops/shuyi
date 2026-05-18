@@ -33,89 +33,95 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MainVBox" type="VBoxContainer" parent="MainMargin"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MainMargin"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MainVBox" type="VBoxContainer" parent="MainMargin/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="TopRow" type="HBoxContainer" parent="MainMargin/MainVBox"]
+[node name="TopRow" type="HBoxContainer" parent="MainMargin/ScrollContainer/MainVBox"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="BackButton" type="Button" parent="MainMargin/MainVBox/TopRow"]
+[node name="BackButton" type="Button" parent="MainMargin/ScrollContainer/MainVBox/TopRow"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "返回首页"
 
-[node name="LevelLabel" type="Label" parent="MainMargin/MainVBox/TopRow"]
+[node name="LevelLabel" type="Label" parent="MainMargin/ScrollContainer/MainVBox/TopRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "关卡"
 
-[node name="ProgressLabel" type="Label" parent="MainMargin/MainVBox"]
+[node name="ProgressLabel" type="Label" parent="MainMargin/ScrollContainer/MainVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.984314, 0.913725, 0.478431, 1)
 text = "第 1 / 10 题"
 
-[node name="ModeLabel" type="Label" parent="MainMargin/MainVBox"]
+[node name="ModeLabel" type="Label" parent="MainMargin/ScrollContainer/MainVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.694118, 0.866667, 0.992157, 1)
 text = "关卡闯关"
 
-[node name="QuestionCard" type="PanelContainer" parent="MainMargin/MainVBox"]
+[node name="QuestionCard" type="PanelContainer" parent="MainMargin/ScrollContainer/MainVBox"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_practice_panel")
 
-[node name="QuestionMargin" type="MarginContainer" parent="MainMargin/MainVBox/QuestionCard"]
+[node name="QuestionMargin" type="MarginContainer" parent="MainMargin/ScrollContainer/MainVBox/QuestionCard"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="QuestionVBox" type="VBoxContainer" parent="MainMargin/MainVBox/QuestionCard/QuestionMargin"]
+[node name="QuestionVBox" type="VBoxContainer" parent="MainMargin/ScrollContainer/MainVBox/QuestionCard/QuestionMargin"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="QuestionLabel" type="RichTextLabel" parent="MainMargin/MainVBox/QuestionCard/QuestionMargin/QuestionVBox"]
+[node name="QuestionLabel" type="RichTextLabel" parent="MainMargin/ScrollContainer/MainVBox/QuestionCard/QuestionMargin/QuestionVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
 
-[node name="OptionContainer" type="VBoxContainer" parent="MainMargin/MainVBox/QuestionCard/QuestionMargin/QuestionVBox"]
+[node name="OptionContainer" type="VBoxContainer" parent="MainMargin/ScrollContainer/MainVBox/QuestionCard/QuestionMargin/QuestionVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="AnswerInput" type="LineEdit" parent="MainMargin/MainVBox/QuestionCard/QuestionMargin/QuestionVBox"]
+[node name="AnswerInput" type="LineEdit" parent="MainMargin/ScrollContainer/MainVBox/QuestionCard/QuestionMargin/QuestionVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "请输入答案"
 
-[node name="FeedbackLabel" type="RichTextLabel" parent="MainMargin/MainVBox/QuestionCard/QuestionMargin/QuestionVBox"]
+[node name="FeedbackLabel" type="RichTextLabel" parent="MainMargin/ScrollContainer/MainVBox/QuestionCard/QuestionMargin/QuestionVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
 
-[node name="ActionRow" type="HBoxContainer" parent="MainMargin/MainVBox"]
+[node name="ActionRow" type="HBoxContainer" parent="MainMargin/ScrollContainer/MainVBox"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="SubmitButton" type="Button" parent="MainMargin/MainVBox/ActionRow"]
+[node name="SubmitButton" type="Button" parent="MainMargin/ScrollContainer/MainVBox/ActionRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "提交答案"
 
-[node name="NextButton" type="Button" parent="MainMargin/MainVBox/ActionRow"]
+[node name="NextButton" type="Button" parent="MainMargin/ScrollContainer/MainVBox/ActionRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

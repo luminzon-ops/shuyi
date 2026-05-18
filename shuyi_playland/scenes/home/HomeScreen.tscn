@@ -136,7 +136,7 @@ theme_override_font_sizes/font_size = 15
 text = "只保留最重要的入口：开始学习、签到、成长。"
 
 [node name="MascotCard" type="PanelContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow"]
-custom_minimum_size = Vector2(120, 120)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_home_secondary")

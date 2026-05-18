@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ui/sign_in_screen.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/generated/mascot/mascot_celebration_halfbody.jpg" id="2_signin_mascot"]
-[ext_resource type="Texture2D" path="res://assets/mini_games/pickups/food/Treasure/BigTreasureChest.png" id="3_signin_chest"]
+[ext_resource type="Texture2D" path="res://assets/generated/mascot/mascot_celebration_halfbody.jpg" id="3_signin_chest"]
 [ext_resource type="Texture2D" path="res://assets/generated/effects/reward_bubbles_soft.jpg" id="4_signin_fx"]
 [ext_resource type="Texture2D" path="res://assets/generated/scenes/signin_reward_scene.jpg" id="5_signin_scene"]
 [ext_resource type="Texture2D" path="res://assets/generated/modules/module_icon_signin.jpg" id="6_signin_icon"]

@@ -9,7 +9,6 @@ const SIGN_IN_SCENE := preload("res://scenes/sign_in/SignInScreen.tscn")
 const ACHIEVEMENT_SCENE := preload("res://scenes/achievements/AchievementScreen.tscn")
 const RESULT_SCENE := preload("res://scenes/result/ResultScreen.tscn")
 const MINI_GAME_SCENE := preload("res://scenes/mini_games/MiniGameScreen.tscn")
-const CLICK_SOUND := preload("res://assets/Audio/Sounds/Menu/Accept6.wav")
 
 @onready var title_label: Label = %TitleLabel
 @onready var subtitle_label: Label = %SubtitleLabel
@@ -33,10 +32,13 @@ var click_player: AudioStreamPlayer
 
 
 func _ready() -> void:
-	click_player = AudioStreamPlayer.new()
-	click_player.stream = CLICK_SOUND
-	click_player.bus = "Master"
-	add_child(click_player)
+	# Click sound is optional (asset may not be available)
+	var click_sound_path := "res://assets/Audio/Sounds/Menu/Accept6.wav"
+	if ResourceLoader.exists(click_sound_path):
+		click_player = AudioStreamPlayer.new()
+		click_player.stream = load(click_sound_path)
+		click_player.bus = "Master"
+		add_child(click_player)
 	home_screen = HOME_SCENE.instantiate()
 	practice_screen = PRACTICE_SCENE.instantiate()
 	settings_screen = SETTINGS_SCENE.instantiate()
