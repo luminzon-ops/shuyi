@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://dlibraryscreen0001"]
+
+[ext_resource type="Script" path="res://scripts/ui/library_screen.gd" id="1_library"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lib_card"]
+bg_color = Color(1, 1, 1, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.831373, 0.862745, 0.980392, 0.95)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0.329412, 0.392157, 0.709804, 0.1)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lib_primary"]
+bg_color = Color(0.976471, 0.45098, 0.223529, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.933333, 0.854902, 0.95)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lib_secondary"]
+bg_color = Color(1, 1, 1, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65098, 0.698039, 0.960784, 0.88)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[node name="LibraryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_library")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContentMargin" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 28
+
+[node name="ContentVBox" type="VBoxContainer" parent="ScrollContainer/ContentMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="HeaderRow" type="HBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LibraryBackButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/HeaderRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
+text = "返回"
+
+[node name="HeaderLabel" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
+theme_override_font_sizes/font_size = 24
+text = "题库"
+
+[node name="LibraryHelperLabel" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.47451, 0.690196, 1)
+theme_override_font_sizes/font_size = 14
+text = "选择年级、模块、知识点，按一关或抽题练习"
+autowrap_mode = 3
+
+[node name="FilterCard" type="PanelContainer" parent="ScrollContainer/ContentMargin/ContentVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lib_card")
+
+[node name="FilterMargin" type="MarginContainer" parent="ScrollContainer/ContentMargin/ContentVBox/FilterCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="FilterVBox" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/FilterCard/FilterMargin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="FilterTitle" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/FilterCard/FilterMargin/FilterVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
+theme_override_font_sizes/font_size = 18
+text = "筛选条件"
+
+[node name="LibraryGradeOption" type="OptionButton" parent="ScrollContainer/ContentMargin/ContentVBox/FilterCard/FilterMargin/FilterVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LibraryModuleOption" type="OptionButton" parent="ScrollContainer/ContentMargin/ContentVBox/FilterCard/FilterMargin/FilterVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LibraryKnowledgeOption" type="OptionButton" parent="ScrollContainer/ContentMargin/ContentVBox/FilterCard/FilterMargin/FilterVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LevelCard" type="PanelContainer" parent="ScrollContainer/ContentMargin/ContentVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lib_card")
+
+[node name="LevelMargin" type="MarginContainer" parent="ScrollContainer/ContentMargin/ContentVBox/LevelCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="LevelVBox" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/LevelCard/LevelMargin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LevelTitle" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/LevelCard/LevelMargin/LevelVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
+theme_override_font_sizes/font_size = 18
+text = "可选关卡"
+
+[node name="LibraryLevelList" type="ItemList" parent="ScrollContainer/ContentMargin/ContentVBox/LevelCard/LevelMargin/LevelVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+
+[node name="ActionRow" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/LevelCard/LevelMargin/LevelVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LibraryStartLevelButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/LevelCard/LevelMargin/LevelVBox/ActionRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_lib_primary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lib_secondary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lib_primary")
+text = "开始这一关"
+
+[node name="LibrarySpecialPracticeButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/LevelCard/LevelMargin/LevelVBox/ActionRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_lib_secondary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lib_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lib_secondary")
+text = "按知识点抽 10 题"

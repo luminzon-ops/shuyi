@@ -165,3 +165,28 @@ func test_wrong_retry_zero_questions_transitions_to_idle() -> void:
 	screen._transition(PracticeScreenScript.SessionState.IDLE)
 	# LOADING → IDLE must succeed for wrong-retry with 0 questions
 	assert_int(screen.state).is_equal(PracticeScreenScript.SessionState.IDLE)
+
+
+# ---------------------------------------------------------------------------
+# Regression: back-button mid-session must reset state to IDLE
+# (Bug found 2026-05-21: pressing back during ACTIVE didn't reset state, so
+# the next start_session() was silently ignored by its IDLE guard, leaving
+# stale questions visible from the abandoned session — wrong_retry was
+# showing the abandoned level's remaining questions instead of wrong-book.)
+# ---------------------------------------------------------------------------
+
+func test_back_button_mid_session_resets_state_to_idle() -> void:
+	# Arrange: simulate a session in progress (any non-IDLE state).
+	screen._state = PracticeScreenScript.SessionState.ACTIVE
+	# Act: trigger the back-button handler.
+	screen._on_back_pressed()
+	# Assert: state must be IDLE so the next start_session() can proceed.
+	assert_int(screen.state).is_equal(PracticeScreenScript.SessionState.IDLE)
+
+
+func test_back_button_during_evaluating_also_resets_state_to_idle() -> void:
+	# Edge case: user submits an answer (state → EVALUATING) then taps back
+	# before pressing Next. State must still reset to IDLE.
+	screen._state = PracticeScreenScript.SessionState.EVALUATING
+	screen._on_back_pressed()
+	assert_int(screen.state).is_equal(PracticeScreenScript.SessionState.IDLE)

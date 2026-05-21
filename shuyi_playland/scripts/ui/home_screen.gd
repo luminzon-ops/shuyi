@@ -1,168 +1,156 @@
 extends Control
 
+## HomeScreen — intent-first hub.
+## Three responsibilities:
+## (1) "Continue learning" CTA — recommends the next level after the most recently completed one
+## (2) Quick links to status views (sign-in, growth, achievements)
+## (3) "换个玩法" 2x2 grid: random / mock test / library / wrong retry
+
 signal start_session_requested(config: Dictionary)
 signal open_growth_requested
 signal open_sign_in_requested
 signal open_achievements_requested
 signal open_wrong_book_requested
+signal open_library_requested
 
 @onready var summary_label: Label = %SummaryLabel
 @onready var growth_label: Label = %GrowthLabel
-@onready var weekly_label: Label = %WeeklyLabel
-@onready var grade_option: OptionButton = %GradeOption
-@onready var module_option: OptionButton = %ModuleOption
-@onready var knowledge_option: OptionButton = %KnowledgeOption
-@onready var level_list: ItemList = %LevelList
+@onready var exp_progress_bar: ProgressBar = %ExpProgressBar
+@onready var exp_progress_label: Label = %ExpProgressLabel
+@onready var continue_button: Button = %ContinueButton
 @onready var sign_in_button: Button = %SignInButton
-@onready var start_level_button: Button = %StartLevelButton
-@onready var helper_label: Label = %HelperLabel
 @onready var growth_button: Button = %GrowthButton
 @onready var achievements_button: Button = %AchievementsButton
-@onready var wrong_book_button: Button = %WrongBookButton
-@onready var random_button: Button = %RandomPracticeButton
-@onready var special_button: Button = %SpecialPracticeButton
-@onready var mock_test_button: Button = %MockTestButton
-@onready var hero_card: PanelContainer = $ScrollContainer/ContentMargin/ContentVBox/HeroCard
-@onready var hero_banner: TextureRect = $ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroBanner
-@onready var mascot_texture: TextureRect = $ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow/MascotCard/MascotTexture
+@onready var random_card: Button = %RandomCard
+@onready var mock_test_card: Button = %MockTestCard
+@onready var library_card: Button = %LibraryCard
+@onready var wrong_retry_card: Button = %WrongRetryCard
 
-var current_levels: Array = []
+var _continue_level_id: String = ""
 
 
 func _ready() -> void:
-	grade_option.item_selected.connect(_on_grade_changed)
-	module_option.item_selected.connect(_on_module_changed)
-	knowledge_option.item_selected.connect(_on_knowledge_changed)
-	sign_in_button.pressed.connect(_on_primary_start_pressed)
-	start_level_button.pressed.connect(func() -> void: open_sign_in_requested.emit())
+	continue_button.pressed.connect(_on_continue_pressed)
+	sign_in_button.pressed.connect(func() -> void: open_sign_in_requested.emit())
 	growth_button.pressed.connect(func() -> void: open_growth_requested.emit())
 	achievements_button.pressed.connect(func() -> void: open_achievements_requested.emit())
-	wrong_book_button.pressed.connect(func() -> void: open_wrong_book_requested.emit())
-	random_button.pressed.connect(_on_random_pressed)
-	special_button.pressed.connect(_on_special_pressed)
-	mock_test_button.pressed.connect(_on_mock_test_pressed)
+	random_card.pressed.connect(func() -> void: start_session_requested.emit({"mode": "random_practice"}))
+	mock_test_card.pressed.connect(_on_mock_test_pressed)
+	library_card.pressed.connect(func() -> void: open_library_requested.emit())
+	wrong_retry_card.pressed.connect(_on_wrong_retry_pressed)
 	AppState.state_changed.connect(func() -> void: refresh_view())
-	_refresh_filters()
 	refresh_view()
 	_play_intro_motion()
 
 
-func refresh_view(message: String = "") -> void:
+func refresh_view() -> void:
 	var profile: Dictionary = AppState.get_profile()
-	summary_label.text = "欢迎回来，%s" % profile.get("nickname", "小园探险家")
-	growth_label.text = "等级 Lv.%d · EXP %d · 金币 %d" % [profile.get("level", 1), profile.get("exp", 0), profile.get("gold", 0)]
-	weekly_label.text = "连续签到 %d 天 · 已通关 %d · 学习 %d 分钟" % [profile.get("streak_days", 0), profile.get("levels_completed_count", 0), profile.get("study_minutes", 0)]
-	helper_label.text = message if not message.is_empty() else "首页只保留最重要入口，减少干扰。"
-	_refresh_level_list()
+	var nickname: String = str(profile.get("nickname", "小园探险家"))
+	var level: int = int(profile.get("level", 1))
+	var exp_points: int = int(profile.get("exp", 0))
+	var streak: int = int(profile.get("streak_days", 0))
+	summary_label.text = "你好 %s，今天也加油！" % nickname
+	growth_label.text = "Lv.%d · EXP %d · 🔥 %d 天" % [level, exp_points, streak]
+	# Progress to next level: exp / (level * curve_base)
+	var curve_base: int = int(ContentService.get_growth_rules().get("level_up_curve_base", 100))
+	var threshold: int = level * curve_base
+	exp_progress_bar.max_value = float(threshold)
+	exp_progress_bar.value = float(exp_points)
+	exp_progress_label.text = "%d / %d EXP" % [exp_points, threshold]
+	_update_continue_button()
+	_update_wrong_retry_card()
 
 
-func _refresh_filters() -> void:
-	grade_option.clear()
+func _update_continue_button() -> void:
+	# Recommend the next level after the most recently completed one.
+	# If no completed levels, fall back to the most recent attempted level.
+	# If neither, fall back to the default starter level.
+	_continue_level_id = _resolve_continue_level()
+	if _continue_level_id.is_empty():
+		continue_button.text = "开始学习"
+		continue_button.disabled = true
+		return
+	continue_button.disabled = false
+	var level_data: Dictionary = ContentService.get_level(_continue_level_id)
+	var level_name: String = str(level_data.get("name", _continue_level_id))
+	var verb: String = "续练" if AppState.get_level_record(_continue_level_id).get("stars", 0) == 0 else "下一关"
+	continue_button.text = "%s：%s" % [verb, level_name]
+
+
+func _resolve_continue_level() -> String:
+	# Priority 1: most recent attempted level if it isn't fully cleared
+	var recent_id: String = AppState.get_recent_level_id()
+	if not recent_id.is_empty():
+		var record: Dictionary = AppState.get_level_record(recent_id)
+		if int(record.get("stars", 0)) == 0:
+			return recent_id
+		# Priority 2: next level after the recent one
+		var next_id: String = _find_next_level_after(recent_id)
+		if not next_id.is_empty():
+			return next_id
+		# No next level, replay the recent
+		return recent_id
+	# Priority 3: default starter
+	return "level_grade1_addition_1"
+
+
+func _find_next_level_after(level_id: String) -> String:
+	# Walk through grades → modules → knowledge points → levels in order
+	# until we find the level_id, then return the next one in sequence.
+	var found: bool = false
 	for grade_data in ContentService.get_grades():
-		grade_option.add_item(grade_data.get("name", ""))
-		grade_option.set_item_metadata(grade_option.item_count - 1, grade_data.get("id", ""))
-	if grade_option.item_count > 0:
-		grade_option.select(0)
-		_on_grade_changed(0)
+		var grade_id: String = str(grade_data.get("id", ""))
+		for module_data in ContentService.get_modules_for_grade(grade_id):
+			var module_id: String = str(module_data.get("id", ""))
+			for knowledge_data in ContentService.get_knowledge_points(module_id):
+				var knowledge_id: String = str(knowledge_data.get("id", ""))
+				for level_data in ContentService.get_levels(knowledge_id):
+					var current_id: String = str(level_data.get("id", ""))
+					if found:
+						return current_id
+					if current_id == level_id:
+						found = true
+	return ""
 
 
-func _on_grade_changed(index: int) -> void:
-	module_option.clear()
-	var grade_id: String = str(grade_option.get_item_metadata(index))
-	for module_data in ContentService.get_modules_for_grade(grade_id):
-		module_option.add_item(module_data.get("name", ""))
-		module_option.set_item_metadata(module_option.item_count - 1, module_data.get("id", ""))
-	if module_option.item_count > 0:
-		module_option.select(0)
-		_on_module_changed(0)
+func _update_wrong_retry_card() -> void:
+	var ids: Array = AppState.get_wrong_question_ids_for_retry(99)
+	var count: int = ids.size()
+	wrong_retry_card.text = "🔁\n错题重练\n%d 道待练" % count if count > 0 else "🔁\n错题重练\n暂无错题 ✨"
 
 
-func _on_module_changed(index: int) -> void:
-	knowledge_option.clear()
-	if module_option.item_count == 0:
-		current_levels = []
-		_refresh_level_list()
+func _on_continue_pressed() -> void:
+	if _continue_level_id.is_empty():
 		return
-	var module_id: String = str(module_option.get_item_metadata(index))
-	for knowledge_point in ContentService.get_knowledge_points(module_id):
-		knowledge_option.add_item(knowledge_point.get("name", ""))
-		knowledge_option.set_item_metadata(knowledge_option.item_count - 1, knowledge_point.get("id", ""))
-	if knowledge_option.item_count > 0:
-		knowledge_option.select(0)
-		_on_knowledge_changed(0)
-	else:
-		current_levels = []
-		_refresh_level_list()
-
-
-func _on_knowledge_changed(index: int) -> void:
-	if knowledge_option.item_count == 0:
-		current_levels = []
-		_refresh_level_list()
-		return
-	var knowledge_id: String = str(knowledge_option.get_item_metadata(index))
-	current_levels = ContentService.get_levels(knowledge_id)
-	_refresh_level_list()
-
-
-func _refresh_level_list() -> void:
-	level_list.clear()
-	for level_data in current_levels:
-		var level_id: String = str(level_data.get("id", ""))
-		var unlocked: bool = AppState.is_level_unlocked(level_id)
-		var record: Dictionary = AppState.get_level_record(level_id)
-		var stars: int = int(record.get("stars", 0))
-		var item_text: String = "%s ｜ %s ｜ %s" % [level_data.get("name", level_id), "已解锁" if unlocked else "未解锁", "★".repeat(stars)]
-		level_list.add_item(item_text)
-		level_list.set_item_metadata(level_list.item_count - 1, level_id)
-	if level_list.item_count > 0:
-		level_list.select(0)
-
-
-func _on_primary_start_pressed() -> void:
-	_on_start_level_pressed()
-
-
-func _on_start_level_pressed() -> void:
-	if level_list.item_count == 0 or level_list.get_selected_items().is_empty():
-		helper_label.text = "请先选择一个可学习的内容。"
-		return
-	var selected_index: int = level_list.get_selected_items()[0]
-	var level_id: String = str(level_list.get_item_metadata(selected_index))
-	if not AppState.is_level_unlocked(level_id):
-		helper_label.text = "该关卡暂未解锁，请先完成前置内容。"
-		return
-	start_session_requested.emit({"mode": "level", "level_id": level_id})
-
-
-func _on_random_pressed() -> void:
-	start_session_requested.emit({"mode": "random_practice"})
-
-
-func _on_special_pressed() -> void:
-	if knowledge_option.item_count == 0:
-		helper_label.text = "当前模块暂无专项练习内容。"
-		return
-	var knowledge_id: String = str(knowledge_option.get_item_metadata(knowledge_option.get_selected_id()))
-	start_session_requested.emit({"mode": "special_practice", "knowledge_point_id": knowledge_id})
+	start_session_requested.emit({"mode": "level", "level_id": _continue_level_id})
 
 
 func _on_mock_test_pressed() -> void:
-	if grade_option.item_count == 0:
-		helper_label.text = "当前暂无模拟测试内容。"
-		return
-	var grade_id: String = str(grade_option.get_item_metadata(grade_option.get_selected_id()))
+	# Use the recent level's grade if known, else default to grade_1.
+	var grade_id: String = "grade_1"
+	var recent_id: String = AppState.get_recent_level_id()
+	if not recent_id.is_empty():
+		var level_data: Dictionary = ContentService.get_level(recent_id)
+		var inferred: String = str(level_data.get("grade_id", ""))
+		if not inferred.is_empty():
+			grade_id = inferred
 	start_session_requested.emit({"mode": "mock_test", "grade_id": grade_id})
+
+
+func _on_wrong_retry_pressed() -> void:
+	# Reuse the existing wrong-retry signal pattern via WrongBookScreen,
+	# or start the session directly if there are wrong questions to retry.
+	var ids: Array = AppState.get_wrong_question_ids_for_retry(10)
+	if ids.is_empty():
+		# No wrong questions — open WrongBookScreen so the empty state explains itself.
+		open_wrong_book_requested.emit()
+		return
+	start_session_requested.emit({"mode": "wrong_retry", "question_ids": ids})
 
 
 func _play_intro_motion() -> void:
 	if not AppState.get_settings().get("animation_enabled", true):
 		return
-	hero_card.modulate.a = 0.0
-	hero_banner.modulate.a = 0.0
-	mascot_texture.scale = Vector2(0.9, 0.9)
+	modulate.a = 0.0
 	var tween: Tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(hero_banner, "modulate:a", 1.0, 0.28)
-	tween.tween_property(hero_card, "modulate:a", 1.0, 0.4)
-	tween.tween_property(mascot_texture, "scale", Vector2.ONE, 0.45).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "modulate:a", 1.0, 0.3)

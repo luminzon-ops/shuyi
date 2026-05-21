@@ -46,7 +46,7 @@ func _ready() -> void:
 	question_renderer = QuestionRendererClass.new()
 	submit_button.pressed.connect(_on_submit_pressed)
 	next_button.pressed.connect(_on_next_pressed)
-	back_button.pressed.connect(func() -> void: back_requested.emit())
+	back_button.pressed.connect(_on_back_pressed)
 	next_button.disabled = true
 
 
@@ -54,8 +54,17 @@ func _transition(new_state: SessionState) -> void:
 	_state = new_state
 
 
+func _on_back_pressed() -> void:
+	## ADR-0006: pressing back mid-session abandons it. State MUST reset to IDLE
+	## so the next start_session() call can proceed (its IDLE guard would otherwise
+	## silently ignore the call, leaving stale state from the abandoned session).
+	_transition(SessionState.IDLE)
+	back_requested.emit()
+
+
 func start_session(config: Dictionary) -> void:
 	if _state != SessionState.IDLE:
+		push_warning("PracticeScreen.start_session called while not IDLE (state=%d). Ignoring. This usually means an exit path forgot to reset state." % _state)
 		return
 	_transition(SessionState.LOADING)
 	last_config = config.duplicate(true)

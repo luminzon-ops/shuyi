@@ -3,5 +3,6 @@
 	"sign_in_reward":{"exp":10,"gold":15},
 	"mock_test_reward":{"exp":50,"gold":36},
 	"random_practice_reward":{"exp":16,"gold":10},
-	"mini_game_reward":{"exp":18,"gold":15}
+	"mini_game_reward":{"exp":18,"gold":15},
+	"wrong_retry_per_correct":{"exp":5,"gold":3}
 }

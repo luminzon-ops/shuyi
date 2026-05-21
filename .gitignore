@@ -26,13 +26,15 @@ dist/
 shuyi_playland/reports/
 
 # === Unity ===
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-[Uu]ser[Ss]ettings/
+# Anchored to root (or to a Unity project subdir) so this doesn't accidentally
+# match game-content folders named "library" (e.g. shuyi_playland/scenes/library/).
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
 *.csproj
 *.unityproj
 *.sln

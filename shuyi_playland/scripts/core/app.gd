@@ -9,6 +9,7 @@ const SIGN_IN_SCENE := preload("res://scenes/sign_in/SignInScreen.tscn")
 const ACHIEVEMENT_SCENE := preload("res://scenes/achievements/AchievementScreen.tscn")
 const RESULT_SCENE := preload("res://scenes/result/ResultScreen.tscn")
 const MINI_GAME_SCENE := preload("res://scenes/mini_games/MiniGameScreen.tscn")
+const LIBRARY_SCENE := preload("res://scenes/library/LibraryScreen.tscn")
 
 @onready var title_label: Label = %TitleLabel
 @onready var subtitle_label: Label = %SubtitleLabel
@@ -29,6 +30,7 @@ var sign_in_screen: Control
 var achievement_screen: Control
 var result_screen: Control
 var mini_game_screen: Control
+var library_screen: Control
 var click_player: AudioStreamPlayer
 
 
@@ -49,7 +51,8 @@ func _ready() -> void:
 	achievement_screen = ACHIEVEMENT_SCENE.instantiate()
 	result_screen = RESULT_SCENE.instantiate()
 	mini_game_screen = MINI_GAME_SCENE.instantiate()
-	for screen in [home_screen, practice_screen, settings_screen, growth_screen, wrong_book_screen, sign_in_screen, achievement_screen, result_screen, mini_game_screen]:
+	library_screen = LIBRARY_SCENE.instantiate()
+	for screen in [home_screen, practice_screen, settings_screen, growth_screen, wrong_book_screen, sign_in_screen, achievement_screen, result_screen, mini_game_screen, library_screen]:
 		screen.visible = false
 		screen_holder.add_child(screen)
 	home_button.pressed.connect(func() -> void: _navigate(home_screen, "数一游园", "任务、成长与学习入口"))
@@ -61,7 +64,10 @@ func _ready() -> void:
 	home_screen.open_sign_in_requested.connect(func() -> void: _show_screen(sign_in_screen, "签到中心", "连续签到和每日奖励"))
 	home_screen.open_wrong_book_requested.connect(func() -> void: _show_screen(wrong_book_screen, "错题本", "按知识点整理薄弱题目"))
 	home_screen.open_achievements_requested.connect(func() -> void: _show_screen(achievement_screen, "成就中心", "勋章与成长奖励"))
+	home_screen.open_library_requested.connect(func() -> void: _show_screen(library_screen, "题库", "按年级和知识点选择关卡"))
 	home_screen.start_session_requested.connect(_start_session)
+	library_screen.back_requested.connect(func() -> void: _show_screen(home_screen, "数一游园", "任务、成长与学习入口"))
+	library_screen.start_session_requested.connect(_start_session)
 	practice_screen.back_requested.connect(func() -> void:
 		_set_nav_visible(true)
 		_show_screen(home_screen, "数一游园", "任务、成长与学习入口"))

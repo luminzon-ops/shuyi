@@ -214,6 +214,14 @@ func calculate_result(mode: String, level_id: String, correct_count: int, total_
 		reward = get_reward_rules().get("random_practice_reward", reward)
 	elif mode == "mini_game":
 		reward = get_reward_rules().get("mini_game_reward", reward)
+	elif mode == "wrong_retry":
+		# Wrong-retry pays per correctly mastered question, not a flat amount.
+		# Wrong answers earn nothing — you cannot "trade tuition for tuition" by retrying mistakes.
+		var per_correct: Dictionary = get_reward_rules().get("wrong_retry_per_correct", {"exp": 5, "gold": 3})
+		reward = {
+			"exp": int(per_correct.get("exp", 5)) * correct_count,
+			"gold": int(per_correct.get("gold", 3)) * correct_count
+		}
 	else:
 		var level_data: Dictionary = get_level(level_id)
 		reward = level_data.get("reward", reward)
