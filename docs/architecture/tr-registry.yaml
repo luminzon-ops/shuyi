@@ -1,0 +1,286 @@
+version: 3
+last_updated: 2026-05-19
+description: >
+  Stable Technical Requirement IDs extracted from GDDs by /architecture-review.
+  Story files reference these IDs; the registry preserves them across review
+  runs even if GDD wording changes. Never renumber existing entries; only
+  append new ones or mark old ones deprecated.
+  Revision 3: persistence-system.md revised; TR-persist-004 retitled and
+  closed (covered by ADR-0001's shadow-backup design).
+
+requirements:
+  # ----- content-system.md -----
+  - id: TR-content-001
+    system: content
+    requirement: 4-level hierarchy (Grade→Module→Knowledge Point→Level→Questions)
+    domain: Data Schema
+    status: active
+  - id: TR-content-002
+    system: content
+    requirement: 10 JSON config files loaded at startup
+    domain: Data Pipeline
+    status: active
+  - id: TR-content-003
+    system: content
+    requirement: Filter questions by grade/module/knowledge_point/type
+    domain: Data Pipeline
+    status: active
+  - id: TR-content-004
+    system: content
+    requirement: Random + mock_test selection methods
+    domain: Data Pipeline
+    status: active
+  - id: TR-content-005
+    system: content
+    requirement: Level unlock_next propagation on completion
+    domain: State
+    status: active
+  - id: TR-content-006
+    system: content
+    requirement: Empty / missing content files return [] without crashing
+    domain: Resilience
+    status: active
+  - id: TR-content-007
+    system: content
+    requirement: Exactly 10 questions per level (configurable per level)
+    domain: Data Schema
+    status: active
+
+  # ----- practice-system.md -----
+  - id: TR-practice-001
+    system: practice
+    requirement: Six session modes orchestration (level, special, random, mock_test, wrong_retry, mini_game)
+    domain: Gameplay
+    status: active
+  - id: TR-practice-002
+    system: practice
+    requirement: Session lifecycle (start_session → render → evaluate → record → finish)
+    domain: Gameplay
+    status: active
+  - id: TR-practice-003
+    system: practice
+    requirement: Type-aware answer evaluation
+    domain: Logic
+    status: active
+  - id: TR-practice-004
+    system: practice
+    requirement: Result calculation (accuracy, stars, reward)
+    domain: Logic
+    status: active
+  - id: TR-practice-005
+    system: practice
+    requirement: Wrong-retry with insufficient data fallback (returns fewer than limit)
+    domain: Gameplay
+    status: active
+  - id: TR-practice-006
+    system: practice
+    requirement: Answer history capped at 200 entries (oldest sliced off)
+    domain: State
+    status: active
+  - id: TR-practice-007
+    system: practice
+    requirement: session_finished signal routes to ResultScreen
+    domain: Communication
+    status: active
+  - id: TR-practice-008
+    system: practice
+    requirement: Double sign-in prevention (same calendar day)
+    domain: State
+    status: active
+  - id: TR-practice-009
+    system: practice
+    requirement: Achievement evaluation runs after every answer and after every session completion
+    domain: Logic
+    status: active
+
+  # ----- question-types.md -----
+  - id: TR-qtypes-001
+    system: qtypes
+    requirement: 10 question types supported (choice, true_false, fill_blank, mental_math, matching, drag_drop, sorting, shape_puzzle, application, multi_step)
+    domain: UI/Logic
+    status: active
+  - id: TR-qtypes-002
+    system: qtypes
+    requirement: Per-type rendering (Buttons for choice/true_false; LineEdit for fill/mental; Buttons + LineEdit for complex types)
+    domain: UI
+    status: active
+  - id: TR-qtypes-003
+    system: qtypes
+    requirement: Per-type input collection via QuestionRenderer.build_user_answer()
+    domain: UI
+    status: active
+  - id: TR-qtypes-004
+    system: qtypes
+    requirement: Numeric comparison via is_equal_approx for fill_blank/mental_math
+    domain: Logic
+    status: active
+  - id: TR-qtypes-005
+    system: qtypes
+    requirement: Complex normalization (Chinese punctuation, arrow separators, equals removed)
+    domain: Logic
+    status: active
+
+  # ----- growth-system.md -----
+  - id: TR-growth-001
+    system: growth
+    requirement: Level-up curve `while exp >= level * 100` with carry-over
+    domain: Logic
+    status: active
+  - id: TR-growth-002
+    system: growth
+    requirement: Daily sign-in idempotent on calendar date
+    domain: Logic
+    status: active
+  - id: TR-growth-003
+    system: growth
+    requirement: Daily and weekly tasks with progress tracking and claim flow
+    domain: Logic
+    status: active
+  - id: TR-growth-004
+    system: growth
+    requirement: Achievement progress tracking (3 MVP achievements)
+    domain: Logic
+    status: active
+  - id: TR-growth-005
+    system: growth
+    requirement: Gold currency (no upper cap, no spending mechanic yet)
+    domain: State
+    status: active
+  - id: TR-growth-006
+    system: growth
+    requirement: streak_days resets to 0 on missed day (DESIGNED, NOT YET IMPLEMENTED)
+    domain: Logic
+    status: active
+  - id: TR-growth-007
+    system: growth
+    requirement: Level-up check runs after every EXP gain
+    domain: Logic
+    status: active
+  - id: TR-growth-008
+    system: growth
+    requirement: weekly_progress capped at 100
+    domain: State
+    status: active
+
+  # ----- persistence-system.md -----
+  - id: TR-persist-001
+    system: persist
+    requirement: save_data 8-section schema (profile, settings, progress, tasks, wrong_book, answer_history, achievements, meta)
+    domain: Data Schema
+    status: active
+  - id: TR-persist-002
+    system: persist
+    requirement: Save triggered after every state-changing action
+    domain: Persistence
+    status: active
+  - id: TR-persist-003
+    system: persist
+    requirement: _merge_defaults() deep merge for schema evolution on load
+    domain: Persistence
+    status: active
+  - id: TR-persist-004
+    system: persist
+    requirement: Shadow-backup recovery (replaces SQLite snapshot per ADR-0001)
+    domain: Persistence
+    status: active
+    revised: 2026-05-19
+    note: persistence-system.md revised 2026-05-19 to document the shadow-backup design from ADR-0001. The previous SQLite-snapshot wording was removed. systems-index Status returned to Approved.
+  - id: TR-persist-005
+    system: persist
+    requirement: Backup ZIP export (save_data.json + version.txt + checksum.txt)
+    domain: Persistence
+    status: active
+  - id: TR-persist-006
+    system: persist
+    requirement: Import validates required sections and checksum before restore
+    domain: Persistence
+    status: active
+  - id: TR-persist-007
+    system: persist
+    requirement: Default values produced on fresh install
+    domain: Persistence
+    status: active
+  - id: TR-persist-008
+    system: persist
+    requirement: Atomic write (write-to-temp-then-rename) prevents corruption
+    domain: Persistence
+    status: active
+  - id: TR-persist-009
+    system: persist
+    requirement: Corrupt or missing save fallback chain (primary → shadow → defaults)
+    domain: Resilience
+    status: active
+
+  # ----- ui-navigation.md -----
+  - id: TR-ui-001
+    system: ui
+    requirement: 9 screens pre-instantiated under ScreenHolder
+    domain: UI
+    status: active
+  - id: TR-ui-002
+    system: ui
+    requirement: Title/subtitle labels update on every navigation
+    domain: UI
+    status: active
+  - id: TR-ui-003
+    system: ui
+    requirement: Bottom 5-button navigation (Home/Practice/Growth/MiniGame/Settings)
+    domain: UI
+    status: active
+  - id: TR-ui-004
+    system: ui
+    requirement: Single-scene architecture (no get_tree().change_scene)
+    domain: Architecture
+    status: active
+  - id: TR-ui-005
+    system: ui
+    requirement: All inter-screen signals routed through app.gd
+    domain: Communication
+    status: active
+  - id: TR-ui-006
+    system: ui
+    requirement: Hidden screens preserve their state in memory
+    domain: State
+    status: active
+  - id: TR-ui-007
+    system: ui
+    requirement: refresh_view() called on screen entry when available
+    domain: UI
+    status: active
+  - id: TR-ui-008
+    system: ui
+    requirement: Context-appropriate back routing (Achievements → Growth, not Home)
+    domain: UI
+    status: active
+  - id: TR-ui-009
+    system: ui
+    requirement: Click sound gated by sound_enabled and runtime file existence check
+    domain: Audio
+    status: active
+  - id: TR-ui-010
+    system: ui
+    requirement: Default level fallback (level_grade1_addition_1) when recent_level_id is empty
+    domain: State
+    status: active
+
+  # ----- game-concept.md -----
+  - id: TR-concept-001
+    system: concept
+    requirement: Android portrait 720×1280, touch-only input
+    domain: Platform
+    status: active
+  - id: TR-concept-002
+    system: concept
+    requirement: Offline-first, no network dependency
+    domain: Architecture
+    status: active
+  - id: TR-concept-003
+    system: concept
+    requirement: Data-driven content (JSON configs, no hardcoded gameplay values)
+    domain: Architecture
+    status: active
+  - id: TR-concept-004
+    system: concept
+    requirement: 60fps performance budget on Android target
+    domain: Performance
+    status: active

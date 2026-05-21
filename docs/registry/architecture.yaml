@@ -1,0 +1,83 @@
+# Architecture Registry
+
+## State Ownership
+
+| State | Owner | Interface | ADR |
+|-------|-------|-----------|-----|
+| save_data (all player state) | AppState.gd | Dictionary, save_to_disk(), load_or_create(), state_changed signal | ADR-0001 |
+| content (read-only question/level data) | ContentService.gd | get_grades(), get_questions_for_level(), evaluate_answer(), calculate_result() | ADR-0004 |
+| screen visibility state | app.gd (ScreenHolder) | _show_screen(), _navigate() | ADR-0005 |
+| session lifecycle state (_state) | PracticeScreen.gd | var state: SessionState (getter), _transition(new_state) (private) | ADR-0006 |
+
+## Interface Contracts
+
+| Contract | Pattern | Signal/API | ADR |
+|----------|---------|-----------|-----|
+| state_changed | Signal (emitted after every mutation) | AppState.state_changed | ADR-0001 |
+| screen_signals | Signal routing through app.gd | start_session_requested, session_finished, back_requested | ADR-0005 |
+| session_finished | Signal (emitted after state resets to IDLE; summary Dictionary) | PracticeScreen.session_finished(summary: Dictionary) | ADR-0006 |
+| session_error | Signal (emitted when LOADING fails) | PracticeScreen.session_error(reason: String) | ADR-0006 |
+| practice_session_entry | Method (sole entry point for starting any session mode) | PracticeScreen.start_session(config: Dictionary) | ADR-0006 |
+| session_mode_tracking | Method (must be called at LOADING state before record_answer()) | AppState.set_session_mode(mode: String) | ADR-0007 |
+| question_render_entry | Method (sole entry point for rendering a question; owns option_container cleanup) | QuestionRenderer.render(question: Dictionary, option_container: VBoxContainer, answer_input: LineEdit, select_callback: Callable) | ADR-0008 |
+| question_answer_collect | Method (sole entry point for collecting user answer as String) | QuestionRenderer.build_user_answer(question_type: String, selected_option: String, answer_input: LineEdit) -> String | ADR-0008 |
+| exp_reward_entry | Method (sole EXP mutation path; always calls _check_level_up() and increments weekly_progress) | AppState._apply_reward(reward: Dictionary) | ADR-0009 |
+| level_up_trigger | Method (while-loop level-up with carry-over; called only from _apply_reward()) | AppState._check_level_up() | ADR-0009 |
+| audio_player_factory | Method (canonical factory for all AudioStreamPlayers; returns null if file missing) | app.gd._init_audio_player(path: String) -> AudioStreamPlayer | ADR-0011 |
+| level_up_signal | Signal (emitted by AppState._check_level_up() when level increases; app.gd connects for audio) | AppState.level_up(new_level: int) | ADR-0011 |
+
+## Forbidden Patterns
+
+| Pattern | Reason | ADR |
+|---------|--------|-----|
+| direct_overwrite_save_file | Must use atomic write pattern (write-to-temp-rename) to prevent data corruption on Android process kill | ADR-0001 |
+| sqlite3_shell_execution | OS.execute("sqlite3", ...) is non-functional on Android; do not depend on it for data recovery | ADR-0001 |
+| wrong_autoload_order | ContentService MUST initialize before AppState; AppState._ready() calls ContentService during load | ADR-0001 |
+| compiled_language_components | All code must be GDScript; introducing C#, C++, or GDExtension fragments the codebase without performance justification | ADR-0002 |
+| direct_state_write | PracticeScreen._state must only be written via _transition(); direct assignment bypasses guards and enables double-execution bugs | ADR-0006 |
+| wrong_questions_key | Wrong-book data lives at save_data["wrong_book"], not save_data.wrong_questions; using the wrong key silently creates a parallel empty structure | ADR-0007 |
+| free_node_mid_frame | Do not call free() on option_container children during render(); use hide()+queue_free()+show() to avoid crashes in the GL compatibility renderer on Android | ADR-0008 |
+| gt_in_option_values | The ">" character is used as a delimiter for Button+Input question types; option values for matching/drag_drop/sorting/shape_puzzle must not contain ">" | ADR-0008 |
+| direct_exp_mutation | save_data.profile.exp must only be mutated via _apply_reward(); direct assignment bypasses _check_level_up() and weekly_progress increment | ADR-0009 |
+| wrong_performance_monitor | Use Performance.get_monitor(Performance.MEMORY_STATIC/MEMORY_DYNAMIC) for memory monitoring; "static_memory_usage_by_type" is not a valid Godot 4 monitor name | ADR-0010 |
+| string_call_deferred | Use callable syntax save_to_disk.call_deferred() not string form call_deferred("save_to_disk"); string form is Godot 3 style and bypasses static type checking | ADR-0010 |
+| state_changed_audio_diffing | Do not connect app.gd to AppState.state_changed to detect level-ups or answer results for audio triggers; use explicit signals (level_up, answer_result) instead | ADR-0011 |
+| direct_audiostreamplayer_instantiation | All AudioStreamPlayer nodes must be created via app.gd._init_audio_player(); never instantiate AudioStreamPlayer directly without the ResourceLoader.exists() guard | ADR-0011 |
+
+## Performance Budgets
+
+| Budget | Value | Owner | ADR |
+|--------|-------|-------|-----|
+| save I/O per save | ~2 file writes, ~10-50KB each | AppState | ADR-0001 |
+| in-memory state | ~50KB Dictionary | AppState | ADR-0001 |
+| frame_time | 16.6ms (60fps) | All systems | ADR-0010 |
+| draw_calls_in_frame | 100 max | All systems | ADR-0010 |
+| memory_total | 256MB ceiling | All systems | ADR-0010 |
+
+## API Decisions
+
+| Decision | Choice | ADR |
+|----------|-------|-----|
+| Primary data format | JSON (user://savegame.json) | ADR-0001 |
+| Backup recovery format | Shadow JSON (user://savegame.bak) | ADR-0001 |
+| Export format | ZIP (JSON + version + hash checksum) | ADR-0001 |
+| Schema evolution | Deep merge with defaults (_merge_defaults) | ADR-0001 |
+| Content data format | Read-only JSON (res://data/content/*.json) | ADR-0004 |
+| Autoload singletons | 4 autoloads (ContentService, AppState, BackupService, DatabaseService-deprec) | ADR-0003 |
+| Screen navigation | ScreenHolder pattern (pre-instantiated, visibility-toggled) | ADR-0005 |
+| Primary scripting language | GDScript (sole language) | ADR-0002 |
+| Compiled language interop | None (all code in GDScript) | ADR-0002 |
+
+## Version History
+
+| Date | Action | ADR |
+|------|--------|-----|
+| 2026-05-18 | Registry created | ADR-0001 |
+| 2026-05-18 | Added language decision, forbidden pattern for compiled-language components | ADR-0002 |
+| 2026-05-19 | Added session lifecycle state ownership, session_finished/session_error signals, start_session entry point, direct_state_write forbidden pattern | ADR-0006 |
+| 2026-05-19 | Added session_mode_tracking interface, wrong_questions_key forbidden pattern | ADR-0007 |
+| 2026-05-19 | Added question_render_entry and question_answer_collect interfaces, free_node_mid_frame and gt_in_option_values forbidden patterns | ADR-0008 |
+| 2026-05-19 | Added exp_reward_entry and level_up_trigger interfaces, direct_exp_mutation forbidden pattern | ADR-0009 |
+| 2026-05-20 | ADR-0009 status advanced to Accepted | ADR-0009 |
+| 2026-05-19 | Added frame_time/draw_calls/memory_total performance budgets, wrong_performance_monitor and string_call_deferred forbidden patterns | ADR-0010 |
+| 2026-05-19 | Added audio_player_factory and level_up_signal interfaces, state_changed_audio_diffing and direct_audiostreamplayer_instantiation forbidden patterns | ADR-0011 |
