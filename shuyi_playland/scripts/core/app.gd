@@ -13,6 +13,7 @@ const MINI_GAME_SCENE := preload("res://scenes/mini_games/MiniGameScreen.tscn")
 @onready var title_label: Label = %TitleLabel
 @onready var subtitle_label: Label = %SubtitleLabel
 @onready var screen_holder: Control = %ScreenHolder
+@onready var bottom_nav_card: PanelContainer = %BottomNavCard
 @onready var home_button: Button = %HomeButton
 @onready var practice_button: Button = %PracticeButton
 @onready var growth_button: Button = %GrowthButton
@@ -62,10 +63,10 @@ func _ready() -> void:
 	home_screen.open_achievements_requested.connect(func() -> void: _show_screen(achievement_screen, "成就中心", "勋章与成长奖励"))
 	home_screen.start_session_requested.connect(_start_session)
 	practice_screen.back_requested.connect(func() -> void:
-		_set_nav_enabled(true)
+		_set_nav_visible(true)
 		_show_screen(home_screen, "数一游园", "任务、成长与学习入口"))
 	practice_screen.session_finished.connect(_on_session_finished)
-	practice_screen.session_error.connect(func(_reason: String) -> void: _set_nav_enabled(true))
+	practice_screen.session_error.connect(func(_reason: String) -> void: _set_nav_visible(true))
 	wrong_book_screen.start_wrong_retry_requested.connect(_start_wrong_retry)
 	sign_in_screen.back_requested.connect(func() -> void: _show_screen(home_screen, "数一游园", "任务、成长与学习入口"))
 	growth_screen.back_requested.connect(func() -> void: _show_screen(home_screen, "数一游园", "任务、成长与学习入口"))
@@ -103,7 +104,7 @@ func _open_recent_level() -> void:
 
 func _start_session(config: Dictionary) -> void:
 	_play_click()
-	_set_nav_enabled(false)
+	_set_nav_visible(false)
 	practice_screen.call("start_session", config)
 	_show_screen(practice_screen, "练习与闯关", "专项练习、随机练习、测试与错题重练")
 
@@ -118,7 +119,7 @@ func _retry_last_session() -> void:
 
 
 func _on_session_finished(summary: Dictionary) -> void:
-	_set_nav_enabled(true)
+	_set_nav_visible(true)
 	result_screen.call("apply_summary", summary)
 	_show_screen(result_screen, "结算页", "星级、奖励与下一步建议")
 
@@ -134,11 +135,12 @@ func _on_game_finished(summary: Dictionary) -> void:
 	_show_screen(result_screen, "小游戏结算", "奖励已经发放，继续挑战吧")
 
 
-func _set_nav_enabled(enabled: bool) -> void:
-	## Disables/enables all 5 bottom nav tabs during active practice sessions (HUD spec, ADR-0005).
-	## Prevents accidental session abandonment via nav tap.
-	for btn in [home_button, practice_button, growth_button, mini_game_button, settings_button]:
-		btn.disabled = not enabled
+func _set_nav_visible(visible_state: bool) -> void:
+	## Hides/shows the entire bottom nav card during active practice sessions.
+	## Hiding the parent PanelContainer (not just the buttons) collapses the layout
+	## so no white space remains at the bottom of the screen during a session.
+	## HUD spec, ADR-0005.
+	bottom_nav_card.visible = visible_state
 
 
 func _play_click() -> void:

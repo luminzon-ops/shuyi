@@ -48,6 +48,9 @@ func _render_option_buttons(options: Array, option_container: VBoxContainer, sel
 		var button: Button = Button.new()
 		button.text = str(option)
 		button.custom_minimum_size = Vector2(0, 72)
+		# Enable toggle_mode so button_pressed (set by _select_option) shows the pressed visual.
+		# This implements P-03 Option Button Select: "selected button highlighted, others dimmed".
+		button.toggle_mode = true
 		button.modulate = Color(0.92, 0.97, 1.0, 1.0)
 		button.pressed.connect(func() -> void: select_callback.call(button.text))
 		option_container.add_child(button)

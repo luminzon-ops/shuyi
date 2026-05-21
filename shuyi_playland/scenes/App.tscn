@@ -149,6 +149,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="BottomNavCard" type="PanelContainer" parent="SafeArea/RootVBox" unique_id=1966095891]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 78)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bottom_nav")

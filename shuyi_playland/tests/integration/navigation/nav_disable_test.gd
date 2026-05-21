@@ -1,15 +1,10 @@
 extends GdUnitTestSuite
 
-## Integration tests for _set_nav_enabled() in app.gd (HUD spec, S1-07).
-## Verifies bottom nav tabs are disabled during active sessions and re-enabled after.
+## Integration tests for _set_nav_visible() in app.gd (HUD spec, S1-07).
+## Verifies the bottom nav card is hidden during active sessions and re-shown after.
 ##
 ## NOTE: These tests access app.gd via the scene tree root.
-## app.gd is the root Control of App.tscn — accessible via get_tree().root.get_node("App")
-## or via the autoload-equivalent pattern. Since app.gd is not an autoload, we test
-## _set_nav_enabled() by checking the disabled state of the nav buttons directly.
-##
-## In GdUnit4 integration tests, the full scene tree is available.
-## We access the app node via get_tree().root.get_child(0) (App.tscn is the main scene).
+## app.gd is the root Control of App.tscn — its script is app.gd.
 
 
 func _get_app() -> Control:
@@ -17,45 +12,33 @@ func _get_app() -> Control:
 	return get_tree().root.get_child(0) as Control
 
 
-func test_nav_buttons_enabled_by_default() -> void:
+func test_nav_card_visible_by_default() -> void:
 	var app: Control = _get_app()
 	# NOTE: App node not accessible in this test context — skipping
 	if app == null:
 		return
-	# Before any session starts, all nav buttons must be enabled.
-	assert_bool(app.home_button.disabled).is_false()
-	assert_bool(app.practice_button.disabled).is_false()
-	assert_bool(app.growth_button.disabled).is_false()
-	assert_bool(app.mini_game_button.disabled).is_false()
-	assert_bool(app.settings_button.disabled).is_false()
+	# Before any session starts, the bottom nav card must be visible.
+	assert_bool(app.bottom_nav_card.visible).is_true()
 
 
-func test_set_nav_enabled_false_disables_all_buttons() -> void:
+func test_set_nav_visible_false_hides_nav_card() -> void:
 	var app: Control = _get_app()
 	# NOTE: App node not accessible in this test context — skipping
 	if app == null:
 		return
-	app._set_nav_enabled(false)
-	# HomeButton must be disabled after _set_nav_enabled(false)
-	assert_bool(app.home_button.disabled).is_true()
-	assert_bool(app.practice_button.disabled).is_true()
-	assert_bool(app.growth_button.disabled).is_true()
-	assert_bool(app.mini_game_button.disabled).is_true()
-	assert_bool(app.settings_button.disabled).is_true()
+	app._set_nav_visible(false)
+	# Bottom nav card must be hidden — collapses the layout so no white space remains
+	assert_bool(app.bottom_nav_card.visible).is_false()
 	# Restore
-	app._set_nav_enabled(true)
+	app._set_nav_visible(true)
 
 
-func test_set_nav_enabled_true_enables_all_buttons() -> void:
+func test_set_nav_visible_true_shows_nav_card() -> void:
 	var app: Control = _get_app()
 	# NOTE: App node not accessible in this test context — skipping
 	if app == null:
 		return
-	app._set_nav_enabled(false)
-	app._set_nav_enabled(true)
-	# HomeButton must be re-enabled after _set_nav_enabled(true)
-	assert_bool(app.home_button.disabled).is_false()
-	assert_bool(app.practice_button.disabled).is_false()
-	assert_bool(app.growth_button.disabled).is_false()
-	assert_bool(app.mini_game_button.disabled).is_false()
-	assert_bool(app.settings_button.disabled).is_false()
+	app._set_nav_visible(false)
+	app._set_nav_visible(true)
+	# Bottom nav card must be re-shown
+	assert_bool(app.bottom_nav_card.visible).is_true()

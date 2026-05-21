@@ -105,6 +105,54 @@ func show_question() -> void:
 	submit_button.disabled = false
 	next_button.disabled = true
 	current_question_type = question_renderer.render(question, option_container, answer_input, Callable(self, "_select_option"))
+	# Apply the unselected style to all option buttons so the initial state is uniform.
+	# This implements the P-03 baseline look (selected style is applied on tap by _select_option).
+	_paint_option_buttons("")
+
+
+func _paint_option_buttons(selected_value: String) -> void:
+	## P-03 Option Button Select: highlight the chosen option, dim the others.
+	## Called with an empty selected_value to render the initial unselected state.
+	var selected_style := _build_option_style(true)
+	var unselected_style := _build_option_style(false)
+	for child in option_container.get_children():
+		if child is Button:
+			var is_selected: bool = (selected_value != "") and (child.text == selected_value)
+			child.button_pressed = is_selected
+			var style: StyleBoxFlat = selected_style if is_selected else unselected_style
+			child.add_theme_stylebox_override("normal", style)
+			child.add_theme_stylebox_override("hover", style)
+			child.add_theme_stylebox_override("pressed", style)
+			child.add_theme_stylebox_override("focus", style)
+			child.add_theme_color_override("font_color", Color(0.20, 0.10, 0.0, 1.0) if is_selected else Color(0.12, 0.11, 0.29, 1.0))
+			child.modulate = Color.WHITE
+
+
+func _build_option_style(is_selected: bool) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	if is_selected:
+		style.bg_color = Color(0.99, 0.78, 0.30, 1.0)  # warm gold
+		style.border_color = Color(0.85, 0.55, 0.10, 1.0)
+		style.border_width_left = 3
+		style.border_width_top = 3
+		style.border_width_right = 3
+		style.border_width_bottom = 3
+	else:
+		style.bg_color = Color(0.96, 0.97, 1.0, 1.0)  # light card
+		style.border_color = Color(0.78, 0.82, 0.92, 1.0)
+		style.border_width_left = 1
+		style.border_width_top = 1
+		style.border_width_right = 1
+		style.border_width_bottom = 1
+	style.corner_radius_top_left = 12
+	style.corner_radius_top_right = 12
+	style.corner_radius_bottom_right = 12
+	style.corner_radius_bottom_left = 12
+	style.content_margin_left = 16
+	style.content_margin_right = 16
+	style.content_margin_top = 8
+	style.content_margin_bottom = 8
+	return style
 
 
 func _select_option(value: String) -> void:
@@ -115,9 +163,7 @@ func _select_option(value: String) -> void:
 			answer_input.text += ">" + value
 		return
 	selected_option = value
-	for child in option_container.get_children():
-		if child is Button:
-			child.button_pressed = child.text == value
+	_paint_option_buttons(value)
 
 
 func _on_submit_pressed() -> void:
