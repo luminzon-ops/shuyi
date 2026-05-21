@@ -3,27 +3,44 @@ extends Node
 signal state_changed
 
 const SAVE_PATH := "user://savegame.json"
+const SAVE_TMP_PATH := "user://savegame.tmp"
+const SAVE_BAK_PATH := "user://savegame.bak"
 
 var save_data: Dictionary = {}
 
 
 func _ready() -> void:
+	# Autoload order guard: ContentService must initialize before AppState.
+	# If this fires, check project.godot [autoload] — ContentService must be listed first.
+	assert(ContentService.content.size() > 0, "AppState._ready(): ContentService.content is empty — autoload order violation. ContentService must be listed before AppState in project.godot.")
 	load_or_create()
 
 
 func load_or_create() -> void:
-	if FileAccess.file_exists(SAVE_PATH):
-		var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.READ)
-		var parsed: Variant = JSON.parse_string(file.get_as_text())
-		if parsed is Dictionary:
-			save_data = _merge_defaults(parsed)
-		else:
-			save_data = default_save_data()
-	else:
+	## Load fallback chain (ADR-0001): primary JSON → shadow backup → fresh defaults.
+	var loaded: Dictionary = _try_load_json(SAVE_PATH)
+	if loaded.is_empty():
+		loaded = _try_load_json(SAVE_BAK_PATH)
+	if loaded.is_empty():
 		save_data = default_save_data()
+	else:
+		save_data = _merge_defaults(loaded)
 	_reset_task_targets_from_rules()
 	save_to_disk()
 	state_changed.emit()
+
+
+func _try_load_json(path: String) -> Dictionary:
+	## Attempts to load and parse a JSON save file. Returns empty dict on any failure.
+	if not FileAccess.file_exists(path):
+		return {}
+	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		return {}
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
+	if parsed is Dictionary:
+		return parsed
+	return {}
 
 
 func default_save_data() -> Dictionary:
@@ -95,10 +112,18 @@ func _reset_task_targets_from_rules() -> void:
 
 
 func save_to_disk() -> void:
-	var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	file.store_string(JSON.stringify(save_data, "\t"))
-	if Engine.is_editor_hint() == false and has_node("/root/DatabaseService"):
-		DatabaseService.write_snapshot(save_data)
+	## Atomic write pattern (ADR-0001): write to .tmp, shadow-backup current .json, rename .tmp → .json.
+	## Prevents data corruption if the process is killed mid-write on Android.
+	var json_text: String = JSON.stringify(save_data, "\t")
+	# Step 1: write new data to temp file
+	var tmp_file: FileAccess = FileAccess.open(SAVE_TMP_PATH, FileAccess.WRITE)
+	tmp_file.store_string(json_text)
+	tmp_file.close()
+	# Step 2: shadow backup — copy current primary to .bak (one-previous-known-good)
+	if FileAccess.file_exists(SAVE_PATH):
+		DirAccess.copy_absolute(SAVE_PATH, SAVE_BAK_PATH)
+	# Step 3: atomic rename — .tmp becomes the new primary
+	DirAccess.rename_absolute(SAVE_TMP_PATH, SAVE_PATH)
 
 
 func get_profile() -> Dictionary:
@@ -137,18 +162,16 @@ func get_wrong_book_entries() -> Array:
 
 
 func mark_sign_in() -> Dictionary:
-	var profile: Dictionary = get_profile()
 	var today: String = Time.get_date_string_from_system()
-	if profile.get("last_sign_in", "") == today:
+	if get_profile().get("last_sign_in", "") == today:
 		return {"ok": false, "message": "今天已经签到过啦，继续闯关吧！"}
 	var growth: Dictionary = ContentService.get_growth_rules()
+	_update_streak_and_weekly(today)
+	# Re-read profile after _update_streak_and_weekly() has written streak/weekly changes.
+	var profile: Dictionary = get_profile()
 	profile["last_sign_in"] = today
-	profile["streak_days"] = int(profile.get("streak_days", 0)) + 1
-	profile["gold"] = int(profile.get("gold", 0)) + int(growth.get("sign_in_gold", 15))
-	profile["exp"] = int(profile.get("exp", 0)) + int(growth.get("sign_in_exp", 10))
-	_apply_level_up(profile)
-	_increment_weekly_progress(int(growth.get("sign_in_exp", 10)))
 	save_data["profile"] = profile
+	_apply_reward({"exp": int(growth.get("sign_in_exp", 10)), "gold": int(growth.get("sign_in_gold", 15))})
 	_evaluate_achievements()
 	save_to_disk()
 	state_changed.emit()
@@ -241,7 +264,6 @@ func complete_session(mode: String, level_id: String, correct_count: int, total_
 	profile["study_minutes"] = int(profile.get("study_minutes", 0)) + 5
 	save_data["profile"] = profile
 	_apply_reward(rewards)
-	_increment_weekly_progress(int(rewards.get("exp", 0)))
 	var progress: Dictionary = save_data.get("progress", {})
 	if not level_id.is_empty():
 		var completed_levels: Dictionary = progress.get("completed_levels", {})
@@ -300,11 +322,14 @@ func get_save_overview() -> Dictionary:
 
 
 func _apply_reward(reward: Dictionary) -> void:
+	## Sole EXP mutation path. All EXP gains MUST go through here (ADR-0009).
+	## Applies exp + gold, increments weekly_progress, then checks for level-up.
 	var profile: Dictionary = get_profile()
 	profile["exp"] = int(profile.get("exp", 0)) + int(reward.get("exp", 0))
 	profile["gold"] = int(profile.get("gold", 0)) + int(reward.get("gold", 0))
-	_apply_level_up(profile)
+	profile["weekly_progress"] = min(int(profile.get("weekly_progress", 0)) + int(reward.get("exp", 0)), 100)
 	save_data["profile"] = profile
+	_check_level_up()
 
 
 func _update_task_progress(task_key: String, amount: int, daily: bool = true) -> void:
@@ -326,7 +351,11 @@ func _increment_weekly_progress(amount: int) -> void:
 	save_data["profile"] = profile
 
 
-func _apply_level_up(profile: Dictionary) -> void:
+func _check_level_up() -> void:
+	## Checks for level-up after every EXP gain. Uses while loop for carry-over (ADR-0009).
+	## Reads and writes save_data["profile"] directly — must be called after _apply_reward()
+	## has already saved the updated exp to save_data.
+	var profile: Dictionary = get_profile()
 	var growth: Dictionary = ContentService.get_growth_rules()
 	var exp_points: int = int(profile.get("exp", 0))
 	var current_level: int = int(profile.get("level", 1))
@@ -336,6 +365,85 @@ func _apply_level_up(profile: Dictionary) -> void:
 		current_level += 1
 	profile["level"] = current_level
 	profile["exp"] = exp_points
+	save_data["profile"] = profile
+
+
+func _date_to_unix(date: String) -> float:
+	## Converts a "YYYY-MM-DD" date string to a Unix timestamp.
+	## Appends "T00:00:00" because date-only strings return -1 on Android.
+	return Time.get_unix_time_from_datetime_string(date + "T00:00:00")
+
+
+func _days_between(a: String, b: String) -> int:
+	## Returns the number of days between two "YYYY-MM-DD" date strings.
+	## Uses roundi() (not int()) to avoid float truncation where 0.9999... would become 0.
+	return roundi((_date_to_unix(b) - _date_to_unix(a)) / 86400.0)
+
+
+func _day_of_year(year: int, month: int, day: int) -> int:
+	var days_in_month: Array[int] = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+	var is_leap: bool = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+	if is_leap:
+		days_in_month[2] = 29
+	var doy: int = day
+	for m: int in range(1, month):
+		doy += days_in_month[m]
+	return doy
+
+
+func _iso_weekday_of_jan1(year: int) -> int:
+	## Returns ISO weekday of January 1 for the given year: 1=Mon … 7=Sun.
+	## Uses Tomohiko Sakamoto algorithm.
+	var y: int = year - 1
+	var wd: int = (y + y / 4 - y / 100 + y / 400 + 1) % 7  # 0=Sun, 1=Mon … 6=Sat
+	return wd if wd != 0 else 7
+
+
+func _weeks_in_year(year: int) -> int:
+	## Returns 52 or 53 — the number of ISO weeks in the given year.
+	## A year has 53 weeks if Jan 1 is Thursday, or if it's a leap year with Jan 1 on Wednesday.
+	var jan1_wd: int = _iso_weekday_of_jan1(year)
+	if jan1_wd == 4:
+		return 53
+	if jan1_wd == 3 and ((year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)):
+		return 53
+	return 52
+
+
+func _get_iso_week(date_string: String) -> int:
+	## Returns the ISO 8601 week number (1–53) for a "YYYY-MM-DD" date string.
+	## Correctly handles year-boundary edge cases (Dec 28–31 may be week 1 of the next year).
+	var dt: Dictionary = Time.get_datetime_dict_from_datetime_string(date_string + "T00:00:00", true)
+	var year: int = dt["year"]
+	var month: int = dt["month"]
+	var day: int = dt["day"]
+	# Godot weekday: 0=Sun, 1=Mon … 6=Sat → ISO: 1=Mon … 7=Sun
+	var godot_wd: int = dt["weekday"]
+	var iso_wd: int = godot_wd if godot_wd != 0 else 7
+	var doy: int = _day_of_year(year, month, day)
+	var w: int = (doy - iso_wd + 10) / 7
+	if w < 1:
+		w = _weeks_in_year(year - 1)
+	elif w > _weeks_in_year(year):
+		w = 1
+	return w
+
+
+func _update_streak_and_weekly(today: String) -> void:
+	## Updates streak_days and weekly_progress based on the gap since last sign-in.
+	## Must be called BEFORE updating last_sign_in in mark_sign_in().
+	## Reads save_data["profile"] directly to see the persisted last_sign_in value.
+	var profile: Dictionary = save_data.get("profile", {})
+	var last: String = profile.get("last_sign_in", "")
+	if last == "":
+		profile["streak_days"] = 1
+	elif _days_between(last, today) == 1:
+		profile["streak_days"] = int(profile.get("streak_days", 0)) + 1
+	else:
+		profile["streak_days"] = 1
+	if last != "" and _get_iso_week(today) != _get_iso_week(last):
+		profile["weekly_progress"] = 0
+	save_data["profile"] = profile
 
 
 func _evaluate_achievements() -> void:

@@ -2,22 +2,28 @@ extends Node
 
 const JSON_EXPORT_PATH := "user://backup_payload.json"
 const ZIP_EXPORT_PATH := "user://shuyi_playland_backup.zip"
-const DB_EXPORT_PATH := "user://backup_runtime.db"
 
 
 func export_backup() -> Dictionary:
-	var payload_text: String = JSON.stringify(AppState.save_data)
+	## Exports save data as a ZIP containing save_data.json, version.txt, and checksum.txt.
+	## Checksum is a 32-bit integer hash (String.hash()) — NOT a cryptographic digest.
+	## Sufficient for corruption detection; not suitable for security purposes (ADR-0001).
+	## Note: the checksum is computed over the round-tripped form (stringify → parse → stringify)
+	## because JSON parse/stringify cycles do not always produce byte-identical output for
+	## Dictionary order. Round-tripping at export time matches what the importer will compute.
+	var raw_text: String = JSON.stringify(AppState.save_data)
+	var roundtripped: Variant = JSON.parse_string(raw_text)
+	var payload_text: String = JSON.stringify(roundtripped)
 	var payload: Dictionary = {
 		"exported_at": Time.get_datetime_string_from_system(),
 		"version": AppState.get_save_overview().get("version", "0.5.0-expanded"),
 		"save_overview": AppState.get_save_overview(),
 		"save_data": AppState.save_data,
-		"checksum_hint": str(payload_text.length()),
+		"checksum_hint": str(payload_text.hash()),
 		"required_sections": ["profile", "settings", "progress", "tasks", "wrong_book", "answer_history", "achievements", "meta"]
 	}
 	var file: FileAccess = FileAccess.open(JSON_EXPORT_PATH, FileAccess.WRITE)
 	file.store_string(JSON.stringify(payload, "\t"))
-	DatabaseService.export_database_copy(DB_EXPORT_PATH)
 	var zip: ZIPPacker = ZIPPacker.new()
 	var opened: Error = zip.open(ProjectSettings.globalize_path(ZIP_EXPORT_PATH))
 	if opened != OK:
@@ -25,11 +31,6 @@ func export_backup() -> Dictionary:
 	zip.start_file("save_data.json")
 	zip.write_file(JSON.stringify(payload, "\t").to_utf8_buffer())
 	zip.close_file()
-	if FileAccess.file_exists(DB_EXPORT_PATH):
-		var db_file: FileAccess = FileAccess.open(DB_EXPORT_PATH, FileAccess.READ)
-		zip.start_file("runtime.db")
-		zip.write_file(db_file.get_buffer(db_file.get_length()))
-		zip.close_file()
 	zip.start_file("version.txt")
 	zip.write_file(str(payload.get("version", "0.5.0-expanded")).to_utf8_buffer())
 	zip.close_file()
@@ -54,12 +55,8 @@ func import_backup() -> Dictionary:
 		var temp_json_path: String = "user://import_payload.json"
 		var temp_file: FileAccess = FileAccess.open(temp_json_path, FileAccess.WRITE)
 		temp_file.store_buffer(json_buffer)
+		temp_file.close()
 		var result: Dictionary = _import_json_payload(temp_json_path)
-		if reader.file_exists("runtime.db"):
-			var db_buffer: PackedByteArray = reader.read_file("runtime.db")
-			var temp_db_file: FileAccess = FileAccess.open(DB_EXPORT_PATH, FileAccess.WRITE)
-			temp_db_file.store_buffer(db_buffer)
-			DatabaseService.import_database_copy(DB_EXPORT_PATH)
 		reader.close()
 		return result
 	reader.close()
@@ -73,8 +70,8 @@ func _import_json_payload(path: String) -> Dictionary:
 		for section in parsed.get("required_sections", []):
 			if not parsed["save_data"].has(section):
 				return {"ok": false, "message": "备份缺少关键结构：%s" % section}
-		if str(JSON.stringify(parsed["save_data"]).length()) != str(parsed.get("checksum_hint", "")):
-			return {"ok": false, "message": "备份校验失败，数据长度不匹配。"}
+		if str(JSON.stringify(parsed["save_data"]).hash()) != str(parsed.get("checksum_hint", "")):
+			return {"ok": false, "message": "备份校验失败，数据哈希不匹配。"}
 		AppState.save_data = AppState._merge_defaults(parsed["save_data"])
 		AppState.save_to_disk()
 		AppState.state_changed.emit()

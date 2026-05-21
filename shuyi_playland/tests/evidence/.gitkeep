@@ -1,0 +1,4 @@
+# Screenshot logs and manual test sign-off records
+# Used for Visual/Feel and UI story types where automated tests are not appropriate.
+# Naming: [story-id]_[screen-or-feature]_[date].md
+# Example: EPIC-003-S02_practice_screen_layout_2026-05-20.md

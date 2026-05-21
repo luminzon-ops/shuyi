@@ -4,6 +4,21 @@ const QuestionRendererClass = preload("res://scripts/question_types/question_ren
 
 signal back_requested
 signal session_finished(summary: Dictionary)
+signal session_error(reason: String)
+
+enum SessionState {
+	IDLE,       ## No session active; screen is at rest
+	LOADING,    ## Resolving questions — synchronous, transient guard state
+	ACTIVE,     ## Displaying a question; waiting for user input
+	EVALUATING, ## Answer submitted; evaluating and recording result
+	FINISHED    ## All questions answered; session_finished emitted
+}
+
+var _state: SessionState = SessionState.IDLE
+
+## Read-only state getter for tests and external observers (ADR-0006).
+var state: SessionState:
+	get: return _state
 
 @onready var level_label: Label = %LevelLabel
 @onready var progress_label: Label = %ProgressLabel
@@ -21,7 +36,6 @@ var questions: Array = []
 var question_index: int = 0
 var correct_count: int = 0
 var selected_option: String = ""
-var current_answer_checked: bool = false
 var session_mode: String = "level"
 var last_config: Dictionary = {}
 var current_question_type: String = "choice"
@@ -36,15 +50,26 @@ func _ready() -> void:
 	next_button.disabled = true
 
 
+func _transition(new_state: SessionState) -> void:
+	_state = new_state
+
+
 func start_session(config: Dictionary) -> void:
+	if _state != SessionState.IDLE:
+		return
+	_transition(SessionState.LOADING)
 	last_config = config.duplicate(true)
 	session_mode = str(config.get("mode", "level"))
 	current_level_id = str(config.get("level_id", ""))
 	questions = _resolve_questions(config)
+	if questions.is_empty():
+		_transition(SessionState.IDLE)
+		session_error.emit("no_wrong_questions")
+		return
 	question_index = 0
 	correct_count = 0
 	selected_option = ""
-	current_answer_checked = false
+	_transition(SessionState.ACTIVE)
 	show_question()
 
 
@@ -65,9 +90,7 @@ func _resolve_questions(config: Dictionary) -> Array:
 
 
 func show_question() -> void:
-	if question_index >= questions.size():
-		_finish_session()
-		return
+	# Called only when question_index < questions.size() — caller is responsible for bounds check.
 	var title_text: String = current_level_id if not current_level_id.is_empty() else session_mode
 	if not current_level_id.is_empty():
 		var level_data: Dictionary = ContentService.get_level(current_level_id)
@@ -79,7 +102,6 @@ func show_question() -> void:
 	question_label.text = "[b]%s[/b]" % question.get("stem", "")
 	feedback_label.text = ""
 	selected_option = ""
-	current_answer_checked = false
 	submit_button.disabled = false
 	next_button.disabled = true
 	current_question_type = question_renderer.render(question, option_container, answer_input, Callable(self, "_select_option"))
@@ -99,12 +121,14 @@ func _select_option(value: String) -> void:
 
 
 func _on_submit_pressed() -> void:
-	if current_answer_checked:
+	if _state != SessionState.ACTIVE:
 		return
+	_transition(SessionState.EVALUATING)
 	var question: Dictionary = questions[question_index]
 	var user_answer: String = question_renderer.build_user_answer(current_question_type, selected_option, answer_input)
 	if user_answer.strip_edges().is_empty():
 		feedback_label.text = "[color=yellow]请先完成作答。[/color]"
+		_transition(SessionState.ACTIVE)
 		return
 	var is_correct: bool = ContentService.evaluate_answer(question, user_answer)
 	AppState.record_answer(question.get("id", ""), is_correct, user_answer)
@@ -115,14 +139,19 @@ func _on_submit_pressed() -> void:
 		feedback_label.text = "[color=lime]回答正确！[/color]\n%s" % _build_explanation(question)
 	else:
 		feedback_label.text = "[color=orange_red]回答错误。正确答案：%s[/color]\n%s" % [question.get("answer", ""), _build_explanation(question)]
-	current_answer_checked = true
 	submit_button.disabled = true
 	next_button.disabled = false
 
 
 func _on_next_pressed() -> void:
+	if _state != SessionState.EVALUATING:
+		return
 	question_index += 1
-	show_question()
+	if question_index >= questions.size():
+		_finish_session()
+	else:
+		_transition(SessionState.ACTIVE)
+		show_question()
 
 
 func _build_explanation(question: Dictionary) -> String:
@@ -133,11 +162,16 @@ func _build_explanation(question: Dictionary) -> String:
 
 
 func _finish_session() -> void:
+	if _state != SessionState.EVALUATING:
+		return
 	var result: Dictionary = ContentService.calculate_result(session_mode, current_level_id, correct_count, questions.size())
 	AppState.complete_session(session_mode, current_level_id, correct_count, questions.size(), result)
 	result["correct_count"] = correct_count
 	result["total_count"] = questions.size()
 	result["retry_config"] = last_config
+	# ADR-0006: reset state to IDLE BEFORE emitting session_finished,
+	# so app.gd's handler can call start_session() synchronously if needed.
+	_transition(SessionState.IDLE)
 	session_finished.emit(result)
 
 

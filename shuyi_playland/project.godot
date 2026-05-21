@@ -17,14 +17,12 @@ run/main_scene="res://scenes/App.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Shuyi Playland"
 config/features=PackedStringArray("4.6")
-config/icon=""
 
 [autoload]
 
-AppState="*res://autoload/AppState.gd"
 ContentService="*res://autoload/ContentService.gd"
+AppState="*res://autoload/AppState.gd"
 BackupService="*res://autoload/BackupService.gd"
-DatabaseService="*res://autoload/DatabaseService.gd"
 
 [display]
 
@@ -37,6 +35,10 @@ window/handheld/orientation=1
 [editor]
 
 export/convert_text_resources_to_binary=false
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
 [gui]
 
