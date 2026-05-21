@@ -91,8 +91,8 @@ secrets.json
 *.cso
 *.dxbc
 
-# === AI assistant config ===
-.claude/settings.local.json
+# === AI assistant config (entire .claude tooling tree is local-only) ===
+.claude/
 CLAUDE.local.md
 .claude-flow/
 .mcp.json
