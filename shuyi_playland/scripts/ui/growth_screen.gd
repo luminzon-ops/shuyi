@@ -13,7 +13,6 @@ signal open_achievements_requested
 @onready var achievements_button: Button = %AchievementsButton
 @onready var back_button: Button = %BackButton
 @onready var feedback_label: Label = %FeedbackLabel
-@onready var summary_label: Label = %SummaryLabel
 
 
 func _ready() -> void:

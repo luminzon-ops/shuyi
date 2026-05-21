@@ -59,6 +59,7 @@ Desktop.ini
 desktop.ini
 ehthumbs.db
 $RECYCLE.BIN/
+bash.exe.stackdump
 
 # === Logs ===
 *.log

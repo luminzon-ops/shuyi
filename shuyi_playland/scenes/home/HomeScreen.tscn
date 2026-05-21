@@ -1,48 +1,48 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene format=3 uid="uid://bmte71llkrgcd"]
 
-[ext_resource type="Script" path="res://scripts/ui/home_screen.gd" id="1_home"]
-[ext_resource type="Texture2D" path="res://assets/generated/hero_home_clean_v3.png" id="2_home_banner"]
-[ext_resource type="Texture2D" path="res://assets/generated/mascot/mascot_welcome_halfbody.jpg" id="3_home_mascot"]
+[ext_resource type="Script" uid="uid://vjymp12rwq8d" path="res://scripts/ui/home_screen.gd" id="1_home"]
+[ext_resource type="Texture2D" uid="uid://cjrrlw2ipp74i" path="res://assets/generated/hero_home_clean_v3.png" id="2_home_banner"]
+[ext_resource type="Texture2D" uid="uid://byvv7cbegstja" path="res://assets/generated/mascot/mascot_welcome_halfbody.jpg" id="3_home_mascot"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_home_card"]
 bg_color = Color(1, 1, 1, 0.98)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.831373, 0.862745, 0.980392, 0.95)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0.329412, 0.392157, 0.709804, 0.1)
 shadow_size = 10
-shadow_color = Color(0.329412, 0.392157, 0.709804, 0.10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_home_primary"]
-bg_color = Color(0.976471, 0.45098, 0.223529, 0.98)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 0.933333, 0.854902, 0.95)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_home_secondary"]
 bg_color = Color(1, 1, 1, 0.98)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.65098, 0.698039, 0.960784, 0.88)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
 
-[node name="HomeScreen" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_home_primary"]
+bg_color = Color(0.976471, 0.45098, 0.223529, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.933333, 0.854902, 0.95)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="HomeScreen" type="Control" unique_id=974043249]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_home")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=580655615]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,7 +59,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ContentMargin" type="MarginContainer" parent="ScrollContainer"]
+[node name="ContentMargin" type="MarginContainer" parent="ScrollContainer" unique_id=552743275]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -67,253 +67,243 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 28
 
-[node name="ContentVBox" type="VBoxContainer" parent="ScrollContainer/ContentMargin"]
+[node name="ContentVBox" type="VBoxContainer" parent="ScrollContainer/ContentMargin" unique_id=1304346974]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="HeroCard" type="PanelContainer" parent="ScrollContainer/ContentMargin/ContentVBox"]
+[node name="HeroCard" type="PanelContainer" parent="ScrollContainer/ContentMargin/ContentVBox" unique_id=763565378]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_home_card")
 
-[node name="HeroMargin" type="MarginContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard"]
+[node name="HeroMargin" type="MarginContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard" unique_id=2115236209]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="HeroVBox" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin"]
+[node name="HeroVBox" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin" unique_id=886268549]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="HeroBanner" type="TextureRect" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox"]
+[node name="HeroBanner" type="TextureRect" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox" unique_id=2029179497]
 custom_minimum_size = Vector2(0, 176)
 layout_mode = 2
 texture = ExtResource("2_home_banner")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HeroInfoRow" type="HBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox"]
+[node name="HeroInfoRow" type="HBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox" unique_id=166161872]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="TextColumn" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow"]
+[node name="TextColumn" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow" unique_id=1574202386]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="SummaryLabel" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow/TextColumn"]
+[node name="SummaryLabel" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow/TextColumn" unique_id=906869667]
 unique_name_in_owner = true
 layout_mode = 2
-autowrap_mode = 3
 theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
 theme_override_font_sizes/font_size = 30
 text = "开始今天的数学冒险"
+autowrap_mode = 3
 
-[node name="GrowthLabel" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow/TextColumn"]
+[node name="GrowthLabel" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow/TextColumn" unique_id=1009449882]
 unique_name_in_owner = true
 layout_mode = 2
-autowrap_mode = 3
 theme_override_colors/font_color = Color(0.313726, 0.356863, 0.619608, 1)
 theme_override_font_sizes/font_size = 17
 text = "等级 Lv.1 · EXP 0 · 金币 0"
+autowrap_mode = 3
 
-[node name="WeeklyLabel" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow/TextColumn"]
+[node name="WeeklyLabel" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow/TextColumn" unique_id=2118141104]
 unique_name_in_owner = true
 layout_mode = 2
-autowrap_mode = 3
 theme_override_colors/font_color = Color(0.431373, 0.47451, 0.690196, 1)
 theme_override_font_sizes/font_size = 15
 text = "连续签到 0 天 · 学习时长 0 分钟"
+autowrap_mode = 3
 
-[node name="HelperLabel" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow/TextColumn"]
+[node name="HelperLabel" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow/TextColumn" unique_id=1271824314]
 unique_name_in_owner = true
 layout_mode = 2
-autowrap_mode = 3
 theme_override_colors/font_color = Color(0.431373, 0.47451, 0.690196, 1)
 theme_override_font_sizes/font_size = 15
 text = "只保留最重要的入口：开始学习、签到、成长。"
+autowrap_mode = 3
 
-[node name="MascotCard" type="PanelContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow"]
+[node name="MascotCard" type="PanelContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow" unique_id=262390065]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_home_secondary")
 
-[node name="MascotTexture" type="TextureRect" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow/MascotCard"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -48.0
-offset_right = 48.0
-offset_bottom = 48.0
+[node name="MascotTexture" type="TextureRect" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/HeroInfoRow/MascotCard" unique_id=935221772]
+layout_mode = 2
 texture = ExtResource("3_home_mascot")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ActionRow" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox"]
+[node name="ActionRow" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox" unique_id=2147174496]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="SignInButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/ActionRow"]
+[node name="SignInButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/ActionRow" unique_id=1596251914]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 0.980392, 0.941176, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_home_primary")
-theme_override_styles/hover = SubResource("StyleBoxFlat_home_primary")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_home_secondary")
+theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
 theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_home_primary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_home_secondary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_home_primary")
 text = "开始学习"
 
-[node name="QuickLinkRow" type="HBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/ActionRow"]
+[node name="QuickLinkRow" type="HBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/ActionRow" unique_id=199422230]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="StartLevelButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/ActionRow/QuickLinkRow"]
+[node name="StartLevelButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/ActionRow/QuickLinkRow" unique_id=908939020]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_home_secondary")
-theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_home_primary")
 theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxFlat_home_secondary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_home_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
 text = "签到"
 
-[node name="GrowthButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/ActionRow/QuickLinkRow"]
+[node name="GrowthButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/HeroCard/HeroMargin/HeroVBox/ActionRow/QuickLinkRow" unique_id=1477422337]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_home_secondary")
-theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_home_primary")
 theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxFlat_home_secondary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_home_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
 text = "成长"
 
-[node name="StudyCard" type="PanelContainer" parent="ScrollContainer/ContentMargin/ContentVBox"]
+[node name="StudyCard" type="PanelContainer" parent="ScrollContainer/ContentMargin/ContentVBox" unique_id=11384991]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_home_card")
 
-[node name="StudyMargin" type="MarginContainer" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard"]
+[node name="StudyMargin" type="MarginContainer" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard" unique_id=790640545]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="StudyVBox" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin"]
+[node name="StudyVBox" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin" unique_id=77291570]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="StudyTitle" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox"]
+[node name="StudyTitle" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox" unique_id=989867644]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
 theme_override_font_sizes/font_size = 24
 text = "选择学习内容"
 
-[node name="GradeOption" type="OptionButton" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox"]
+[node name="GradeOption" type="OptionButton" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox" unique_id=103606608]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ModuleOption" type="OptionButton" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox"]
+[node name="ModuleOption" type="OptionButton" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox" unique_id=89451887]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="KnowledgeOption" type="OptionButton" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox"]
+[node name="KnowledgeOption" type="OptionButton" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox" unique_id=660824417]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LevelList" type="ItemList" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox"]
+[node name="LevelList" type="ItemList" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox" unique_id=1668378581]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 168)
 layout_mode = 2
 size_flags_horizontal = 3
-select_mode = 0
 
-[node name="ModeButtons" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox"]
+[node name="ModeButtons" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox" unique_id=1512365158]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="SpecialPracticeButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox/ModeButtons"]
+[node name="SpecialPracticeButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox/ModeButtons" unique_id=2095332071]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_home_secondary")
-theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_home_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
 text = "专项练习"
 
-[node name="RandomPracticeButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox/ModeButtons"]
+[node name="RandomPracticeButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox/ModeButtons" unique_id=1414544707]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_home_secondary")
-theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_home_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
 text = "随机练习"
 
-[node name="MockTestButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox/ModeButtons"]
+[node name="MockTestButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/StudyCard/StudyMargin/StudyVBox/ModeButtons" unique_id=667159403]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_home_secondary")
-theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_home_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
 text = "模拟测试"
 
-[node name="SecondaryCard" type="PanelContainer" parent="ScrollContainer/ContentMargin/ContentVBox"]
+[node name="SecondaryCard" type="PanelContainer" parent="ScrollContainer/ContentMargin/ContentVBox" unique_id=1131572111]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_home_card")
 
-[node name="SecondaryMargin" type="MarginContainer" parent="ScrollContainer/ContentMargin/ContentVBox/SecondaryCard"]
+[node name="SecondaryMargin" type="MarginContainer" parent="ScrollContainer/ContentMargin/ContentVBox/SecondaryCard" unique_id=1857576031]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="SecondaryVBox" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/SecondaryCard/SecondaryMargin"]
+[node name="SecondaryVBox" type="VBoxContainer" parent="ScrollContainer/ContentMargin/ContentVBox/SecondaryCard/SecondaryMargin" unique_id=1751484277]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="SecondaryTitle" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/SecondaryCard/SecondaryMargin/SecondaryVBox"]
+[node name="SecondaryTitle" type="Label" parent="ScrollContainer/ContentMargin/ContentVBox/SecondaryCard/SecondaryMargin/SecondaryVBox" unique_id=1171209953]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
 theme_override_font_sizes/font_size = 20
 text = "更多入口"
 
-[node name="AchievementsButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/SecondaryCard/SecondaryMargin/SecondaryVBox"]
+[node name="AchievementsButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/SecondaryCard/SecondaryMargin/SecondaryVBox" unique_id=1603887287]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 46)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_home_secondary")
-theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_home_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
 text = "成就中心"
 
-[node name="WrongBookButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/SecondaryCard/SecondaryMargin/SecondaryVBox"]
+[node name="WrongBookButton" type="Button" parent="ScrollContainer/ContentMargin/ContentVBox/SecondaryCard/SecondaryMargin/SecondaryVBox" unique_id=1738138157]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 46)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_home_secondary")
-theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_home_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_home_secondary")
 text = "错题本"

@@ -1,36 +1,35 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3 uid="uid://b0qsfsbvrxwas"]
 
-[ext_resource type="Script" path="res://scripts/ui/sign_in_screen.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/generated/mascot/mascot_celebration_halfbody.jpg" id="2_signin_mascot"]
-[ext_resource type="Texture2D" path="res://assets/generated/mascot/mascot_celebration_halfbody.jpg" id="3_signin_chest"]
+[ext_resource type="Script" uid="uid://c21m33tl6j7ll" path="res://scripts/ui/sign_in_screen.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://brlhcex2ejbre" path="res://assets/generated/mascot/mascot_celebration_halfbody.jpg" id="3_signin_chest"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_signin_button_normal"]
 bg_color = Color(1, 1, 1, 0.98)
-corner_radius_top_left = 22
-corner_radius_top_right = 22
-corner_radius_bottom_right = 22
-corner_radius_bottom_left = 22
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.831373, 0.862745, 0.980392, 0.95)
-shadow_size = 6
-shadow_color = Color(0.329412, 0.392157, 0.709804, 0.08)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_signin_button_pressed"]
-bg_color = Color(0.976471, 0.45098, 0.223529, 0.98)
 corner_radius_top_left = 22
 corner_radius_top_right = 22
 corner_radius_bottom_right = 22
 corner_radius_bottom_left = 22
+shadow_color = Color(0.329412, 0.392157, 0.709804, 0.08)
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_signin_button_pressed"]
+bg_color = Color(0.976471, 0.45098, 0.223529, 0.98)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 0.933333, 0.854902, 0.95)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
 
-[node name="SignInScreen" type="Control"]
+[node name="SignInScreen" type="Control" unique_id=1546803966]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,7 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="." unique_id=963041332]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,28 +50,28 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 24
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Margin"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin" unique_id=1983254723]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ContentMargin" type="MarginContainer" parent="Margin/ScrollContainer"]
+[node name="ContentMargin" type="MarginContainer" parent="Margin/ScrollContainer" unique_id=1531597391]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBox" type="VBoxContainer" parent="Margin/ScrollContainer/ContentMargin"]
+[node name="VBox" type="VBoxContainer" parent="Margin/ScrollContainer/ContentMargin" unique_id=2023232600]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 18
 
-[node name="Visuals" type="HBoxContainer" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+[node name="Visuals" type="HBoxContainer" parent="Margin/ScrollContainer/ContentMargin/VBox" unique_id=1542092966]
 layout_mode = 2
-alignment = 1
 theme_override_constants/separation = 12
+alignment = 1
 
-[node name="Chest" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/Visuals"]
+[node name="Chest" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/Visuals" unique_id=9306002]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -80,45 +79,44 @@ texture = ExtResource("3_signin_chest")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Mascot" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/Visuals"]
+[node name="Mascot" type="TextureRect" parent="Margin/ScrollContainer/ContentMargin/VBox/Visuals" unique_id=342280135]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("2_signin_mascot")
+texture = ExtResource("3_signin_chest")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="StreakLabel" type="Label" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+[node name="StreakLabel" type="Label" parent="Margin/ScrollContainer/ContentMargin/VBox" unique_id=174589131]
 unique_name_in_owner = true
 layout_mode = 2
-autowrap_mode = 3
 theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
 theme_override_font_sizes/font_size = 28
 text = "签到"
+autowrap_mode = 3
 
-[node name="RewardLabel" type="Label" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+[node name="RewardLabel" type="Label" parent="Margin/ScrollContainer/ContentMargin/VBox" unique_id=463216632]
 unique_name_in_owner = true
 layout_mode = 2
-autowrap_mode = 3
 theme_override_colors/font_color = Color(0.431373, 0.47451, 0.690196, 1)
+autowrap_mode = 3
 
-[node name="SignInButton" type="Button" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+[node name="SignInButton" type="Button" parent="Margin/ScrollContainer/ContentMargin/VBox" unique_id=626401471]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_signin_button_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_signin_button_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_signin_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_signin_button_normal")
 text = "立即签到"
 
-[node name="BackButton" type="Button" parent="Margin/ScrollContainer/ContentMargin/VBox"]
+[node name="BackButton" type="Button" parent="Margin/ScrollContainer/ContentMargin/VBox" unique_id=2024675869]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.117647, 0.105882, 0.294118, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_signin_button_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_signin_button_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_signin_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_signin_button_normal")
 text = "返回"
-
