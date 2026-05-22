@@ -131,18 +131,18 @@ stories:
     name: "ADR-0011: Refactor app.gd audio to _init_audio_player() + _play_sound()"
     file: ""
     priority: should-have
-    status: backlog
+    status: done
     owner: ""
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-05-22"
 
   - id: "S1-11"
     name: "Register P-11 Answer Feedback Display in interaction-patterns.md"
     file: ""
     priority: should-have
-    status: backlog
+    status: done
     owner: ""
     estimate_days: 0.25
     blocker: ""
-    completed: ""
+    completed: "2026-05-22"

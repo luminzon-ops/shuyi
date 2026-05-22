@@ -33,6 +33,7 @@
 | P-08 | Session Flow | 流程 | PracticeScreen → ResultScreen |
 | P-09 | Touch Target Sizing | 无障碍 | 所有屏幕 |
 | P-10 | Empty State Display | 数据展示 | WrongBookScreen / AchievementScreen |
+| P-11 | Answer Feedback Display | 反馈 | PracticeScreen（FeedbackLabel）|
 
 ---
 
@@ -226,6 +227,36 @@
 
 **When to Use**: 任何可能为空的列表、成就墙、错题本。
 **When NOT to Use**: 加载中状态应使用加载指示器，而非空状态文案。
+
+---
+
+### P-11 Answer Feedback Display
+
+**Category**: 反馈
+**Used In**: PracticeScreen（FeedbackLabel —— 答题提交后展示）
+
+**Description**: 学生提交答案后，FeedbackLabel 立即显示对错结果。视觉信号必须**同时使用图标 + 文字 + 颜色**三种载体——任何一种载体单独使用都不足以传递信息（WCAG AA 颜色独立性要求）。正确答案触发 EXP 飘字动画作为额外正反馈；错误答案不触发奖励动画，但显示正确答案以支持学习。
+
+**Specification**:
+- 触发：`SubmitButton` 点击后，`ContentService.evaluate_answer()` 返回结果时
+- 正确反馈：图标 `✓` + 文字「回答正确！」+ 绿色 `Color(0.0, 0.45, 0.20)` (#007333) — 5.47:1 对比度
+- 错误反馈：图标 `✗` + 文字「答案是 [correct_answer]」+ 红色 `Color(0.80, 0.10, 0.10)` (#CC1A1A) — 5.51:1 对比度
+- EXP 飘字（仅正确时）：从 FeedbackLabel 位置向上飘 ~40px，~800ms 淡出
+  - 颜色：金色 `Color(0.75, 0.50, 0.0)` (#BF8000) — 3.13:1（需 ≥18sp 字号通过 WCAG AA 大文字阈值）
+  - 文字：`+1 EXP` 固定值（数据层 EXP 仍是 per-session 结算，UI 层是动画演出，per HUD spec 决定）
+- 显示时机：FeedbackLabel 在 `EVALUATING` 状态显示，保持可见至学生点击 `NextButton`（state → ACTIVE 或 FINISHED）
+- 错误反馈不触发飘字动画——错答不应感觉"有奖励"
+- 减弱动画模式：800ms 范围内属可接受时长，MVP 不实现 reduced-motion 切换（v1.1 计划）
+
+**When to Use**: 任何即时单题反馈场景（PracticeScreen 6 种模式答题）。
+**When NOT to Use**:
+- 不用于会话整体结算（用 ResultScreen）
+- 不用于错题本浏览（不是答题反馈）
+- 不用于纯加载/刷新过程（用 P-10 空态或加载指示器）
+
+**Reference**:
+- 颜色定义来自 `design/ux/hud.md` Feedback Color Palette
+- 实现细节见 `design/ux/practice-screen.md` Component Inventory（FeedbackLabel）
 
 ---
 

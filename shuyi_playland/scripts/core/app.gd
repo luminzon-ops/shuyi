@@ -31,17 +31,23 @@ var achievement_screen: Control
 var result_screen: Control
 var mini_game_screen: Control
 var library_screen: Control
+
+# Audio players — owned by app.gd per ADR-0011.
+# Any of these may be null if the corresponding file is missing at startup;
+# _play_sound() handles null gracefully so audio is never a hard dependency.
 var click_player: AudioStreamPlayer
+var correct_player: AudioStreamPlayer    # planned: played on correct answer
+var wrong_player: AudioStreamPlayer      # planned: played on wrong answer
+var level_up_player: AudioStreamPlayer   # planned: played when level increases
 
 
 func _ready() -> void:
-	# Click sound is optional (asset may not be available)
-	var click_sound_path := "res://assets/Audio/Sounds/Menu/Accept6.wav"
-	if ResourceLoader.exists(click_sound_path):
-		click_player = AudioStreamPlayer.new()
-		click_player.stream = load(click_sound_path)
-		click_player.bus = "Master"
-		add_child(click_player)
+	# Audio: initialize all players via the canonical factory (ADR-0011).
+	# Files may not exist yet for the planned slots — null is acceptable.
+	click_player = _init_audio_player("res://assets/Audio/Sounds/Menu/Accept6.wav")
+	correct_player = _init_audio_player("res://assets/Audio/Sounds/Bonus/Bonus.wav")
+	wrong_player = _init_audio_player("res://assets/Audio/Sounds/Alert/Alert.wav")
+	level_up_player = _init_audio_player("res://assets/Audio/Jingles/LevelUp1.wav")
 	home_screen = HOME_SCENE.instantiate()
 	practice_screen = PRACTICE_SCENE.instantiate()
 	settings_screen = SETTINGS_SCENE.instantiate()
@@ -149,10 +155,33 @@ func _set_nav_visible(visible_state: bool) -> void:
 	bottom_nav_card.visible = visible_state
 
 
-func _play_click() -> void:
+func _init_audio_player(path: String) -> AudioStreamPlayer:
+	## Canonical factory for all AudioStreamPlayer instances (ADR-0011).
+	## Returns null if the resource doesn't exist — never throws, never warns,
+	## so missing assets degrade silently. All players are added as children of
+	## app.gd so they live for the app lifetime.
+	if not ResourceLoader.exists(path):
+		return null
+	var player := AudioStreamPlayer.new()
+	player.stream = load(path)
+	player.bus = "Master"
+	add_child(player)
+	return player
+
+
+func _play_sound(player: AudioStreamPlayer) -> void:
+	## Canonical playback method (ADR-0011). Gates on:
+	## (1) the player itself exists (null check first to avoid AppState lookup)
+	## (2) the global sound_enabled setting
+	## stop() before play() prevents stacking on rapid taps.
+	if player == null:
+		return
 	if not AppState.get_settings().get("sound_enabled", true):
 		return
-	if click_player == null:
-		return
-	click_player.stop()
-	click_player.play()
+	player.stop()
+	player.play()
+
+
+func _play_click() -> void:
+	## Convenience wrapper preserved for existing call sites (_navigate, _start_session, _open_mini_game).
+	_play_sound(click_player)
