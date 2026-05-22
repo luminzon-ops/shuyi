@@ -79,6 +79,8 @@ func _ready() -> void:
 		_show_screen(home_screen, "数一游园", "任务、成长与学习入口"))
 	practice_screen.session_finished.connect(_on_session_finished)
 	practice_screen.session_error.connect(func(_reason: String) -> void: _set_nav_visible(true))
+	practice_screen.answer_result.connect(_on_answer_result)
+	AppState.level_up.connect(_on_level_up)
 	wrong_book_screen.start_wrong_retry_requested.connect(_start_wrong_retry)
 	sign_in_screen.back_requested.connect(func() -> void: _show_screen(home_screen, "数一游园", "任务、成长与学习入口"))
 	growth_screen.back_requested.connect(func() -> void: _show_screen(home_screen, "数一游园", "任务、成长与学习入口"))
@@ -185,3 +187,16 @@ func _play_sound(player: AudioStreamPlayer) -> void:
 func _play_click() -> void:
 	## Convenience wrapper preserved for existing call sites (_navigate, _start_session, _open_mini_game).
 	_play_sound(click_player)
+
+
+func _on_answer_result(is_correct: bool) -> void:
+	## S2-03: route PracticeScreen.answer_result to correct/wrong SFX.
+	## Both players are pre-initialized via _init_audio_player(); either may be null
+	## if its asset is missing — _play_sound() handles null silently.
+	_play_sound(correct_player if is_correct else wrong_player)
+
+
+func _on_level_up(_new_level: int) -> void:
+	## S2-04: route AppState.level_up to the level-up jingle.
+	## Visual toast/animation will be added separately in S2-04 (this is the audio half).
+	_play_sound(level_up_player)

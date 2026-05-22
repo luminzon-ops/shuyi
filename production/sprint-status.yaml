@@ -41,17 +41,17 @@ stories:
     name: "app.gd: connect answer_result -> _play_sound(correct/wrong)"
     file: ""
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: ""
     estimate_days: 0.25
     blocker: "S2-01"
-    completed: ""
+    completed: "2026-05-22"
 
   - id: "S2-04"
     name: "app.gd: connect level_up -> _play_sound(level_up) + visual toast"
     file: ""
     priority: must-have
-    status: ready-for-dev
+    status: in_progress
     owner: ""
     estimate_days: 0.5
     blocker: "S2-02"
