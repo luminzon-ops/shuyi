@@ -98,3 +98,48 @@ func test_apply_reward_with_only_gold_does_not_crash() -> void:
 	assert_int(int(profile.get("gold", 0))).is_equal(15)
 	# EXP must remain 0 when not in reward
 	assert_int(int(profile.get("exp", 0))).is_equal(0)
+
+
+# ---------------------------------------------------------------------------
+# S2-02 — level_up signal (ADR-0011 Migration step 6)
+# ---------------------------------------------------------------------------
+
+func test_check_level_up_emits_signal_when_level_increases() -> void:
+	# Arrange: set EXP at the threshold for level 1 → 2.
+	_reset_profile(100, 0, 1, 0)
+	# Watch for the signal.
+	var emitted_levels: Array = []
+	var connector := func(new_level: int) -> void: emitted_levels.append(new_level)
+	AppState.level_up.connect(connector)
+	# Act
+	AppState._check_level_up()
+	# Cleanup connection before asserting (avoids leaking across test runs).
+	AppState.level_up.disconnect(connector)
+	# Assert: signal fired exactly once with the new level.
+	assert_int(emitted_levels.size()).is_equal(1)
+	assert_int(int(emitted_levels[0])).is_equal(2)
+
+
+func test_check_level_up_does_not_emit_when_no_level_change() -> void:
+	# EXP below threshold — level should not change, signal should not fire.
+	_reset_profile(50, 0, 1, 0)
+	var emitted_levels: Array = []
+	var connector := func(new_level: int) -> void: emitted_levels.append(new_level)
+	AppState.level_up.connect(connector)
+	AppState._check_level_up()
+	AppState.level_up.disconnect(connector)
+	assert_int(emitted_levels.size()).is_equal(0)
+
+
+func test_check_level_up_emits_once_for_multi_level_jump() -> void:
+	# 350 EXP starting at level 1 promotes to level 3 in one call.
+	# The signal must fire ONCE with the final level (3), not three times —
+	# handlers care about the fact of a level-up, not each step.
+	_reset_profile(350, 0, 1, 0)
+	var emitted_levels: Array = []
+	var connector := func(new_level: int) -> void: emitted_levels.append(new_level)
+	AppState.level_up.connect(connector)
+	AppState._check_level_up()
+	AppState.level_up.disconnect(connector)
+	assert_int(emitted_levels.size()).is_equal(1)
+	assert_int(int(emitted_levels[0])).is_equal(3)

@@ -1,6 +1,7 @@
 extends Node
 
 signal state_changed
+signal level_up(new_level: int)  ## ADR-0011 Migration step 6: emitted by _check_level_up() when level increases; consumed by app.gd to drive level-up SFX/animation
 
 const SAVE_PATH := "user://savegame.json"
 const SAVE_TMP_PATH := "user://savegame.tmp"
@@ -358,7 +359,8 @@ func _check_level_up() -> void:
 	var profile: Dictionary = get_profile()
 	var growth: Dictionary = ContentService.get_growth_rules()
 	var exp_points: int = int(profile.get("exp", 0))
-	var current_level: int = int(profile.get("level", 1))
+	var starting_level: int = int(profile.get("level", 1))
+	var current_level: int = starting_level
 	var curve_base: int = int(growth.get("level_up_curve_base", 100))
 	while exp_points >= current_level * curve_base:
 		exp_points -= current_level * curve_base
@@ -366,6 +368,12 @@ func _check_level_up() -> void:
 	profile["level"] = current_level
 	profile["exp"] = exp_points
 	save_data["profile"] = profile
+	# ADR-0011: emit a level_up signal whenever the level actually increased.
+	# Multi-level jumps emit once with the final level — handlers care about the
+	# fact of a level-up, not each step. The signal is the contract for the
+	# level-up SFX and any UI celebration.
+	if current_level > starting_level:
+		level_up.emit(current_level)
 
 
 func _date_to_unix(date: String) -> float:

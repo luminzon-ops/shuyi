@@ -5,6 +5,7 @@ const QuestionRendererClass = preload("res://scripts/question_types/question_ren
 signal back_requested
 signal session_finished(summary: Dictionary)
 signal session_error(reason: String)
+signal answer_result(is_correct: bool)  ## ADR-0011: emitted after each answer evaluation; consumed by app.gd to drive correct/wrong SFX
 
 enum SessionState {
 	IDLE,       ## No session active; screen is at rest
@@ -196,6 +197,9 @@ func _on_submit_pressed() -> void:
 		feedback_label.text = "[color=orange_red]回答错误。正确答案：%s[/color]\n%s" % [question.get("answer", ""), _build_explanation(question)]
 	submit_button.disabled = true
 	next_button.disabled = false
+	# Emit after UI state has settled — handlers (e.g. SFX, EXP float-up) run on the
+	# already-updated screen.
+	answer_result.emit(is_correct)
 
 
 func _on_next_pressed() -> void:
