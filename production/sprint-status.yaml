@@ -9,116 +9,116 @@
 #   done           <->  Complete
 #   blocked        <->  Blocked
 
-sprint: 1
-goal: "Close ADR migration plan gaps in AppState and PracticeScreen, complete HUD polish items, expand question bank toward 300"
-start: "2026-05-21"
-end: "2026-06-03"
-generated: "2026-05-21"
-updated: "2026-05-21"
+sprint: 2
+goal: "Feedback feel & polish — make the answer loop satisfying. SFX, EXP float-up, level-up celebration, ResultScreen animation."
+start: "2026-05-22"
+end: "2026-06-04"
+generated: "2026-05-22"
+updated: "2026-05-22"
 
 stories:
-  - id: "S1-01"
-    name: "ADR-0001: Atomic write + shadow backup in AppState.save_to_disk()"
+  - id: "S2-01"
+    name: "PracticeScreen emits answer_result(is_correct: bool) signal"
     file: ""
     priority: must-have
-    status: done
+    status: ready-for-dev
+    owner: ""
+    estimate_days: 0.25
+    blocker: ""
+    completed: ""
+
+  - id: "S2-02"
+    name: "AppState emits level_up(new_level: int) signal (ADR-0011 step 6)"
+    file: ""
+    priority: must-have
+    status: ready-for-dev
+    owner: ""
+    estimate_days: 0.25
+    blocker: ""
+    completed: ""
+
+  - id: "S2-03"
+    name: "app.gd: connect answer_result -> _play_sound(correct/wrong)"
+    file: ""
+    priority: must-have
+    status: ready-for-dev
+    owner: ""
+    estimate_days: 0.25
+    blocker: "S2-01"
+    completed: ""
+
+  - id: "S2-04"
+    name: "app.gd: connect level_up -> _play_sound(level_up) + visual toast"
+    file: ""
+    priority: must-have
+    status: ready-for-dev
     owner: ""
     estimate_days: 0.5
-    blocker: ""
-    completed: "2026-05-21"
+    blocker: "S2-02"
+    completed: ""
 
-  - id: "S1-02"
-    name: "ADR-0001: Fix autoload order in project.godot"
+  - id: "S2-05"
+    name: "EXP float-up animation (per P-11 spec)"
     file: ""
     priority: must-have
-    status: done
+    status: ready-for-dev
+    owner: ""
+    estimate_days: 0.5
+    blocker: "S2-01"
+    completed: ""
+
+  - id: "S2-06"
+    name: "Option button tap micro-scale tween feedback"
+    file: ""
+    priority: must-have
+    status: ready-for-dev
     owner: ""
     estimate_days: 0.25
     blocker: ""
-    completed: "2026-05-21"
+    completed: ""
 
-  - id: "S1-03"
-    name: "ADR-0001: Upgrade backup checksum to String.hash()"
+  - id: "S2-07"
+    name: "ResultScreen celebration animation (stars + gold + EXP bar)"
     file: ""
     priority: must-have
-    status: done
-    owner: ""
-    estimate_days: 0.25
-    blocker: "S1-01"
-    completed: "2026-05-21"
-
-  - id: "S1-04"
-    name: "ADR-0009: Implement _update_streak_and_weekly() + streak reset"
-    file: ""
-    priority: must-have
-    status: done
+    status: ready-for-dev
     owner: ""
     estimate_days: 1.0
-    blocker: "S1-02"
-    completed: "2026-05-21"
+    blocker: ""
+    completed: ""
 
-  - id: "S1-05"
-    name: "ADR-0009: Refactor mark_sign_in() to route EXP through _apply_reward()"
+  - id: "S2-08"
+    name: "Audio warm-up after _init_audio_player() (ADR-0011 risk mitigation)"
     file: ""
-    priority: must-have
-    status: done
+    priority: should-have
+    status: backlog
+    owner: ""
+    estimate_days: 0.25
+    blocker: ""
+    completed: ""
+
+  - id: "S2-09"
+    name: "Revise home-screen.md UX spec to reflect new HomeScreen design"
+    file: ""
+    priority: should-have
+    status: backlog
     owner: ""
     estimate_days: 0.5
-    blocker: "S1-04"
-    completed: "2026-05-21"
-
-  - id: "S1-06"
-    name: "ADR-0006: Add SessionState enum + _transition() to PracticeScreen.gd"
-    file: ""
-    priority: must-have
-    status: done
-    owner: ""
-    estimate_days: 1.5
     blocker: ""
-    completed: "2026-05-21"
+    completed: ""
 
-  - id: "S1-07"
-    name: "HUD: Implement _set_nav_enabled(bool) in app.gd"
+  - id: "S2-10"
+    name: "Author library-screen.md UX spec"
     file: ""
-    priority: must-have
-    status: done
+    priority: should-have
+    status: backlog
     owner: ""
     estimate_days: 0.5
-    blocker: "S1-06"
-    completed: "2026-05-21"
-
-  - id: "S1-08"
-    name: "Contrast verification pass (medium blue + orange button)"
-    file: ""
-    priority: must-have
-    status: done
-    owner: ""
-    estimate_days: 0.25
     blocker: ""
-    completed: "2026-05-21"
+    completed: ""
 
-  - id: "S1-12"
-    name: "ADR-0003: Remove DatabaseService from autoloads + delete file"
-    file: ""
-    priority: must-have
-    status: done
-    owner: ""
-    estimate_days: 0.25
-    blocker: "S1-02"
-    completed: "2026-05-21"
-
-  - id: "S1-13"
-    name: "Define feedback color palette (correct-green, wrong-red, EXP-gold)"
-    file: ""
-    priority: must-have
-    status: done
-    owner: ""
-    estimate_days: 0.25
-    blocker: ""
-    completed: "2026-05-21"
-
-  - id: "S1-09"
-    name: "Expand question bank: +50 questions (target 208 total)"
+  - id: "S2-11"
+    name: "Question bank +30 (target 188; remaining +20 → Sprint 3)"
     file: ""
     priority: should-have
     status: backlog
@@ -126,23 +126,3 @@ stories:
     estimate_days: 1.0
     blocker: ""
     completed: ""
-
-  - id: "S1-10"
-    name: "ADR-0011: Refactor app.gd audio to _init_audio_player() + _play_sound()"
-    file: ""
-    priority: should-have
-    status: done
-    owner: ""
-    estimate_days: 0.5
-    blocker: ""
-    completed: "2026-05-22"
-
-  - id: "S1-11"
-    name: "Register P-11 Answer Feedback Display in interaction-patterns.md"
-    file: ""
-    priority: should-have
-    status: done
-    owner: ""
-    estimate_days: 0.25
-    blocker: ""
-    completed: "2026-05-22"
